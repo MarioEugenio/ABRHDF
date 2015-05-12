@@ -13,7 +13,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
             Routing.generate('user_auth'), form)
             .success(function (response) {
                 if (response.success) {
-                    window.location = baseUrl + '/colih/admin';
+                    window.location = baseUrl + '/core/admin';
                     return;
                 }
 
