@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/corebase/css/base.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+
+{% block javascripts %}
+    {# Inicializando rotas angular #}
+    <script type="text/javascript"> var baseUrl = "{{ app.request.baseurl }}"; </script>
+    <script src="{{ asset('bundles/coreuser/js/controller/loginCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/coreuser/js/router/routers.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div style="width: 40%;position: absolute;left: 55%;margin-top: 20px;z-index: 9999999;" id="alerts-container"></div>
+    <div id="content" class="container" ng-view></div>
+{% endblock %}

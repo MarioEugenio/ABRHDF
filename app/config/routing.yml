@@ -1,3 +1,27 @@
+evento_evento:
+    resource: "@EventoEventoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+evento_pessoa:
+    resource: "@EventoPessoaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+core_base:
+    resource: "@CoreBaseBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+core_user:
+    resource: "@CoreUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+

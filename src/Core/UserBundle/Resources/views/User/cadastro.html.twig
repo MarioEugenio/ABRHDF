@@ -1,0 +1,43 @@
+<ol class="breadcrumb">
+    <li><a href="#/">Inicial</a></li>
+    <li><a href="#/user">Usuário</a></li>
+    <li class="active">Cadastro</li>
+</ol>
+
+<form ng-controller="UserCadastroCtrl" ng-init="init()" ng-submit="save()">
+    <h2>Cadastro de Usuário<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
+    <hr>
+
+    <input type="hidden" ng-model="form.id" value="form.id">
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nome</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.nome" placeholder="Digite nome" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Endereço e-mail</label>
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+            <input type="email" class="form-control input-lg" maxlength="255" ng-model="form.email" placeholder="Digite e-mail" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Senha</label>
+        <input type="password" maxlength="10" class="form-control input-lg" ng-model="form.senha" placeholder="Digite senha" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Repita Senha</label>
+        <input type="password" maxlength="10" class="form-control input-lg" ng-model="rsenha" placeholder="Digite senha" required>
+    </div>
+
+    <hr>
+
+    <div class="pull-right">
+        <a href="#/user" class="btn btn-default btn-lg">CANCELAR</a>
+        <button type="submit" class="btn btn-primary btn-lg">SALVAR</button>
+    </div>
+
+</form>

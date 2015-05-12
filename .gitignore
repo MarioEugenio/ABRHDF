@@ -1,0 +1,28 @@
+## arquivos de projeto de IDE
+.project
+.settings
+.buildpath
+nbproject
+*.sublime-project
+.idea
+## arquivos privados de IDE
+*.sublime-workspace
+*.iws
+*.iml
+
+## arquivos privados de compilacao
+.sass-cache
+node_modules/
+build/
+packager.temp.json
+cordova/platforms/*
+cordova/plugins/*
+cordova/www/*
+native/
+
+## arquivo de configuracao sencha
+packager.json
+
+# arquivos SO
+.DS_Store
+!.gitkeep

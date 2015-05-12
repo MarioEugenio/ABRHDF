@@ -1,0 +1,67 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/corebase/css/admin.css') }}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+
+{% block javascripts %}
+    {# Inicializando rotas angular #}
+    <script src="{{ asset('bundles/coreuser/js/controller/cadastroCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/coreuser/js/controller/listaCtrl.js') }}"></script>
+
+    <script src="{{ asset('bundles/coreuser/js/router/routerUser.js') }}"></script>
+
+
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">CORE ADMINISTRAÇÃO</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/"><span class="glyphicon glyphicon-home"></span> Inicial</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Alterar Senha</a></li>
+                            <li class="divider"></li>
+                            <li><a href="user/logoff">Logoff</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div id="content" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar menu">
+                    <li><a href="#/user"><span class="glyphicon glyphicon-play-circle"></span> Usuários</a></li>
+                    <li><a href="#/medico"><span class="glyphicon glyphicon-user"></span> Médicos</a></li>
+                    <li><a href="#/advogado"><span class="glyphicon glyphicon-briefcase"></span> Advogados</a></li>
+                    <li><a href="#/facilitador"><span class="glyphicon glyphicon-hand-right"></span> Facilitadores</a></li>
+                    <li><a href="#/plantonista"><span class="glyphicon glyphicon-play-circle"></span> Plantonista</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Documentos</a></li>
+                </ul>
+
+            </div>
+
+            <div style="width: 40%;position: absolute;left: 58%;margin-top: 25px;z-index: 9999999;" id="alerts-container"></div>
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>
+        </div>
+    </div>
+{% endblock %}
