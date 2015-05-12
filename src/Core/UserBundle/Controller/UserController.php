@@ -66,7 +66,7 @@ class UserController extends BaseController
             $objData = json_decode($this->getRequest()->getContent(), true);
 
             /** @var UserActions $service */
-            $service = $this->get('COLIHUserBundle.UserActions');
+            $service = $this->get('CoreUserBundle.UserActions');
             $result = $service->autenticar(new User($objData));
 
             if ($result) {
@@ -98,7 +98,7 @@ class UserController extends BaseController
         try {
             $objData = json_decode($this->getRequest()->getContent(), true);
             /** @var UserActions $service */
-            $service = $this->get('COLIHUserBundle.UserActions');
+            $service = $this->get('CoreUserBundle.UserActions');
             $service->remover($objData['id']);
 
             return $this->createJsonResponse(array(
@@ -122,7 +122,7 @@ class UserController extends BaseController
     {
         try {
             /** @var UserActions $service */
-            $service = $this->get('COLIHUserBundle.UserActions');
+            $service = $this->get('CoreUserBundle.UserActions');
             $resource = $service->findOneById($id);
 
             return $this->createJsonResponse(array(
@@ -146,7 +146,7 @@ class UserController extends BaseController
     {
         try {
             /** @var UserActions $service */
-            $service = $this->get('COLIHUserBundle.UserActions');
+            $service = $this->get('CoreUserBundle.UserActions');
             $resource = $service->findAll();
 
             return $this->createJsonResponse(array(
@@ -173,7 +173,7 @@ class UserController extends BaseController
             $entity = new User($objData);
 
             /** @var MedicoActions $service */
-            $service = $this->get('COLIHUserBundle.UserActions');
+            $service = $this->get('CoreUserBundle.UserActions');
 
             if (isset($objData['id'])) {
                 $entity =  $service->find($objData['id']);

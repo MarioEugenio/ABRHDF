@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}COLIH - Administração{% endblock %}</title>
+    <title>{% block title %}ABMRHDF{% endblock %}</title>
 
     <link href="{{ asset('bundles/corebase/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/corebase/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/corebase/dist/css/sb-admin-2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/corebase/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     {% block stylesheets %}{% endblock %}
 
 </head>
@@ -28,6 +31,9 @@
 
 <script src="{{ asset('bundles/corebase/js/external/angular/directive/strap/angular-strap.min.js') }}"></script>
 <script src="{{ asset('bundles/corebase/js/external/angular/directive/strap/angular-strap.tpl.min.js') }}"></script>
+
+<script src="{{ asset('bundles/corebase/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+<script src="{{ asset('bundles/corebase/dist/js/sb-admin-2.js') }}"></script>
 
 {# Componentes SNC core #}
 <script src="{{ asset('bundles/corebase/js/Core.js') }}"></script>

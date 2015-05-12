@@ -26,7 +26,7 @@ class UserActions
     public function __construct(EntityManager $em)
     {
         $this->entityManager = $em;
-        $this->repository = $em->getRepository("COLIHUserBundle:User");
+        $this->repository = $em->getRepository("CoreUserBundle:User");
     }
 
     /**
