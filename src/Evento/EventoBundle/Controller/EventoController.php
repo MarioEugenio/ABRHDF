@@ -35,8 +35,8 @@ class EventoController extends Controller
             $objData = json_decode($this->getRequest()->getContent(), true);
             $entity = new User($objData);
 
-            /** @var MedicoActions $service */
-            $service = $this->get('CoreUserBundle.UserActions');
+            /** @var EventoActions $service */
+            $service = $this->get('EventoEventoBundle.EventoActions');
 
             if (isset($objData['id'])) {
                 $entity =  $service->find($objData['id']);
