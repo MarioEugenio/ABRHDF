@@ -22,7 +22,8 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
-        "jms/serializer-bundle": "^0.13.0"
+        "jms/serializer-bundle": "^0.13.0",
+        "brazilianfriendsofsymfony/pagseguro-bundle": "^0.5.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

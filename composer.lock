@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ec0536866decfc4337610bf41a44a26e",
+    "hash": "bab00eca5e5296c8963d33845c0d6105",
     "packages": [
+        {
+            "name": "brazilianfriendsofsymfony/pagseguro-bundle",
+            "version": "v0.5.1",
+            "target-dir": "BFOS/PagseguroBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BrazilianFriendsOfSymfony/BFOSPagseguroBundle.git",
+                "reference": "e309e6096340ffb89f5ea81330039275f6c8e9a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BrazilianFriendsOfSymfony/BFOSPagseguroBundle/zipball/e309e6096340ffb89f5ea81330039275f6c8e9a1",
+                "reference": "e309e6096340ffb89f5ea81330039275f6c8e9a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "BFOS\\PagseguroBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paulo Roberto Ribeiro",
+                    "email": "paulo@duocriativa.com.br"
+                },
+                {
+                    "name": "BrazilianFriendsOfSymfony Community",
+                    "homepage": "https://github.com/BrazilianFriendsOfSymfony/BFOSPagseguroBundle/contributors"
+                }
+            ],
+            "description": "Symfony BFOSPagseguroBundle",
+            "homepage": "http://www.duocriativa.com.br/bfos",
+            "keywords": [
+                "Integração gateway de pagamento Pagseguro"
+            ],
+            "time": "2013-02-19 00:07:40"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.3",
