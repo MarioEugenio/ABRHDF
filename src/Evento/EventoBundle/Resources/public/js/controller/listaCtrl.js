@@ -1,4 +1,4 @@
-app.controller('UserListaCtrl', function ($scope, $http, $alert) {
+app.controller('EventoListaCtrl', function ($scope, $http, $alert) {
 
     $scope.list = [];
 
@@ -11,7 +11,7 @@ app.controller('UserListaCtrl', function ($scope, $http, $alert) {
 
         if (conf) {
             $http.post(
-                    Routing.generate('user_remove'), { id: id})
+                    Routing.generate('evento_remove'), { id: id})
                 .success(function (response) {
                     if (response.success) {
                         $scope.list.splice(index, 1);
@@ -27,7 +27,7 @@ app.controller('UserListaCtrl', function ($scope, $http, $alert) {
 
     $scope.listar = function () {
         $http.post(
-            Routing.generate('user_listar'))
+            Routing.generate('evento_listar'))
             .success(function (data) {
                 if (data.success) {
                     $scope.list = data.data;

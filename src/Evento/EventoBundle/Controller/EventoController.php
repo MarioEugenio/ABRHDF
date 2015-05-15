@@ -9,10 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class EventoController extends Controller
 {
     /**
-     * @Route("/evento")
+     * @Route("/evento", name="evento_lista", options={"expose"=true})
      * @Template()
      */
-    public function indexAction()
+    public function listaAction()
     {
         return array();
     }
@@ -24,6 +24,30 @@ class EventoController extends Controller
     public function cadastroAction()
     {
         return array();
+    }
+
+    /**
+     * @Route("/evento/listar", name="evento_listar", options={"expose"=true})
+     */
+    public function listarAction()
+    {
+        try {
+            /** @var EventoActions $service */
+            $service = $this->get('EventoEventoBundle.EventoActions');
+            $resource = $service->findAll();
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
     }
 
     /**

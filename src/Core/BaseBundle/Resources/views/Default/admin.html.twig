@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-
+    <link href="{{ asset('bundles/corebase/css/admin.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block javascripts %}
@@ -10,6 +10,11 @@
     <script src="{{ asset('bundles/coreuser/js/controller/listaCtrl.js') }}"></script>
 
     <script src="{{ asset('bundles/coreuser/js/router/routerUser.js') }}"></script>
+
+    <script src="{{ asset('bundles/eventoevento/js/controller/cadastroCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/eventoevento/js/controller/listaCtrl.js') }}"></script>
+
+    <script src="{{ asset('bundles/eventoevento/js/router/routers.js') }}"></script>
 
 
 {% endblock %}
@@ -281,12 +286,6 @@
     </nav>
 
     <div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Dashboard</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
     <!-- /.row -->
     <div class="row" ng-view></div>
     <!-- /.row -->
