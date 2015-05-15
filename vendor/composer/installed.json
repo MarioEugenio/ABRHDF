@@ -2146,5 +2146,52 @@
             "javascript",
             "routing"
         ]
+    },
+    {
+        "name": "brazilianfriendsofsymfony/pagseguro-bundle",
+        "version": "v0.5.1",
+        "version_normalized": "0.5.1.0",
+        "target-dir": "BFOS/PagseguroBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/BrazilianFriendsOfSymfony/BFOSPagseguroBundle.git",
+            "reference": "e309e6096340ffb89f5ea81330039275f6c8e9a1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/BrazilianFriendsOfSymfony/BFOSPagseguroBundle/zipball/e309e6096340ffb89f5ea81330039275f6c8e9a1",
+            "reference": "e309e6096340ffb89f5ea81330039275f6c8e9a1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "time": "2013-02-19 00:07:40",
+        "type": "symfony-bundle",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "BFOS\\PagseguroBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Paulo Roberto Ribeiro",
+                "email": "paulo@duocriativa.com.br"
+            },
+            {
+                "name": "BrazilianFriendsOfSymfony Community",
+                "homepage": "https://github.com/BrazilianFriendsOfSymfony/BFOSPagseguroBundle/contributors"
+            }
+        ],
+        "description": "Symfony BFOSPagseguroBundle",
+        "homepage": "http://www.duocriativa.com.br/bfos",
+        "keywords": [
+            "Integração gateway de pagamento Pagseguro"
+        ]
     }
 ]
