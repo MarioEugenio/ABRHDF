@@ -18,7 +18,7 @@ class Contato extends Entity
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -93,6 +93,24 @@ class Contato extends Entity
      * })
      */
     private $user;
+
+    /**
+     * @var Cidade $cidade
+     * @ORM\ManyToOne(targetEntity="\Core\UserBundle\Entity\Cidade")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="id_cidade", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $cidade;
+
+    /**
+     * @var Estado $estado
+     * @ORM\ManyToOne(targetEntity="\Core\UserBundle\Entity\Estado")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="id_uf", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $estado;
 
     /**
      * @param int $id
@@ -335,5 +353,41 @@ class Contato extends Entity
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param int $cidade
+     */
+    public function setCidade($cidade)
+    {
+        $this->cidade = $cidade;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getCidade()
+    {
+        return $this->cidade;
+    }
+
+    /**
+     * @param int $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

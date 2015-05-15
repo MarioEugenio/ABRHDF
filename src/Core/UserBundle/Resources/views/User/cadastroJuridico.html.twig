@@ -1,0 +1,148 @@
+<ol class="breadcrumb">
+    <li><a href="#/">Inicial</a></li>
+    <li><a href="#/user">Usuário</a></li>
+    <li class="active">Cadastro</li>
+</ol>
+
+<form ng-controller="UserCadastroJuridicoCtrl" ng-init="init()" ng-submit="save()">
+    <h2>Cadastro de Pessoa Jurídica<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
+    <hr>
+
+    <input type="hidden" ng-model="form.id" value="form.id">
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">CNPJ</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="empresa.cnpj" placeholder="Digite o cnpj" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Inscrição Estadual</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="empresa.inscEstadual" placeholder="Digite a inscrição estadual" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Razão Social</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="empresa.razaoSocial" placeholder="Digite a razão social" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nome Fantasia</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="empresa.nomeFantasia" placeholder="Digite o nome fantasia" required>
+    </div>
+
+
+    <!-- PARTE DE CONTATOS -->
+    <h2>Informações para contato<br> </h2>
+    <hr>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Telefone</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.telefone" placeholder="Digite o telefone" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Numero do FAX</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.fax" placeholder="Digite o numero do fax" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.email" placeholder="Digite o email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Endereço</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.endereco" placeholder="Digite o endereço" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Bairro</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.bairro" placeholder="Digite o bairro" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Complemento</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.complemento" placeholder="Digite o complemento" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">UF</label>
+        <select class="form-control input-lg" ng-model="contato.estado" required ng-change="getCidade()">
+            <option value="">Selecione</option>
+            <option ng-repeat="estado in estados" value="{[{ estado.id }]}">{[{ estado.estado }]}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Cidade</label>
+        <select class="form-control input-lg" ng-model="contato.cidade" required>
+            <option value="">Selecione</option>
+            <option ng-repeat="cidade in cidades" value="{[{ cidade.id }]}">{[{ cidade.noCidade }]}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Cep</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.cep" placeholder="Digite o cep" required>
+    </div>
+
+
+    <!-- PARTE DE COMPLEMENTO -->
+    <h2>Dados do Responsavel<br></h2>
+    <hr>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nome</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.nome" placeholder="Digite o nome" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Telefone</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.comercial" placeholder="Digite o telefone" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Celular</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.celular" placeholder="Digite o celular" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Cargo</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="complemento.cargo" placeholder="Digite o cargo" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Endereço e-mail</label>
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+            <input type="email" class="form-control input-lg" maxlength="255" ng-model="form.email" placeholder="Digite o e-mail" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Sexo</label>
+        <select class="form-control input-lg" ng-model="form.sexo" required>
+            <option value="">Selecione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Senha</label>
+        <input type="password" maxlength="10" class="form-control input-lg" ng-model="form.senha" placeholder="Digite senha" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Repita Senha</label>
+        <input type="password" maxlength="10" class="form-control input-lg" ng-model="rsenha" placeholder="Digite senha" required>
+    </div>
+
+    <hr>
+
+    <div class="pull-right">
+        <a href="#/user" class="btn btn-default btn-lg">CANCELAR</a>
+        <button type="submit" class="btn btn-primary btn-lg">SALVAR</button>
+    </div>
+
+</form>

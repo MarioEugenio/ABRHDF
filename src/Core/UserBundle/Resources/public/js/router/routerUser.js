@@ -6,9 +6,17 @@ app.config(['$routeProvider', '$interpolateProvider',
                 templateUrl: Routing.generate('user_cadastro'),
                 controller: 'UserCadastroCtrl'
             }).
+            when('/user/cadastro/juridico', {
+                templateUrl: Routing.generate('user_cadastro_juridico'),
+                controller: 'UserCadastroJuridicoCtrl'
+            }).
             when('/user/:id/edit', {
                 templateUrl: Routing.generate('user_cadastro'),
                 controller: 'UserCadastroCtrl'
+            }).
+            when('/user/:id/edit/juridico', {
+                templateUrl: Routing.generate('user_cadastro_juridico'),
+                controller: 'UserCadastroJuridicoCtrl'
             }).
             when('/user', {
                 templateUrl: Routing.generate('user_lista'),

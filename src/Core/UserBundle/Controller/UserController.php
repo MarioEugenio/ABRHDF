@@ -38,6 +38,15 @@ class UserController extends BaseController
     }
 
     /**
+     * @Route("/user/cadastro/juridico", name="user_cadastro_juridico", options={"expose"=true})
+     * @Template()
+     */
+    public function cadastroJuridicoAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/user/cadastrar", name="user_cadastrar", options={"expose"=true})
      */
     public function cadastrarAction()
@@ -185,6 +194,88 @@ class UserController extends BaseController
             return $this->createJsonResponse(array(
                 'success' => true,
                 'message' => 'Processo realizado com sucesso',
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/save/juridico", name="user_save_juridico", options={"expose"=true})
+     */
+    public function saveJuridicoAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            $entity = new User($objData);
+
+            /** @var MedicoActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+
+            if (isset($objData['id'])) {
+                $entity =  $service->find($objData['id']);
+                $entity->setData($objData);
+            }
+
+            $resource = $service->save($entity);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Processo realizado com sucesso',
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/get/estado", name="get_estado", options={"expose"=true})
+     */
+    public function getEstadoAction()
+    {
+        try {
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getEstados();
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/get/cidade/{id}", name="get_cidade", options={"expose"=true})
+     */
+    public function getCidadeAction($id)
+    {
+        try {
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getCidadePorEstado($id);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
                 'data' => $resource,
             ));
 

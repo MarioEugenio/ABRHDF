@@ -1,8 +1,9 @@
-app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert) {
+app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $routeParams, $alert) {
 
     $scope.form = {};
     $scope.contato = {};
     $scope.complemento = {};
+    $scope.empresa = {};
 
     $scope.estados = [];
     $scope.cidades = [];
@@ -51,7 +52,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         var form = angular.copy($scope.form);
 
         $http.post(
-            Routing.generate('user_save')
+            Routing.generate('user_save_juridico')
             , form)
             .success(function (response) {
                 if (response.success) {

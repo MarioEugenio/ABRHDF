@@ -1,0 +1,28 @@
+﻿
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (257, 'BR-AC','Acre');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (258,'BR-AL','Alagoas');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (259,'BR-AP','Amapá');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (260,'BR-AM','Amazonas');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (261,'BR-BA','Bahia');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (262,'BR-CE','Ceará');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (263,'BR-DF','Distrito Federal');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (264,'BR-ES','Espírito Santo');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (265,'BR-GO','Goiás');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (266,'BR-MA','Maranhão');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (267,'BR-MT','Mato Grosso');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (268,'BR-MS','Mato Grosso do Sul');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (269,'BR-MG','Minas Gerais');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (270,'BR-PA','Pará');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (271,'BR-PB','Paraíba');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (272,'BR-PR','Paraná');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (273,'BR-PE','Pernambuco');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (274,'BR-PI','Piaui');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (275,'BR-RJ','Rio de Janeiro');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (276,'BR-R', 'Rio Grande do Norte');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (277,'BR-RS','Rio Grande do Sul');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (278,'BR-RO','Rondônia');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (279,'BR-RR','Roraima');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (280,'BR-SC','Santa Catarina');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (281,'BR-SP','São Paulo');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (282,'BR-SE','Sergipe');
+INSERT INTO tb_estado(id, abreviacao, estado) VALUES (283,'BR-TO','Tocantins');

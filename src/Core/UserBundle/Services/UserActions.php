@@ -80,4 +80,38 @@ class UserActions
     public function findAll() {
         return $this->repository->findAll();
     }
+
+    public function getEstados()
+    {
+        $this->estadoRep = $this->entityManager->getRepository("CoreUserBundle:Estado");
+        $estados = $this->estadoRep->findAll();
+        $result = array();
+        if ($estados) {
+            foreach($estados as $estado){
+                $result[] = array(
+                    'id' => $estado->getId(),
+                    'estado' => $estado->getEstado()
+                );
+            }
+        }
+
+        return $result;
+    }
+
+    public function getCidadePorEstado($id)
+    {
+        $this->cidadeRep = $this->entityManager->getRepository("CoreUserBundle:Cidade");
+        $cidades = $this->cidadeRep->findBy(array('idUf' => $id));
+        $result = array();
+        if ($cidades) {
+            foreach($cidades as $cidade){
+                $result[] = array(
+                    'id' => $cidade->getId(),
+                    'noCidade' => $cidade->getNoCidade()
+                );
+            }
+        }
+
+        return $result;
+    }
 }
