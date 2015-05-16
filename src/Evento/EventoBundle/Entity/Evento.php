@@ -3,6 +3,7 @@
 namespace Evento\EventoBundle\Entity;
 
 use Core\BaseBundle\Entity\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -128,40 +129,15 @@ class Evento extends Entity
     private $eventoPago;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="tipoDesconto", type="string", length=2)
+     * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="evento")
      */
-    private $tipoDesconto;
+    protected $descontos;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="descontoPorcentagem", type="boolean")
-     */
-    private $descontoPorcentagem;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="porcentagem", type="integer")
-     */
-    private $porcentagem;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="valorDesconto", type="float")
-     */
-    private $valorDesconto;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="codigoDesconto", type="string", length=255)
-     */
-    private $codigoDesconto;
-
+    public function __construct()
+    {
+        $this->descontos = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -516,120 +492,5 @@ class Evento extends Entity
     public function getEventoPago()
     {
         return $this->eventoPago;
-    }
-
-    /**
-     * Set tipoDesconto
-     *
-     * @param string $tipoDesconto
-     * @return Evento
-     */
-    public function setTipoDesconto($tipoDesconto)
-    {
-        $this->tipoDesconto = $tipoDesconto;
-
-        return $this;
-    }
-
-    /**
-     * Get tipoDesconto
-     *
-     * @return string 
-     */
-    public function getTipoDesconto()
-    {
-        return $this->tipoDesconto;
-    }
-
-    /**
-     * Set descontoPorcentagem
-     *
-     * @param boolean $descontoPorcentagem
-     * @return Evento
-     */
-    public function setDescontoPorcentagem($descontoPorcentagem)
-    {
-        $this->descontoPorcentagem = $descontoPorcentagem;
-
-        return $this;
-    }
-
-    /**
-     * Get descontoPorcentagem
-     *
-     * @return boolean 
-     */
-    public function getDescontoPorcentagem()
-    {
-        return $this->descontoPorcentagem;
-    }
-
-    /**
-     * Set porcentagem
-     *
-     * @param integer $porcentagem
-     * @return Evento
-     */
-    public function setPorcentagem($porcentagem)
-    {
-        $this->porcentagem = $porcentagem;
-
-        return $this;
-    }
-
-    /**
-     * Get porcentagem
-     *
-     * @return integer 
-     */
-    public function getPorcentagem()
-    {
-        return $this->porcentagem;
-    }
-
-    /**
-     * Set valorDesconto
-     *
-     * @param float $valorDesconto
-     * @return Evento
-     */
-    public function setValorDesconto($valorDesconto)
-    {
-        $this->valorDesconto = $valorDesconto;
-
-        return $this;
-    }
-
-    /**
-     * Get valorDesconto
-     *
-     * @return float 
-     */
-    public function getValorDesconto()
-    {
-        return $this->valorDesconto;
-    }
-
-    /**
-     * Set codigoDesconto
-     *
-     * @param string $codigoDesconto
-     * @return Evento
-     */
-    public function setCodigoDesconto($codigoDesconto)
-    {
-        $this->codigoDesconto = $codigoDesconto;
-
-        return $this;
-    }
-
-    /**
-     * Get codigoDesconto
-     *
-     * @return string 
-     */
-    public function getCodigoDesconto()
-    {
-        return $this->codigoDesconto;
     }
 }

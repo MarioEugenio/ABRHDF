@@ -8,5 +8,13 @@
         <service id="EventoEventoBundle.EventoActions" class="Evento\EventoBundle\Services\EventoActions">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
+
+        <service id="EventoEventoBundle.DescontoActions" class="Evento\EventoBundle\Services\DescontoActions">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="EventoEventoBundle.RepresentantesActions" class="Evento\EventoBundle\Services\RepresentantesActions">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
     </services>
 </container>
