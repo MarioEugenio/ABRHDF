@@ -10,12 +10,17 @@
 
     <input type="hidden" ng-model="form.id" value="form.id">
 
-    <div class="form-group">
+    <div class="form-group col-lg-8 col-md-6">
         <label for="exampleInputEmail1">Nome</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.nome" placeholder="Digite nome" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-4 col-md-6">
+        <label for="exampleInputEmail1">CPF</label>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.cpf" placeholder="Digite o cpf" required>
+    </div>
+
+    <div class="form-group col-lg-12 col-md-6">
         <label for="exampleInputEmail1">Endereço e-mail</label>
         <div class="input-group">
             <span class="input-group-addon glyphicon glyphicon-envelope"></span>
@@ -23,17 +28,12 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="exampleInputEmail1">CPF</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.cpf" placeholder="Digite o cpf" required>
-    </div>
-
-    <div class="form-group">
+    <div class="form-group col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Data de Nascimento</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.dtNascimento" placeholder="Digite a data de nascimento" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Sexo</label>
         <select class="form-control input-lg" ng-model="form.sexo" required>
             <option value="">Selecione</option>
@@ -42,66 +42,66 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-3 col-md-6">
         <label for="exampleInputEmail1">RG</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.rg" placeholder="Digite o rg" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Emissor</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.emissor" placeholder="Digite o rg" required>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.emissor" placeholder="Digite o emissor" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-12 col-md-6">
         <label for="exampleInputPassword1">Senha</label>
-        <input type="password" maxlength="10" class="form-control input-lg" ng-model="form.senha" placeholder="Digite senha" required>
+        <input type="password" maxlength="10" class="form-control input-sm" ng-model="form.senha" placeholder="Digite senha" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-12 col-md-6">
         <label for="exampleInputPassword1">Repita Senha</label>
-        <input type="password" maxlength="10" class="form-control input-lg" ng-model="rsenha" placeholder="Digite senha" required>
+        <input type="password" maxlength="10" class="form-control input-sm" ng-model="rsenha" placeholder="Digite senha" required>
     </div>
 
     <!-- PARTE DE CONTATOS -->
     <h2>Informações para contato<br> </h2>
     <hr>
 
-    <div class="form-group">
+    <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Residencial</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.telefone" placeholder="Digite o telefone" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Celular</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.celular" placeholder="Digite o celular" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Comercial</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.comercial" placeholder="Digite o telefone comercial" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Numero do FAX</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.fax" placeholder="Digite o numero do fax" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-8 col-md-6">
         <label for="exampleInputEmail1">Endereço</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.endereco" placeholder="Digite o endereço" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-4 col-md-6">
         <label for="exampleInputEmail1">Bairro</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.bairro" placeholder="Digite o bairro" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-lg-12 col-md-6">
         <label for="exampleInputEmail1">Complemento</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.complemento" placeholder="Digite o complemento" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-4 col-md-6">
         <label for="exampleInputEmail1">UF</label>
         <select class="form-control input-lg" ng-model="contato.estado" required ng-change="getCidade()">
             <option value="">Selecione</option>
@@ -109,7 +109,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-4 col-md-6">
         <label for="exampleInputEmail1">Cidade</label>
         <select class="form-control input-lg" ng-model="contato.cidade" required>
             <option value="">Selecione</option>
@@ -117,7 +117,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-4 col-md-6">
         <label for="exampleInputEmail1">Cep</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.cep" placeholder="Digite o cep" required>
     </div>
@@ -127,22 +127,22 @@
     <h2>Informações Complementares<br></h2>
     <hr>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Profissão</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="complemento.profissao" placeholder="Digite o profissão" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Cargo</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="complemento.cargo" placeholder="Digite o cargo" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Grau de Instrução</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="complemento.grauInstrucao" placeholder="Digite o Grau de Instrução" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Estado Civil</label>
         <input type="text" class="form-control input-lg" maxlength="255" ng-model="complemento.estadoCivil" placeholder="Digite o estado civil" required>
     </div>
