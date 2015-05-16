@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\EventoBundle\Repository;
+namespace Core\UserBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension;
 use Doctrine\ORM\EntityRepository;
@@ -8,7 +8,7 @@ use Evento\EventoBundle\Entity\Representantes;
 
 /**
  * Class RepresentantesRepository
- * @package Evento\EventoBundle\Repository
+ * @package Core\UserBundle\Repository
  */
 class RepresentantesRepository extends EntityRepository
 {
@@ -16,7 +16,7 @@ class RepresentantesRepository extends EntityRepository
     /**
      * Salva uma etapa
      *
-     * @param \Evento\EventoBundle\Repository\Representantes
+     * @param \Core\UserBundle\Repository\Representantes
      * @internal param $
      */
     public function save(Representantes $entity)
