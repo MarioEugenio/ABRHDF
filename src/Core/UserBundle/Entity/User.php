@@ -3,6 +3,7 @@
 namespace Core\UserBundle\Entity;
 
 use Core\BaseBundle\Entity\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -93,6 +94,23 @@ class User extends Entity
      * })
      */
     private $tipoUser;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="pessoaJuridica")
+     */
+    protected $descontoPessoaJuridica;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="pessoaFisica")
+     */
+    protected $descontoPessoaFisica;
+
+
+    public function __construct()
+    {
+        $this->descontoPessoaJuridica = new ArrayCollection();
+        $this->descontoPessoaFisica = new ArrayCollection();
+    }
 
     /**
      * @param int $id
@@ -336,4 +354,38 @@ class User extends Entity
     {
         return $this->tipoUser;
     }
+
+    /**
+     * @param mixed $descontoPessoaFisica
+     */
+    public function setDescontoPessoaFisica($descontoPessoaFisica)
+    {
+        $this->descontoPessoaFisica = $descontoPessoaFisica;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescontoPessoaFisica()
+    {
+        return $this->descontoPessoaFisica;
+    }
+
+    /**
+     * @param mixed $descontoPessoaJuridica
+     */
+    public function setDescontoPessoaJuridica($descontoPessoaJuridica)
+    {
+        $this->descontoPessoaJuridica = $descontoPessoaJuridica;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescontoPessoaJuridica()
+    {
+        return $this->descontoPessoaJuridica;
+    }
+
+
 }

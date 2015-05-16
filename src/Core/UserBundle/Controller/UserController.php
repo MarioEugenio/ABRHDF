@@ -63,7 +63,7 @@ class UserController extends BaseController
      */
     public function logoffAction()
     {
-        return $this->redirect($this->getRequest()->getBaseUrl() . '/colih');
+        return $this->redirect($this->getRequest()->getBaseUrl() . '/');
     }
 
     /**
