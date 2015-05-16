@@ -4,6 +4,11 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
     $scope.contato = {};
     $scope.complemento = {};
 
+    $scope.dateOptions = {
+        changeYear: true,
+        changeMonth: true
+    };
+
     $scope.estados = [];
     $scope.cidades = [];
 
