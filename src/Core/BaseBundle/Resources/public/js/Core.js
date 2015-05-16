@@ -1,4 +1,4 @@
-var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney'])
+var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney', 'ui.mask', 'ui.date'])
     .run(['$rootScope',
         function($scope) {
 

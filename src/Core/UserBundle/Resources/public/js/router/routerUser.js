@@ -3,6 +3,7 @@ app.config(['$routeProvider', '$interpolateProvider',
 
         $routeProvider.
             when('/user/cadastro', {
+                module: ["ui.mask"],
                 templateUrl: Routing.generate('user_cadastro'),
                 controller: 'UserCadastroCtrl'
             }).

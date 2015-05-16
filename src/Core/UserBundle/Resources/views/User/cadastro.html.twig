@@ -4,7 +4,7 @@
     <li class="active">Cadastro</li>
 </ol>
 
-<form ng-controller="UserCadastroCtrl" ng-init="init()" ng-submit="save()">
+<form ng-controller="UserCadastroCtrl"  ng-init="init()" ng-submit="save()">
     <h2>Cadastro de Pessoa Fisica<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
     <hr>
 
@@ -17,7 +17,7 @@
 
     <div class="form-group col-lg-4 col-md-6">
         <label for="exampleInputEmail1">CPF</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.cpf" placeholder="Digite o cpf" required>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.cpf" ui-mask="'999.999.999-99'" required>
     </div>
 
     <div class="form-group col-lg-12 col-md-6">
@@ -30,7 +30,7 @@
 
     <div class="form-group col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Data de Nascimento</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.dtNascimento" placeholder="Digite a data de nascimento" required>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.dtNascimento" ui-date ui-date-format="d/m/Y" placeholder="Digite a data de nascimento" required>
     </div>
 
     <div class="form-group  col-lg-3 col-md-6">
@@ -44,7 +44,7 @@
 
     <div class="form-group  col-lg-3 col-md-6">
         <label for="exampleInputEmail1">RG</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="form.rg" placeholder="Digite o rg" required>
+        <input type="number" class="form-control input-lg" maxlength="255" ng-model="form.rg" placeholder="Digite o rg" required>
     </div>
 
     <div class="form-group  col-lg-3 col-md-6">
@@ -54,12 +54,12 @@
 
     <div class="form-group col-lg-12 col-md-6">
         <label for="exampleInputPassword1">Senha</label>
-        <input type="password" maxlength="10" class="form-control input-sm" ng-model="form.senha" placeholder="Digite senha" required>
+        <input type="password" maxlength="10" class="form-control input-lg" ng-model="form.senha" placeholder="Digite senha" required>
     </div>
 
     <div class="form-group col-lg-12 col-md-6">
         <label for="exampleInputPassword1">Repita Senha</label>
-        <input type="password" maxlength="10" class="form-control input-sm" ng-model="rsenha" placeholder="Digite senha" required>
+        <input type="password" maxlength="10" class="form-control input-lg" ng-model="rsenha" placeholder="Digite senha" required>
     </div>
 
     <!-- PARTE DE CONTATOS -->
@@ -68,22 +68,22 @@
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Residencial</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.telefone" placeholder="Digite o telefone" required>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.telefone" ui-mask="'(99)9999-9999'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Celular</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.celular" placeholder="Digite o celular" required>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.celular" ui-mask="'(99)9999-9999'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Comercial</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.comercial" placeholder="Digite o telefone comercial" required>
+        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.comercial" ui-mask="'(99)9999-9999'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Numero do FAX</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.fax" placeholder="Digite o numero do fax" required>
+        <input type="number" class="form-control input-lg" maxlength="255" ng-model="contato.fax" placeholder="Digite o numero do fax" required>
     </div>
 
     <div class="form-group col-lg-8 col-md-6">
@@ -119,7 +119,7 @@
 
     <div class="form-group  col-lg-4 col-md-6">
         <label for="exampleInputEmail1">Cep</label>
-        <input type="text" class="form-control input-lg" maxlength="255" ng-model="contato.cep" placeholder="Digite o cep" required>
+        <input type="number" class="form-control input-lg" maxlength="255" ng-model="contato.cep" placeholder="Digite o cep"  required>
     </div>
 
 
