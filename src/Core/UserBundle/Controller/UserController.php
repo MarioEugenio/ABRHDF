@@ -179,17 +179,12 @@ class UserController extends BaseController
     {
         try {
             $objData = json_decode($this->getRequest()->getContent(), true);
-            $entity = new User($objData);
 
             /** @var MedicoActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
+            $tipoPessoa = $service->getTipoPessoa("Pessoa Fisica");
 
-            if (isset($objData['id'])) {
-                $entity =  $service->find($objData['id']);
-                $entity->setData($objData);
-            }
-
-            $resource = $service->save($entity);
+            $resource = $service->save($objData, $tipoPessoa);
 
             return $this->createJsonResponse(array(
                 'success' => true,
@@ -213,17 +208,12 @@ class UserController extends BaseController
     {
         try {
             $objData = json_decode($this->getRequest()->getContent(), true);
-            $entity = new User($objData);
 
             /** @var MedicoActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
+            $tipoPessoa = $service->getTipoPessoa("Pessoa Jurídica");
 
-            if (isset($objData['id'])) {
-                $entity =  $service->find($objData['id']);
-                $entity->setData($objData);
-            }
-
-            $resource = $service->save($entity);
+            $resource = $service->save($objData, $tipoPessoa);
 
             return $this->createJsonResponse(array(
                 'success' => true,

@@ -49,10 +49,12 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
 
     $scope.save = function () {
         var form = angular.copy($scope.form);
+        var contato = angular.copy($scope.contato);
+        var complemento = angular.copy($scope.complemento);
 
         $http.post(
             Routing.generate('user_save')
-            , form)
+            , {form: form , contato: contato, complemento: complemento})
             .success(function (response) {
                 if (response.success) {
                     $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
