@@ -47,7 +47,7 @@ class User extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="cpf", type="integer", length=11, nullable=true)
+     * @ORM\Column(name="cpf", type="integer", length=12, nullable=true)
      */
     private $cpf;
 

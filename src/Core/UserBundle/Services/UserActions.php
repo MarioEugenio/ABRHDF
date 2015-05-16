@@ -2,6 +2,8 @@
 
 namespace Core\UserBundle\Services;
 
+use Core\UserBundle\Entity\Complemento;
+use Core\UserBundle\Entity\Contato;
 use Core\UserBundle\Entity\User;
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
@@ -32,9 +34,45 @@ class UserActions
     /**
     * metodo responsavel por salvar dados
     */
-    public function save($entity)
+    public function save($objData, $tipoPessoa)
     {
-        $this->repository->save($entity);
+        $entity = new User($objData['form']);
+
+        if (isset($objData['id'])) {
+            $entity = $this->find($objData['id']);
+            $entity->setData($objData);
+        }
+        $entity->setDtCadastro(new \DateTime());
+        $entity->setDtNascimento(new \DateTime());
+        $entity->setTipoUser($tipoPessoa);
+        $entity = $this->repository->save($entity);
+
+        $this->cidadeRep = $this->entityManager->getRepository("CoreUserBundle:Cidade");
+        $this->estadoRep = $this->entityManager->getRepository("CoreUserBundle:Estado");
+
+        if(isset($objData['contato'])) {
+            $contato = new Contato($objData['contato']);
+            $contato->setCidade($this->cidadeRep->find($objData['contato']['cidade']));
+            $contato->setEstado($this->estadoRep->find($objData['contato']['estado']));
+            $contato->setUser($entity);
+            $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
+            $this->contatoRep->save($contato);
+        }
+
+        if(isset($objData['complemento'])) {
+            $complemento = new Complemento($objData['complemento']);
+            $this->complementoRep = $this->entityManager->getRepository("CoreUserBundle:Complemento");
+            $complemento->setUser($entity);
+            $this->complementoRep->save($complemento);
+        }
+
+        if(isset($objData['empresa']))
+        {
+            $empresa = new Complemento($objData['empresa']);
+            $this->empresaRep = $this->entityManager->getRepository("CoreUserBundle:Empresa");
+            $empresa->setUser($entity);
+            $this->empresaRep->save($empresa);
+        }
 
         return $entity;
     }
@@ -113,5 +151,12 @@ class UserActions
         }
 
         return $result;
+    }
+
+    public function getTipoPessoa($nome)
+    {
+        $this->tipoPessoaRep = $this->entityManager->getRepository("CoreUserBundle:TipoUser");
+        $tipoPessoa = $this->tipoPessoaRep->findBy(array('nome' => $nome));
+        return current($tipoPessoa);
     }
 }
