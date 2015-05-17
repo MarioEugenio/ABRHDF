@@ -50,10 +50,13 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
 
     $scope.save = function () {
         var form = angular.copy($scope.form);
+        var contato = angular.copy($scope.contato);
+        var complemento = angular.copy($scope.complemento);
+        var empresa = angular.copy($scope.empresa);
 
         $http.post(
             Routing.generate('user_save_juridico')
-            , form)
+            , {form: form , contato: contato, complemento: complemento, empresa: empresa})
             .success(function (response) {
                 if (response.success) {
                     $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});

@@ -47,12 +47,12 @@ class User extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="cpf", type="integer", length=12, nullable=true)
+     * @ORM\Column(name="cpf", type="string", nullable=true)
      */
     private $cpf;
 
     /**
-     * @var string
+     * @var datetime
      *
      * @ORM\Column(name="dtNascimento", type="datetime", nullable=true)
      */
@@ -68,7 +68,7 @@ class User extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="rg", type="integer", nullable=true)
+     * @ORM\Column(name="rg", type="string", nullable=true)
      */
     private $rg;
 
@@ -106,8 +106,9 @@ class User extends Entity
     protected $descontoPessoaFisica;
 
 
-    public function __construct()
+    public function __construct(array $data = null)
     {
+        $this->setData($data);
         $this->descontoPessoaJuridica = new ArrayCollection();
         $this->descontoPessoaFisica = new ArrayCollection();
     }

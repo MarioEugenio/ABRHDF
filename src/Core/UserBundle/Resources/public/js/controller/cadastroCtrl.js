@@ -56,7 +56,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-
+        form.dtNascimento = angular.element($('#dtNascimento')).val();
         $http.post(
             Routing.generate('user_save')
             , {form: form , contato: contato, complemento: complemento})

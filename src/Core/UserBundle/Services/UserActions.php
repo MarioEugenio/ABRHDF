@@ -4,6 +4,7 @@ namespace Core\UserBundle\Services;
 
 use Core\UserBundle\Entity\Complemento;
 use Core\UserBundle\Entity\Contato;
+use Core\UserBundle\Entity\Empresa;
 use Core\UserBundle\Entity\User;
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
@@ -43,7 +44,12 @@ class UserActions
             $entity->setData($objData);
         }
         $entity->setDtCadastro(new \DateTime());
-        $entity->setDtNascimento(new \DateTime());
+        if (isset($objData['form']['dtNascimento']))
+        {
+            $date = new \DateTime($objData['form']['dtNascimento']);
+            $date->setTime(0,0,0);
+            $entity->setDtNascimento($date);
+        }
         $entity->setTipoUser($tipoPessoa);
         $entity = $this->repository->save($entity);
 
@@ -52,8 +58,14 @@ class UserActions
 
         if(isset($objData['contato'])) {
             $contato = new Contato($objData['contato']);
-            $contato->setCidade($this->cidadeRep->find($objData['contato']['cidade']));
-            $contato->setEstado($this->estadoRep->find($objData['contato']['estado']));
+            if(isset($objData['contato']['celular'])) {
+                $contato->setCelular((int)$objData['contato']['celular']);
+            }
+            if(isset($objData['contato']['comercial'])) {
+                $contato->setComercial((int)$objData['contato']['comercial']);
+            }
+            $contato->setCidade($this->cidadeRep->find((int)$objData['contato']['cidade']));
+            $contato->setEstado($this->estadoRep->find((int)$objData['contato']['estado']));
             $contato->setUser($entity);
             $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
             $this->contatoRep->save($contato);
@@ -61,6 +73,10 @@ class UserActions
 
         if(isset($objData['complemento'])) {
             $complemento = new Complemento($objData['complemento']);
+            if(isset($objData['complemento']['telefone']))
+            {
+                $complemento->setTelefone((int) $objData['complemento']['telefone']);
+            }
             $this->complementoRep = $this->entityManager->getRepository("CoreUserBundle:Complemento");
             $complemento->setUser($entity);
             $this->complementoRep->save($complemento);
@@ -68,7 +84,7 @@ class UserActions
 
         if(isset($objData['empresa']))
         {
-            $empresa = new Complemento($objData['empresa']);
+            $empresa = new Empresa($objData['empresa']);
             $this->empresaRep = $this->entityManager->getRepository("CoreUserBundle:Empresa");
             $empresa->setUser($entity);
             $this->empresaRep->save($empresa);

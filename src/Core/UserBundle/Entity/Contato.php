@@ -25,28 +25,28 @@ class Contato extends Entity
     /**
      * @var integer
      *
-     * @ORM\Column(name="telefone", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="telefone", type="string", length=255, nullable=true)
      */
     private $telefone;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="comercial", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="comercial", type="string", length=255, nullable=true)
      */
     private $comercial;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="fax", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="fax", type="string", length=255, nullable=true)
      */
     private $fax;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="celular", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="celular", type="string", length=255, nullable=true)
      */
     private $celular;
 
