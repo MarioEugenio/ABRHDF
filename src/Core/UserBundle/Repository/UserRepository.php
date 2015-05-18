@@ -37,6 +37,11 @@ class UserRepository extends EntityRepository
             ->andWhere('u.flActive = true')
             ->setParameter('tipoUser', $tipoPessoa);
 
+        if (isset($params['searchText'])){
+            $qb->andWhere('LOWER(u.nome) LIKE :nome )');
+            $qb->setParameter('nome', "%" . mb_strtolower($params['searchText'], 'UTF-8') . "%");
+        }
+
         $page = 0;
         if (isset($params['page']))
         {

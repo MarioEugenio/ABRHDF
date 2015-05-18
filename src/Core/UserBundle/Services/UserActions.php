@@ -40,9 +40,9 @@ class UserActions
     {
         $entity = new User($objData['form']);
 
-        if (isset($objData['id'])) {
-            $entity = $this->find($objData['id']);
-            $entity->setData($objData);
+        if (isset($objData['form']['id'])) {
+            $entity = $this->find($objData['form']['id']);
+            $entity->setData($objData['form']);
         }
         $entity->setDtCadastro(new \DateTime());
         $entity->setFlActive(true);
@@ -59,7 +59,14 @@ class UserActions
         $this->estadoRep = $this->entityManager->getRepository("CoreUserBundle:Estado");
 
         if(isset($objData['contato'])) {
-            $contato = new Contato($objData['contato']);
+            $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
+            /** @var Contato $contato */
+            $contato = $this->contatoRep->findOneBy(array('user' => $entity));
+            if (!$contato) {
+                $contato = new Contato($objData['contato']);
+            } else {
+                $contato->setData($objData['contato']);
+            }
             if(isset($objData['contato']['celular'])) {
                 $contato->setCelular((int)$objData['contato']['celular']);
             }
@@ -69,25 +76,34 @@ class UserActions
             $contato->setCidade($this->cidadeRep->find((int)$objData['contato']['cidade']));
             $contato->setEstado($this->estadoRep->find((int)$objData['contato']['estado']));
             $contato->setUser($entity);
-            $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
             $this->contatoRep->save($contato);
         }
 
         if(isset($objData['complemento'])) {
-            $complemento = new Complemento($objData['complemento']);
+            $this->complementoRep = $this->entityManager->getRepository("CoreUserBundle:Complemento");
+            $complemento = $this->complementoRep->findOneBy(array('user' => $entity));
+            if (!$complemento) {
+                $complemento = new Complemento($objData['complemento']);
+            } else {
+                $complemento->setData($objData['complemento']);
+            }
             if(isset($objData['complemento']['telefone']))
             {
                 $complemento->setTelefone((int) $objData['complemento']['telefone']);
             }
-            $this->complementoRep = $this->entityManager->getRepository("CoreUserBundle:Complemento");
             $complemento->setUser($entity);
             $this->complementoRep->save($complemento);
         }
 
         if(isset($objData['empresa']))
         {
-            $empresa = new Empresa($objData['empresa']);
             $this->empresaRep = $this->entityManager->getRepository("CoreUserBundle:Empresa");
+            $empresa = $this->empresaRep->findOneBy(array('user' => $entity));
+            if (!$empresa) {
+                $empresa = new Empresa($objData['empresa']);
+            } else {
+                $empresa->setData($objData['empresa']);
+            }
             $empresa->setUser($entity);
             $this->empresaRep->save($empresa);
         }
@@ -212,6 +228,86 @@ class UserActions
             'count' => $paginator->count(),
             'page' => $params['page'],
             'pageCount' => (int)ceil($paginator->count() / 20),
+        );
+    }
+
+    public function getInfoUser($id)
+    {
+        /** @var User $user */
+        $user =  $this->repository->find($id);
+        $arrUser = array();
+        $arrContato = null;
+        $arrComplemento = null;
+        $arrEmpresa = null;
+
+        if ($user){
+            $date = null;
+            if ($user->getDtNascimento())
+            {
+                $date = $user->getDtNascimento()->format('d/m/Y');
+            }
+            $arrUser = array(
+                'id' => $user->getId(),
+                'nome' => $user->getNome(),
+                'cpf' => $user->getCpf(),
+                'email' => $user->getEmail(),
+                'dtNascimento' => $date,
+                'sexo' => $user->getSexo(),
+                'rg' => (int) $user->getRg(),
+                'emissor' => $user->getEmissor(),
+            );
+
+            $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
+            /** @var Contato $contato */
+            $contato = $this->contatoRep->findOneBy(array('user' => $user));
+            if($contato) {
+                $arrContato = array(
+                    'telefone' => $contato->getTelefone(),
+                    'celular' => $contato->getCelular(),
+                    'comercial' => $contato->getComercial(),
+                    'fax' => (int) $contato->getFax(),
+                    'endereco' => $contato->getEndereco(),
+                    'bairro' => $contato->getBairro(),
+                    'complemento' => $contato->getComplemento(),
+                    'estado' => $contato->getEstado()->getId(),
+                    'cidade' => $contato->getCidade()->getId(),
+                    'cep' => (int) $contato->getCep(),
+                    'email' => $contato->getEmail()
+                );
+            }
+
+            $this->complementoRep = $this->entityManager->getRepository("CoreUserBundle:Complemento");
+            /** @var Complemento $complemento */
+            $complemento = $this->complementoRep->findOneBy(array('user' => $user));
+
+            if($complemento) {
+                $arrComplemento = array(
+                    'profissao' => $complemento->getProfissao(),
+                    'cargo' => $complemento->getCargo(),
+                    'grauInstrucao' => $complemento->getGrauInstrucao(),
+                    'estadoCivil' => $complemento->getEstadoCivil()
+                );
+            }
+
+            $this->empresaRep = $this->entityManager->getRepository("CoreUserBundle:Empresa");
+            /** @var Empresa $empresa */
+            $empresa = $this->empresaRep->findOneBy(array('user' => $user));
+
+            if($empresa) {
+                $arrEmpresa = array(
+                    'cnpj' => $empresa->getCnpj(),
+                    'inscEstadual' => $empresa->getInscEstadual(),
+                    'razaoSocial' => $empresa->getRazaoSocial(),
+                    'nomeFantasia' => $empresa->getNomeFantasia()
+                );
+            }
+        }
+
+        return array(
+            'form' => $arrUser,
+            'contato' => $arrContato,
+            'complemento' => $arrComplemento,
+            'empresa' => $arrEmpresa
         );
     }
 }

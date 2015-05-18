@@ -1,6 +1,7 @@
 app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
 
     $scope.list = [];
+    $scope.page = 1;
 
     $scope.init = function () {
         $scope.listar();
@@ -26,9 +27,14 @@ app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
         }
     };
 
+    $scope.buscar = function () {
+        $scope.page = 1;
+        $scope.listar();
+    };
+
     $scope.listar = function () {
         $http.post(
-            Routing.generate('user_listar_juridico'))
+            Routing.generate('user_listar_juridico',{page:$scope.page, searchText:$scope.searchText}))
             .success(function (data) {
                 if (data.success) {
                     $scope.list = data.data;

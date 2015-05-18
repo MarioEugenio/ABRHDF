@@ -141,7 +141,7 @@ class UserController extends BaseController
         try {
             /** @var UserActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
-            $resource = $service->findOneById($id);
+            $resource = $service->getInfoUser($id);
 
             return $this->createJsonResponse(array(
                 'success' => true,
@@ -251,7 +251,7 @@ class UserController extends BaseController
             /** @var MedicoActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
             $tipoPessoa = $service->getTipoPessoa("Pessoa Jurídica");
-
+            $objData['form']['dtNascimento'] = null;
             $resource = $service->save($objData, $tipoPessoa);
 
             return $this->createJsonResponse(array(

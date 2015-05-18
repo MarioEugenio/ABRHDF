@@ -42,7 +42,11 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                 Routing.generate('user_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
-                    $scope.form = response.data;
+                    $scope.form = response.data.form;
+                    $scope.contato = response.data.contato;
+                    $scope.complemento = response.data.complemento;
+                    $scope.empresa = response.data.empresa;
+                    $scope.getCidade();
                     return;
                 }
             });
