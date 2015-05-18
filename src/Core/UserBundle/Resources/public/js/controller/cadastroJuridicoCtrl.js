@@ -35,7 +35,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
         if (id) {
             $scope.edit(id);
         }
-    }
+    };
 
     $scope.edit = function (id) {
         $http.post(
@@ -46,7 +46,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                     return;
                 }
             });
-    }
+    };
 
     $scope.save = function () {
         var form = angular.copy($scope.form);
@@ -60,12 +60,12 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
             .success(function (response) {
                 if (response.success) {
                     $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $location.path('/user');
+                    $location.path('/user/juridico');
                     return;
                 }
 
                 $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
 
             });
-    }
+    };
 });

@@ -8,6 +8,7 @@ use Core\UserBundle\Entity\Empresa;
 use Core\UserBundle\Entity\User;
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class UserActions
@@ -44,6 +45,7 @@ class UserActions
             $entity->setData($objData);
         }
         $entity->setDtCadastro(new \DateTime());
+        $entity->setFlActive(true);
         if (isset($objData['form']['dtNascimento']))
         {
             $date = new \DateTime($objData['form']['dtNascimento']);
@@ -96,8 +98,8 @@ class UserActions
     public function remover($id)
     {
         $entity = $this->findOneById($id);
-        $this->entityManager->remove($entity);
-        $this->entityManager->flush();
+        $entity->setFlActive(false);
+        $this->repository->save($entity);
     }
 
     public function autenticar(User $entity)
@@ -174,5 +176,42 @@ class UserActions
         $this->tipoPessoaRep = $this->entityManager->getRepository("CoreUserBundle:TipoUser");
         $tipoPessoa = $this->tipoPessoaRep->findBy(array('nome' => $nome));
         return current($tipoPessoa);
+    }
+
+    public function getListUser($tipoPessoa, $params = array())
+    {
+        if (!isset($params['page']))
+        {
+            $params['page'] = 1;
+        }
+
+        /** @var Paginator $paginator */
+        $paginator = $this->repository->getListUser($tipoPessoa, $params);
+        $objResult = array();
+        if ($paginator->getIterator())
+        {
+            /** @var User $user */
+            foreach($paginator->getIterator() as $user)
+            {
+                $objResult[] = array(
+                    'id' => $user->getId(),
+                    'nome' => $user->getNome(),
+                    'email' => $user->getEmail()
+                );
+            }
+        }
+
+        $pageEnd = $params['page'] * 20;
+        if ($pageEnd > $paginator->count()) {
+            $pageEnd = $paginator->count();
+        }
+        return array(
+            'itemPerPage' => 20,
+            'pageEnd' => $pageEnd,
+            'items' => $objResult,
+            'count' => $paginator->count(),
+            'page' => $params['page'],
+            'pageCount' => (int)ceil($paginator->count() / 20),
+        );
     }
 }

@@ -39,7 +39,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         if (id) {
             $scope.edit(id);
         }
-    }
+    };
 
     $scope.edit = function (id) {
         $http.post(
@@ -50,7 +50,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
                     return;
                 }
             });
-    }
+    };
 
     $scope.save = function () {
         var form = angular.copy($scope.form);
@@ -70,5 +70,5 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
                 $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
 
             });
-    }
+    };
 });

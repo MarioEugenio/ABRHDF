@@ -1,4 +1,4 @@
-app.controller('UserListaCtrl', function ($scope, $http, $alert) {
+app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
 
     $scope.list = [];
 
@@ -28,7 +28,7 @@ app.controller('UserListaCtrl', function ($scope, $http, $alert) {
 
     $scope.listar = function () {
         $http.post(
-            Routing.generate('user_listar'))
+            Routing.generate('user_listar_juridico'))
             .success(function (data) {
                 if (data.success) {
                     $scope.list = data.data;

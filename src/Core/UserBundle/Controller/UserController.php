@@ -29,6 +29,15 @@ class UserController extends BaseController
     }
 
     /**
+     * @Route("/user/lista/juridico", name="user_lista_juridico", options={"expose"=true})
+     * @Template()
+     */
+    public function listaJuridicoAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/user/cadastro", name="user_cadastro", options={"expose"=true})
      * @Template()
      */
@@ -154,9 +163,39 @@ class UserController extends BaseController
     public function listarAction()
     {
         try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
             /** @var UserActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
-            $resource = $service->findAll();
+            $tipoPessoa = $service->getTipoPessoa("Pessoa Fisica");
+
+            $resource = $service->getListUser($tipoPessoa, $objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/listar/juridico", name="user_listar_juridico", options={"expose"=true})
+     */
+    public function listarJuridicoAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $tipoPessoa = $service->getTipoPessoa("Pessoa Jurídica");
+
+            $resource = $service->getListUser($tipoPessoa, $objData);
 
             return $this->createJsonResponse(array(
                 'success' => true,
