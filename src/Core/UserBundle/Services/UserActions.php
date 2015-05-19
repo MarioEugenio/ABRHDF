@@ -48,7 +48,8 @@ class UserActions
         $entity->setFlActive(true);
         if (isset($objData['form']['dtNascimento']))
         {
-            $date = new \DateTime($objData['form']['dtNascimento']);
+            $arrDate = explode('/', $objData['form']['dtNascimento']);
+            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
             $date->setTime(0,0,0);
             $entity->setDtNascimento($date);
         }

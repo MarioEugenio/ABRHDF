@@ -113,7 +113,7 @@
         <label for="exampleInputEmail1">Cidade</label>
         <select class="form-control" ng-model="contato.cidade" required>
             <option value="">Selecione</option>
-            <option ng-repeat="cidade in cidades" value="{[{ cidade.id }]}">{[{ cidade.noCidade }]}</option>
+            <option ng-repeat="cidade in cidades" value="{[{ cidade.id }]}" ng-selected="contato.cidade == cidade.id">{[{ cidade.noCidade }]}</option>
         </select>
     </div>
 
