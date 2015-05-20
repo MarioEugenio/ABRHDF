@@ -1,0 +1,109 @@
+
+<div class="row">
+    <div class="col-lg-12" ng-controller="UserListaRepresentantesCtrl" ng-init="init()">
+        <h2>Representantes da empresa</h2>
+        <hr>
+
+        <ol class="breadcrumb">
+            <li><a href="#/">Inicial</a></li>
+            <li class="active">Representantes</li>
+        </ol>
+        <a  href="#/user/juridico" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Voltar para listagem</a>
+        <div class="col-lg-12">
+            <!-- PARTE DE COMPLEMENTO -->
+            <h3>Cadatro de Representande<br></h3>
+            <form ng-init="init()" ng-submit="save()">
+                <div class="form-group col-lg-8 col-md-6">
+                    <label for="exampleInputEmail1">Nome</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.nome" placeholder="Digite nome" required>
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">Sexo</label>
+                    <select class="form-control" ng-model="form.sexo" required>
+                        <option value="">Selecione</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-8 col-md-6">
+                    <label for="exampleInputEmail1">Endereço e-mail</label>
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+                        <input type="email" class="form-control" maxlength="255" ng-model="form.email" placeholder="Digite e-mail" required>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-4  col-md-6">
+                    <label for="exampleInputEmail1">Data de Nascimento</label>
+                    <input id="dtNascimento" type="text" class="form-control" maxlength="255" ng-model="form.dataNascimento"  ui-date="dateOptions" ui-date-format="d/m/Y" placeholder="Digite a data de nascimento" required>
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">Cargo</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.cargo" placeholder="Digite o cargo" required>
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">Telefone</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.telefone" ui-mask="'(99)9999-9999'" required>
+                </div>
+
+                <div class="form-group col-lg-4  col-md-6">
+                    <label for="exampleInputEmail1">Celular</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.celular" ui-mask="'(99)9999-9999'" required>
+                </div>
+
+                <div class="pull-right">
+                    <button ng-click="limpar()" class="btn btn-default">LIMPAR</button>
+                    <button type="submit" class="btn btn-primary">SALVAR</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- PARTE DE COMPLEMENTO -->
+        <h3>Lista de Representantes da emrpesa: {[{ empresa.nomeFantasia }]}<br></h3>
+        <hr>
+        <div >
+            <div class="input-group box">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="Pesquisar usuário ..." style="z-index:0;">
+                <span class="input-group-btn">
+                    <div class="btn btn-primary" ng-click="buscar()"><span class="glyphicon glyphicon-plus"></span> Buscar</div>
+                </span>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> selecione abaixo o usuário que deseja alterar ou remover <span class="pull-right">Total de registros: <span class="label label-info">{[{ list.count  }]}</span></span></div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="list.items.length == 0 || list.length == 0">
+                        <td colspan="10" style="text-align: center;"><span class="glyphicon glyphicon-info-sign"></span> Não houve retorno de registros</td>
+                    </tr>
+
+                    <tr ng-show="list.items.length > 0" ng-repeat="item in list.items | filter:searchText">
+                        <td>{[{ item.nome }]}</td>
+                        <td>{[{ item.email }]}</td>
+                        <td style="width: 100px">
+                            <button class="btn" ng-click="edit(item.id)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <a ng-click="remove($index, item.id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -2,9 +2,9 @@
 
 namespace Core\UserBundle\Repository;
 
+use Core\UserBundle\Entity\Representantes;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension;
 use Doctrine\ORM\EntityRepository;
-use Evento\EventoBundle\Entity\Representantes;
 
 /**
  * Class RepresentantesRepository

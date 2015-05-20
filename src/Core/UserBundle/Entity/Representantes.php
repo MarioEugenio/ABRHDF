@@ -2,6 +2,7 @@
 
 namespace Core\UserBundle\Entity;
 
+use Core\BaseBundle\Entity\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tb_representantes")
  * @ORM\Entity(repositoryClass="Core\UserBundle\Repository\RepresentantesRepository")
  */
-class Representantes
+class Representantes extends Entity
 {
     /**
      * @var integer
@@ -77,6 +78,13 @@ class Representantes
      * @ORM\JoinColumn(name="pessoaJuridica", referencedColumnName="id")
      */
     private $pessoaJuridica;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flActive", type="boolean", nullable=true)
+     */
+    private $flActive;
 
     /**
      * Get id
@@ -273,5 +281,21 @@ class Representantes
         return $this->pessoaJuridica;
     }
 
+    /**
+     * @param int $value
+     */
+    public function setFlActive($value)
+    {
+        $this->flActive = $value;
+    }
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getFlActive()
+    {
+        return $this->flActive;
+    }
 }

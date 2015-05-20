@@ -67,4 +67,26 @@ class UserRepository extends EntityRepository
 
         return new Paginator($query, $fetchJoinCollection);
     }
+
+    public function getListRepresentantes($params = array())
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('r')
+            ->from('CoreUserBundle:Representantes', 'r')
+            ->where($qb->expr()->eq('r.pessoaJuridica',':pessoaJuridica'))
+            ->andWhere('r.flActive = true')
+            ->setParameter('pessoaJuridica', $params['id_juridico']);
+
+        if (isset($params['searchText'])){
+            $qb->andWhere('LOWER(r.nome) LIKE :nome )');
+            $qb->setParameter('nome', "%" . mb_strtolower($params['searchText'], 'UTF-8') . "%");
+        }
+
+        $page = 0;
+        if (isset($params['page']))
+        {
+            $page = $params['page'];
+        }
+        return $this->paginate($qb, $page);
+    }
 }
