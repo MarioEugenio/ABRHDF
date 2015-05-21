@@ -64,7 +64,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
             .success(function (response) {
                 if (response.success) {
                     $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $location.path('/user/juridico');
+                    $location.path('/user/'+response.data.id+'/representantes');
                     return;
                 }
 

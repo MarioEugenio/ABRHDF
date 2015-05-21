@@ -38,6 +38,15 @@ class UserController extends BaseController
     }
 
     /**
+     * @Route("/user/lista/representantes", name="user_lista_representantes", options={"expose"=true})
+     * @Template()
+     */
+    public function listaRepresentantesAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/user/cadastro", name="user_cadastro", options={"expose"=true})
      * @Template()
      */
@@ -302,6 +311,108 @@ class UserController extends BaseController
             /** @var UserActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
             $resource = $service->getCidadePorEstado($id);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/save/representante", name="user_save_representante", options={"expose"=true})
+     */
+    public function saveRepresentanteAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->saveRepresentante($objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Processo realizado com sucesso',
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/listar/representantes", name="user_listar_representantes", options={"expose"=true})
+     */
+    public function listarRepresentantesAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getListRepresentantes($objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/remove/representantes", name="user_remove_representantes", options={"expose"=true})
+     */
+    public function removeRepresentantesAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $service->removerRepresentantes($objData['id']);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Registro removido com sucesso'
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/representante/{id}/edit", name="user_edit_representante", options={"expose"=true})
+     */
+    public function editRepresentanteAction($id)
+    {
+        try {
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getInfoRepresentantes($id);
 
             return $this->createJsonResponse(array(
                 'success' => true,

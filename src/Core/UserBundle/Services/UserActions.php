@@ -5,6 +5,7 @@ namespace Core\UserBundle\Services;
 use Core\UserBundle\Entity\Complemento;
 use Core\UserBundle\Entity\Contato;
 use Core\UserBundle\Entity\Empresa;
+use Core\UserBundle\Entity\Representantes;
 use Core\UserBundle\Entity\User;
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
@@ -48,7 +49,8 @@ class UserActions
         $entity->setFlActive(true);
         if (isset($objData['form']['dtNascimento']))
         {
-            $date = new \DateTime($objData['form']['dtNascimento']);
+            $arrDate = explode('/', $objData['form']['dtNascimento']);
+            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
             $date->setTime(0,0,0);
             $entity->setDtNascimento($date);
         }
@@ -309,5 +311,113 @@ class UserActions
             'complemento' => $arrComplemento,
             'empresa' => $arrEmpresa
         );
+    }
+
+    /**
+     * metodo responsavel por salvar dados
+     */
+    public function saveRepresentante($objData)
+    {
+
+        $juridico = $this->find($objData['form']['id_juridico']);
+        unset($objData['form']['id_juridico']);
+        $this->representantesRep = $this->entityManager->getRepository("CoreUserBundle:Representantes");
+        $entity = new Representantes($objData['form']);
+
+        if (isset($objData['form']['id'])) {
+            $entity = $this->representantesRep->find($objData['form']['id']);
+            $entity->setData($objData['form']);
+        }
+
+        if (isset($objData['form']['dataNascimento']))
+        {
+            $arrDate = explode('/', $objData['form']['dataNascimento']);
+            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
+            $date->setTime(0,0,0);
+            $entity->setDataNascimento($date);
+        }
+        $entity->setFlActive(true);
+        $entity->setPessoaJuridica($juridico);
+        $entity = $this->representantesRep->save($entity);
+
+        return $entity;
+    }
+
+    public function getInfoRepresentantes($id)
+    {
+
+        $this->representantesRep = $this->entityManager->getRepository("CoreUserBundle:Representantes");
+        /** @var Representantes $user */
+        $user =  $this->representantesRep->find($id);
+        $arrUser = null;
+
+        if ($user){
+            $date = null;
+            if ($user->getDataNascimento())
+            {
+                $date = $user->getDataNascimento()->format('d/m/Y');
+            }
+            $arrUser = array(
+                'id' => $user->getId(),
+                'nome' => $user->getNome(),
+                'email' => $user->getEmail(),
+                'dataNascimento' => $date,
+                'sexo' => $user->getSexo(),
+                'cargo' => $user->getCargo(),
+                'celular' => $user->getCelular(),
+                'telefone' => $user->getTelefone(),
+                'id_juridico' => $user->getPessoaJuridica()->getId()
+            );
+        }
+
+        return array(
+            'form' => $arrUser,
+        );
+    }
+
+    public function getListRepresentantes($params = array())
+    {
+        if (!isset($params['page']))
+        {
+            $params['page'] = 0;
+        }
+
+        /** @var Paginator $paginator */
+        $paginator = $this->repository->getListRepresentantes($params);
+        $objResult = array();
+        if ($paginator->getIterator())
+        {
+            /** @var User $user */
+            foreach($paginator->getIterator() as $user)
+            {
+                $objResult[] = array(
+                    'id' => $user->getId(),
+                    'nome' => $user->getNome(),
+                    'email' => $user->getEmail()
+                );
+            }
+        }
+
+        $pageEnd = $params['page'] * 20;
+        if ($pageEnd > $paginator->count()) {
+            $pageEnd = $paginator->count();
+        }
+        return array(
+            'itemPerPage' => 20,
+            'pageEnd' => $pageEnd,
+            'items' => $objResult,
+            'count' => $paginator->count(),
+            'page' => $params['page'],
+            'pageCount' => (int)ceil($paginator->count() / 20),
+        );
+    }
+
+    public function removerRepresentantes($id)
+    {
+        $this->representantesRep = $this->entityManager->getRepository("CoreUserBundle:Representantes");
+        /** @var Representantes $user */
+        $user =  $this->representantesRep->find($id);
+        $user->setFlActive(false);
+        $this->representantesRep->save($user);
     }
 }
