@@ -89,35 +89,35 @@ class Evento extends Entity
     /**
      * @var boolean
      *
-     * @ORM\Column(name="publicar", type="boolean")
+     * @ORM\Column(name="publicar", type="boolean", nullable=true)
      */
     private $publicar;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="valorSocio", type="float")
+     * @ORM\Column(name="valorSocio", type="float", nullable=true)
      */
     private $valorSocio;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="valorNSocio", type="float")
+     * @ORM\Column(name="valorNSocio", type="float", nullable=true)
      */
     private $valorNSocio;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="valorEstudante", type="float")
+     * @ORM\Column(name="valorEstudante", type="float", nullable=true)
      */
     private $valorEstudante;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="valorEstudanteAssociado", type="float")
+     * @ORM\Column(name="valorEstudanteAssociado", type="float", nullable=true)
      */
     private $valorEstudanteAssociado;
 
@@ -134,8 +134,9 @@ class Evento extends Entity
     protected $descontos;
 
 
-    public function __construct()
+    public function __construct($data)
     {
+        $this->setData($data);
         $this->descontos = new ArrayCollection();
     }
 
@@ -203,7 +204,7 @@ class Evento extends Entity
      */
     public function setInscricaoInicio($inscricaoInicio)
     {
-        $this->inscricaoInicio = $inscricaoInicio;
+        $this->inscricaoInicio = new \DateTime($inscricaoInicio);
 
         return $this;
     }
@@ -226,7 +227,7 @@ class Evento extends Entity
      */
     public function setInscricaoFim($inscricaoFim)
     {
-        $this->inscricaoFim = $inscricaoFim;
+        $this->inscricaoFim = new \DateTime($inscricaoFim);
 
         return $this;
     }
@@ -249,7 +250,7 @@ class Evento extends Entity
      */
     public function setDataInicio($dataInicio)
     {
-        $this->dataInicio = $dataInicio;
+        $this->dataInicio = new \DateTime($dataInicio);
 
         return $this;
     }
@@ -272,7 +273,7 @@ class Evento extends Entity
      */
     public function setDataFim($dataFim)
     {
-        $this->dataFim = $dataFim;
+        $this->dataFim = new \DateTime($dataFim);
 
         return $this;
     }

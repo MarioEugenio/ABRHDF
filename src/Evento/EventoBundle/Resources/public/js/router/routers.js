@@ -14,6 +14,18 @@ app.config(['$routeProvider', '$interpolateProvider',
                 templateUrl: Routing.generate('evento_lista'),
                 controller: 'EventoListaCtrl'
             }).
+            when('/desconto', {
+                templateUrl: Routing.generate('desconto_lista'),
+                controller: 'DescontoListaCtrl'
+            }).
+            when('/desconto/cadastro', {
+                templateUrl: Routing.generate('desconto_cadastro'),
+                controller: 'DescontoCadastroCtrl'
+            }).
+            when('/desconto/:id/edit', {
+                templateUrl: Routing.generate('desconto_cadastro'),
+                controller: 'DescontoCadastroCtrl'
+            }).
             otherwise({
                 redirectTo: '/'
             });

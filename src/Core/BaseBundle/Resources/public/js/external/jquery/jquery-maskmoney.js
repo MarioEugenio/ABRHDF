@@ -10,7 +10,6 @@
 
     var methods = {
         destroy : function () {
-            console.log('destroy');
             $(this).unbind(".maskMoney");
 
             if ($.browser.msie) {
@@ -21,7 +20,6 @@
 
         mask : function (value) {
             return this.each(function () {
-                console.log('mask');
                 var $this = $(this),
                     decimalSize;
                 if (typeof value === "number") {
@@ -36,7 +34,6 @@
 
         unmasked : function () {
             return this.map(function () {
-                console.log('unmasked');
                 var value = ($(this).val() || "0"),
                     isNegative = value.indexOf("-") !== -1,
                     decimalPart;
@@ -69,7 +66,6 @@
             }, settings);
 
             return this.each(function () {
-                console.log('init');
                 var $input = $(this),
                     onFocusValue;
 
@@ -163,7 +159,6 @@
                 }
 
                 function maskValue(value) {
-                    console.log('maskValue');
                     var negative = (value.indexOf("-") > -1 && settings.allowNegative) ? "-" : "",
                         onlyNumbers = value.replace(/[^0-9]/g, ""),
                         integerPart = onlyNumbers.slice(0, onlyNumbers.length - settings.precision),

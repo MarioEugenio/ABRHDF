@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\EventoBundle\Repository;
+namespace Evento\EventoBundle\Repository;
 
 use Evento\EventoBundle\Entity\Desconto;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension;

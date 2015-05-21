@@ -4,21 +4,15 @@
 
     <ol class="breadcrumb">
         <li><a href="#/">Inicial</a></li>
-        <li><a href="#/user">Evento</a></li>
+        <li><a href="#/evento">Evento</a></li>
         <li class="active">Cadastro</li>
     </ol>
 
     <input type="hidden" ng-model="form.id" value="form.id">
 
-    <div bs-tabs>
-
-        <div title="EVENTO" bs-pane><br>
-
             <div class="form-group">
-                <div class="btn-group" ng-model="form.publicar" bs-radio-group>
-                    <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="0"> NÃO PUBLICAR</label>
-                    <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="1"> PUBLICAR</label>
-                </div>
+                <input bs-switch ng-model="form.publicar" type="radio" switch-label="PUBLICAR"
+                       switch-on-text="Sim" switch-off-text="Não" ng-true-value="1" ng-false-value="0">
             </div>
 
             <div class="form-group">
@@ -34,15 +28,23 @@
             <div class="row">
 
                 <div class="form-group col-md-3" ng-class="{'has-error': form.inscricaoInicio.$invalid}">
-                    <label ><i class="fa fa-calendar"></i> Início das Inscrições</label>
-                    <input type="text" maxlength="10" class="form-control" ng-model="form.inscricaoInicio" placeholder="Selecione a data" required
-                        readonly   data-date-format="dd/MM/yyyy" data-date-type="number" data-min-date="today"  data-autoclose="1" name="date1" bs-datepicker>
+                    <label >Início das Inscrições</label>
+                    <p class="input-group">
+                        <input type="date" class="form-control" ng-model="form.inscricaoInicio" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
 
                 <div class="form-group col-md-3" ng-class="{'has-error': form.inscricaoFim.$invalid}">
-                    <label ><i class="fa fa-calendar"></i> Fim das Inscrições</label>
-                    <input type="text" maxlength="10" class="form-control" ng-model="form.inscricaoFim" placeholder="Selecione a data" required
-                           readonly   data-date-format="dd/MM/yyyy" data-date-type="number" data-min-date="today"  data-autoclose="1" name="date2" bs-datepicker>
+                    <label >Fim das Inscrições</label>
+                    <p class="input-group">
+                        <input type="date" class="form-control" ng-model="form.inscricaoFim" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
 
             </div>
@@ -50,15 +52,23 @@
             <div class="row">
 
                 <div class="form-group col-md-3" ng-class="{'has-error': form.dataInicio.$invalid}">
-                    <label ><i class="fa fa-calendar"></i> Início do Evento</label>
-                    <input type="text" maxlength="10" class="form-control" ng-model="form.dataInicio" placeholder="Selecione a data" required
-                           readonly   data-date-format="dd/MM/yyyy" data-date-type="number" data-min-date="today"  data-autoclose="1" name="date1" bs-datepicker>
+                    <label >Início do Evento</label>
+                    <p class="input-group">
+                        <input type="date" class="form-control"  ng-model="form.dataInicio" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
 
                 <div class="form-group col-md-3" ng-class="{'has-error': form.dataFim.$invalid}">
-                    <label ><i class="fa fa-calendar"></i> Fim do Evento</label>
-                    <input type="text" maxlength="10" class="form-control" ng-model="form.dataFim" placeholder="Selecione a data" required
-                           readonly   data-date-format="dd/MM/yyyy" data-date-type="number" data-min-date="today"  data-autoclose="1" name="date2" bs-datepicker>
+                    <label >Fim do Evento</label>
+                    <p class="input-group">
+                        <input type="date" class="form-control" ng-model="form.dataFim" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
 
             </div>
@@ -76,86 +86,36 @@
             </div>
 
             <div class="form-group">
-                <div class="btn-group" ng-model="form.publicar" bs-radio-group>
-                    <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="1"> EVENTO PAGO</label>
-                    <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="0"> EVENTO NÃO PAGO</label>
-                </div>
+                <input bs-switch ng-model="form.eventoPago" type="radio" switch-label="EVENTO PAGO"
+                       switch-on-text="Sim" switch-off-text="Não" ng-true-value="1" ng-false-value="0">
             </div>
 
-            <fieldset>
+            <fieldset ng-show="form.eventoPago == 1">
                 <legend>Valor do Evento</legend>
 
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label ><i class="fa fa-money"></i> Valor Sócio</label>
-                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorSocio" placeholder="Digite o valor" required>
+                        <input mask-money prefix="real.prefix"  type="text" maxlength="20" class="form-control" ng-model="form.valorSocio" placeholder="Digite o valor" ng-required="form.eventoPago == 1">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label ><i class="fa fa-money"></i> Valor não Sócio</label>
-                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorNSocio" placeholder="Digite o valor" required>
+                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorNSocio" placeholder="Digite o valor" ng-required="form.eventoPago == 1">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label ><i class="fa fa-money"></i> Valor Estudante</label>
-                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorEstudante" placeholder="Digite o valor" required>
+                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorEstudante" placeholder="Digite o valor" ng-required="form.eventoPago == 1">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label ><i class="fa fa-money"></i> Valor Estudante Associado</label>
-                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorEstudanteAssociado" placeholder="Digite o valor" required>
+                        <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorEstudanteAssociado" placeholder="Digite o valor" ng-required="form.eventoPago == 1">
                     </div>
                 </div>
             </fieldset>
 
-        </div>
-
-        <div title="DESCONTO" bs-pane><br>
-
-            <div class="form-group">
-                <div class="btn-group" ng-model="form.publicar" bs-radio-group>
-                    <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="PF"> PESSOA FÍSICA</label>
-                    <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="PJ"> PESSOA JURÍDICA</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="btn-group" ng-model="form.publicar" bs-radio-group>
-                    <label class="btn btn-default"><input type="radio" class="btn btn-default" value="1"> DESCONTO VALOR FIXO</label>
-                    <label class="btn btn-default"><input type="radio" class="btn btn-default" value="0"> DESCONTO PORCENTAGEM %</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-2">
-                    <label >Porcentagem</label>
-                    <div class="input-group">
-                        <input type="number" maxlength="3" ng-maxlength="3" class="form-control" ng-model="form.cargaHoraria">
-                        <span class="input-group-addon">%</span>
-                    </div>
-                </div>
-
-                <div class="form-group col-md-2">
-                    <label ><i class="fa fa-money"></i> Valor do desconto</label>
-                    <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control" ng-model="form.valorEstudanteAssociado" placeholder="Digite o valor" required>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label >Código de Desconto</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control input-lg" readonly maxlength="100" ng-model="form.local" placeholder="Clique ao lado para gerar código de desconto">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary btn-lg">GERAR CÓDIGO</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <hr>
 

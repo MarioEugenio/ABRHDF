@@ -1,4 +1,4 @@
-app.controller('EventoCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert) {
+app.controller('DescontoCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert) {
 
     $scope.form = {};
     $scope.tabActive = true;
@@ -12,10 +12,9 @@ app.controller('EventoCadastroCtrl', function ($scope, $http, $location, $routeP
 
     $scope.edit = function (id) {
         $http.post(
-                Routing.generate('evento_edit', { id: id }))
+                Routing.generate('desconto_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
-                    console.log(response.data);
                     $scope.form = response.data;
                     return;
                 }
@@ -26,12 +25,12 @@ app.controller('EventoCadastroCtrl', function ($scope, $http, $location, $routeP
         var form = angular.copy($scope.form);
 
         $http.post(
-            Routing.generate('evento_save')
+            Routing.generate('desconto_save')
             , form)
             .success(function (response) {
                 if (response.success) {
                     $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $location.path('/evento');
+                    $location.path('/desconto');
                     return;
                 }
 

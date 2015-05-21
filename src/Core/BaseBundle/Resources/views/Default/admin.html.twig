@@ -16,6 +16,8 @@
 
     <script src="{{ asset('bundles/eventoevento/js/controller/cadastroCtrl.js') }}"></script>
     <script src="{{ asset('bundles/eventoevento/js/controller/listaCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/eventoevento/js/controller/descontoCadastroCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/eventoevento/js/controller/listaDescontoCtrl.js') }}"></script>
 
     <script src="{{ asset('bundles/eventoevento/js/router/routers.js') }}"></script>
 
@@ -252,13 +254,10 @@
                     <a href="#"><i class="fa fa-calendar-o fa-fw"></i> Evento<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#/evento">Lista</a>
+                            <a href="#/evento">Evento</a>
                         </li>
                         <li>
-                            <a href="#/eventoInscricao">Lista de Inscrição</a>
-                        </li>
-                        <li>
-                            <a href="#/evento/cadastro">Cadastrar Evento</a>
+                            <a href="#/desconto">Desconto</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -288,7 +287,7 @@
     <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" style="overflow: scroll">
     <!-- /.row -->
     <div class="row" ng-view></div>
     <!-- /.row -->

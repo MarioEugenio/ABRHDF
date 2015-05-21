@@ -7,10 +7,12 @@
     <title>{% block title %}ABMRHDF{% endblock %}</title>
 
     <link href="{{ asset('bundles/corebase/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/corebase/css/bootstrap-switch.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('bundles/corebase/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('bundles/corebase/dist/css/sb-admin-2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('bundles/corebase/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+
     {% block stylesheets %}{% endblock %}
 
 </head>
@@ -36,10 +38,12 @@
 <script src="{{ asset('bundles/corebase/js/external/angular/directive/strap/angular-strap.min.js') }}"></script>
 <script src="{{ asset('bundles/corebase/js/external/angular/directive/strap/angular-strap.tpl.min.js') }}"></script>
 
+<script src="{{ asset('bundles/corebase/js/external/angular/directive/switch/angular-bootstrap-switch.min.js') }}"></script>
+
 <script src="{{ asset('bundles/corebase/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
 <script src="{{ asset('bundles/corebase/dist/js/sb-admin-2.js') }}"></script>
 
-
+<script src="{{ asset('bundles/corebase/js/external/jquery/bootstrap-switch.js') }}"></script>
 <script src="{{ asset('bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/jquery-ui.js') }}"></script>
 <script src="{{ asset('bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/ui/i18n/datepicker-pt-BR.js') }}"></script>
 <script src="{{ asset('bundles/corebase/js/external/angular/ui-utils-0.2.3/ui-utils.js') }}"></script>
