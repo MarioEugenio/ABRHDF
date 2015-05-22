@@ -47,6 +47,15 @@ class UserController extends BaseController
     }
 
     /**
+     * @Route("/user/lista/dependentes", name="user_lista_dependentes", options={"expose"=true})
+     * @Template()
+     */
+    public function listaDependentesAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/user/cadastro", name="user_cadastro", options={"expose"=true})
      * @Template()
      */
@@ -413,6 +422,108 @@ class UserController extends BaseController
             /** @var UserActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
             $resource = $service->getInfoRepresentantes($id);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/save/dependentes", name="user_save_dependentes", options={"expose"=true})
+     */
+    public function saveDependentesAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->saveDependentes($objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Processo realizado com sucesso',
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/listar/dependentes", name="user_listar_dependentes", options={"expose"=true})
+     */
+    public function listarDependentesAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getListDependentes($objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/remove/dependentes", name="user_remove_dependentes", options={"expose"=true})
+     */
+    public function removeDependentesAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $service->removerDependentes($objData['id']);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Registro removido com sucesso'
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/dependentes/{id}/edit", name="user_edit_dependentes", options={"expose"=true})
+     */
+    public function editDependentesAction($id)
+    {
+        try {
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getInfoDependentes($id);
 
             return $this->createJsonResponse(array(
                 'success' => true,

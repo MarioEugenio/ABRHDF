@@ -89,4 +89,26 @@ class UserRepository extends EntityRepository
         }
         return $this->paginate($qb, $page);
     }
+
+    public function getListDependentes($params = array())
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('r')
+            ->from('CoreUserBundle:Dependentes', 'r')
+            ->where($qb->expr()->eq('r.pessoaFisica',':pessoaFisica'))
+            ->andWhere('r.flActive = true')
+            ->setParameter('pessoaFisica', $params['id_fisico']);
+
+        if (isset($params['searchText'])){
+            $qb->andWhere('LOWER(r.nome) LIKE :nome )');
+            $qb->setParameter('nome', "%" . mb_strtolower($params['searchText'], 'UTF-8') . "%");
+        }
+
+        $page = 0;
+        if (isset($params['page']))
+        {
+            $page = $params['page'];
+        }
+        return $this->paginate($qb, $page);
+    }
 }
