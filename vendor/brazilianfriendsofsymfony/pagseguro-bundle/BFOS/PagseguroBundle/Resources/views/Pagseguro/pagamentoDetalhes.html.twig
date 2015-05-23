@@ -1,0 +1,128 @@
+<div class="pagseguro">
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>Vendedor e-mail</th>
+            <td>{{ pagamento.email|default('') }}</td>
+        </tr>
+        <tr>
+            <th>Cliente nome</th>
+            <td>{{ pagamento.senderName|default('') }}</td>
+        </tr>
+        <tr>
+            <th>Cliente e-mail</th>
+            <td>{{ pagamento.senderEmail|default('') }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    {% if transacao is defined and transacao is not empty %}
+    <h3 class="mb-5">Detalhes da transação</h3>
+
+    <div class="transacao">
+        <table class="table table-striped">
+            <tr>
+                <th>Data</th>
+                <td>{{transacao.dataTransacao|date('d-m-Y H:i:s')}}</td>
+            </tr>
+            <tr>
+                <th>Vendedor e-mail</th>
+                <td>{{transacao.vendedorEmail}}</td>
+            </tr>
+            <tr>
+                <th>Referência</th>
+                <td>{{transacao.reference}}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{transacao.typeDescription}}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{transacao.transacaoId}}</td>
+            </tr>
+            <tr>
+                <th>Último evento em</th>
+                <td>{{transacao.lastEventDate|date('d-m-Y H:i:s')}}</td>
+            </tr>
+            <tr>
+                <th>Valor bruto</th>
+                <td>R$ {{ transacao.grossAmount|number_format(2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Valor desconto</th>
+                <td>R$ {{transacao.discountAmount|number_format(2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Extras</th>
+                <td>R$ {{transacao.extraAmount|number_format(2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Valor das taxas cobradas</th>
+                <td>R$ {{transacao.feeAmount|number_format(2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Valor líquido</th>
+                <td>R$ {{transacao.netAmount|number_format(2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <th>Método de pagamento</th>
+                <td>{{transacao.paymentMethodTypeLabel}} - {{transacao.paymentMethodCodeLabel}}</td>
+            </tr>
+            <tr>
+                <th>Situação</th>
+                <td>
+                    {% for situacao in transacao.situacoes %}
+                    {{situacao.updatedAt|date('d-m-Y H:i:s')}} {{ situacao.situacao }}<br/>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Cliente - Nome</th>
+                <td>{{transacao.senderName}}</td>
+            </tr>
+            <tr>
+                <th>Cliente - E-mail</th>
+                <td>{{transacao.senderEmail}}</td>
+            </tr>
+            <tr>
+                <th>Cliente - Telefone</th>
+                <td>({{transacao.senderPhoneAreaCode}}) {{transacao.senderPhoneNumber}}</td>
+            </tr>
+            <tr>
+                <th>Cliente - Endereço</th>
+                <td>{{transacao.shippingAddressStreet}}, {{transacao.shippingAddressNumber}}, {{transacao.shippingAddressComplement}}, {{transacao.shippingAddressDistrict}}, {{transacao.shippingAddressCity}}, {{transacao.shippingAddressState}}, {{transacao.shippingAddressPostalCode}}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+    <h3 class="mb-5">Notificações do Pagseguro</h3>
+    <div class="notificacoes">
+        <table class="table table-striped">
+            {% for notificacao in notificacoes %}
+            <tr id="situacao_{{notificacao.id}}">
+                <th>Situação</th>
+                <td>{{notificacao.statusLabel}}</td>
+                <th>Data último evento</th>
+                <td>{{ notificacao.lastEventDate|date('d-m-Y H:i:s') }}</td>
+                <td><a href="#">detalhes</a></td>
+            </tr>
+            <tr>
+            <th>Referência</th>
+            <td colspan="4">{{notificacao.reference}}</td>
+            </tr>
+            <tr>
+                <th>Situação</th>
+                <td colspan="4">{{notificacao.statusDescription}}</td>
+            </tr>
+            <tr>
+                <th>Método de pagamento</th>
+                <td>{{notificacao.paymentMethodTypeLabel}}</td>
+                <td colspan="3">{{notificacao.paymentMethodCodeLabel}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
