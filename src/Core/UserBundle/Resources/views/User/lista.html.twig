@@ -42,7 +42,8 @@
                     <tr ng-show="list.items.length > 0" ng-repeat="item in list.items | filter:searchText">
                         <td>{[{ item.nome }]}</td>
                         <td>{[{ item.email }]}</td>
-                        <td style="width: 100px">
+                        <td style="width: 150px">
+                            <a href="#/user/{[{ item.id }]}/dependentes" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
                             <a href="#/user/{[{ item.id }]}/edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a ng-click="remove($index, item.id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>

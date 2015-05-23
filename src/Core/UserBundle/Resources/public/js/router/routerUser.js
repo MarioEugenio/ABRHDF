@@ -31,6 +31,10 @@ app.config(['$routeProvider', '$interpolateProvider',
                 templateUrl: Routing.generate('user_lista_representantes'),
                 controller: 'UserListaRepresentantesCtrl'
             }).
+            when('/user/:id/dependentes', {
+                templateUrl: Routing.generate('user_lista_dependentes'),
+                controller: 'UserListaDependentesCtrl'
+            }).
             when('/', {
                 templateUrl: Routing.generate('core_home'),
                 controller: 'UserListaCtrl'

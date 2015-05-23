@@ -4,6 +4,7 @@ namespace Core\UserBundle\Services;
 
 use Core\UserBundle\Entity\Complemento;
 use Core\UserBundle\Entity\Contato;
+use Core\UserBundle\Entity\Dependentes;
 use Core\UserBundle\Entity\Empresa;
 use Core\UserBundle\Entity\Representantes;
 use Core\UserBundle\Entity\User;
@@ -414,5 +415,111 @@ class UserActions
         $user =  $this->representantesRep->find($id);
         $user->setFlActive(false);
         $this->representantesRep->save($user);
+    }
+
+    /**
+     * metodo responsavel por salvar dados
+     */
+    public function saveDependentes($objData)
+    {
+
+        $id_fisico = $this->find($objData['form']['id_fisico']);
+        unset($objData['form']['id_fisico']);
+        $this->dependentesRep = $this->entityManager->getRepository("CoreUserBundle:Dependentes");
+        $entity = new Dependentes($objData['form']);
+
+        if (isset($objData['form']['id'])) {
+            $entity = $this->dependentesRep->find($objData['form']['id']);
+            $entity->setData($objData['form']);
+        }
+
+        if (isset($objData['form']['dataNascimento']))
+        {
+            $arrDate = explode('/', $objData['form']['dataNascimento']);
+            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
+            $date->setTime(0,0,0);
+            $entity->setDataNascimento($date);
+        }
+        $entity->setFlActive(true);
+        $entity->setPessoaFisica($id_fisico);
+        $entity = $this->dependentesRep->save($entity);
+
+        return $entity;
+    }
+
+    public function getInfoDependentes($id)
+    {
+
+        $this->dependentesRep = $this->entityManager->getRepository("CoreUserBundle:Dependentes");
+        /** @var Dependentes $user */
+        $user =  $this->dependentesRep->find($id);
+        $arrUser = null;
+
+        if ($user){
+            $date = null;
+            if ($user->getDataNascimento())
+            {
+                $date = $user->getDataNascimento()->format('d/m/Y');
+            }
+            $arrUser = array(
+                'id' => $user->getId(),
+                'nome' => $user->getNome(),
+                'email' => $user->getEmail(),
+                'dataNascimento' => $date,
+                'sexo' => $user->getSexo(),
+                'parentesco' => $user->getParentesco(),
+                'id_fisico' => $user->getPessoaFisica()->getId()
+            );
+        }
+
+        return array(
+            'form' => $arrUser,
+        );
+    }
+
+    public function getListDependentes($params = array())
+    {
+        if (!isset($params['page']))
+        {
+            $params['page'] = 0;
+        }
+
+        /** @var Paginator $paginator */
+        $paginator = $this->repository->getListDependentes($params);
+        $objResult = array();
+        if ($paginator->getIterator())
+        {
+            /** @var User $user */
+            foreach($paginator->getIterator() as $user)
+            {
+                $objResult[] = array(
+                    'id' => $user->getId(),
+                    'nome' => $user->getNome(),
+                    'email' => $user->getEmail()
+                );
+            }
+        }
+
+        $pageEnd = $params['page'] * 20;
+        if ($pageEnd > $paginator->count()) {
+            $pageEnd = $paginator->count();
+        }
+        return array(
+            'itemPerPage' => 20,
+            'pageEnd' => $pageEnd,
+            'items' => $objResult,
+            'count' => $paginator->count(),
+            'page' => $params['page'],
+            'pageCount' => (int)ceil($paginator->count() / 20),
+        );
+    }
+
+    public function removerDependentes($id)
+    {
+        $this->dependentesRep = $this->entityManager->getRepository("CoreUserBundle:Dependentes");
+        /** @var Representantes $user */
+        $user =  $this->dependentesRep->find($id);
+        $user->setFlActive(false);
+        $this->dependentesRep->save($user);
     }
 }
