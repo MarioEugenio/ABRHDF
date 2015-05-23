@@ -129,6 +129,13 @@ class Evento extends Entity
     private $eventoPago;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ativo", type="boolean")
+     */
+    private $ativo;
+
+    /**
      * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="evento")
      */
     protected $descontos;
@@ -139,6 +146,23 @@ class Evento extends Entity
         $this->setData($data);
         $this->descontos = new ArrayCollection();
     }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $descontos
+     */
+    public function setDescontos($descontos)
+    {
+        $this->descontos = $descontos;
+    }
+
 
     /**
      * Get id
@@ -494,4 +518,22 @@ class Evento extends Entity
     {
         return $this->eventoPago;
     }
+
+    /**
+     * @param boolean $ativo
+     */
+    public function setAtivo($ativo)
+    {
+        $this->ativo = $ativo;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getAtivo()
+    {
+        return $this->ativo;
+    }
+
+
 }

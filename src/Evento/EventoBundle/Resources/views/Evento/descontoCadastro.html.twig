@@ -9,29 +9,56 @@
     </ol>
 
     <div class="form-group">
-        <input bs-switch ng-model="form.tipoUser" type="radio" switch-label="PESSOA"
+        <label >Evento</label>
+
+        <select class="form-control" ng-model="form.evento" required>
+            <option value="">Selecione</option>
+            <option ng-repeat="evento in listEvento" value="{[{ evento.id }]}">{[{ evento.titulo }]}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input bs-switch ng-model="tipoUser" type="radio" switch-label="PESSOA"
                switch-on-text="FÍSICA" switch-off-text="JURÍDICA" ng-true-value="1" ng-false-value="2">
+    </div>
+
+    <div class="form-group" ng-show="tipoUser">
+        <label >Pessoa Física</label>
+
+        <select class="form-control" ng-model="form.pessoaFisica" ng-required="tipoUser">
+            <option value="">Selecione</option>
+            <option ng-repeat="pessoa in listFisica" value="{[{ pessoa.id }]}">{[{ pessoa.nome }]}</option>
+        </select>
+    </div>
+
+    <div class="form-group" ng-show="!tipoUser">
+        <label >Pessoa Jurídica</label>
+
+        <select class="form-control" ng-model="form.pessoaJuridica" ng-required="!tipoUser">
+            <option value="">Selecione</option>
+            <option ng-repeat="pessoa in listJuridica" value="{[{ pessoa.id }]}">{[{ pessoa.nome }]}</option>
+        </select>
     </div>
 
     <div class="form-group">
         <input bs-switch ng-model="form.descontoPorcentagem" type="radio" switch-label="DESCONTO"
-               switch-on-text="VALOR FIXO" switch-off-text="PORCENTAGEM" ng-true-value="1" ng-false-value="0">
+               switch-on-text="PORCENTAGEM" switch-off-text="VALOR FIXO" ng-true-value="1" ng-false-value="0">
     </div>
 
     <div class="row">
-        <div class="form-group col-md-2" ng-show="!form.descontoPorcentagem">
+        <div class="form-group col-md-2" ng-show="form.descontoPorcentagem">
             <label >Porcentagem</label>
             <div class="input-group">
-                <input type="number" maxlength="3" ng-required="!form.descontoPorcentagem"
-                       ng-maxlength="3" class="form-control" ng-model="form.cargaHoraria">
+                <input type="number" maxlength="3" ng-required="form.descontoPorcentagem"
+                       ng-maxlength="3" class="form-control" ng-model="form.porcentagem">
                 <span class="input-group-addon">%</span>
             </div>
         </div>
 
-        <div class="form-group col-md-2" ng-show="form.descontoPorcentagem == 1">
+        <div class="form-group col-md-2" ng-show="!form.descontoPorcentagem">
             <label ><i class="fa fa-money"></i> Valor do desconto</label>
             <input mask-money prefix="real.prefix" type="text" maxlength="20" class="form-control"
-                   ng-required="form.descontoPorcentagem == 1" ng-model="form.valorEstudanteAssociado" placeholder="Digite o valor" required>
+                   ng-required="!form.descontoPorcentagem" ng-model="form.valorDesconto" placeholder="Digite o valor">
         </div>
     </div>
 
@@ -39,9 +66,9 @@
         <div class="form-group col-md-6">
             <label >Código de Desconto</label>
             <div class="input-group">
-                <input type="text" class="form-control input-lg" readonly maxlength="100" ng-model="form.local" placeholder="Clique ao lado para gerar código de desconto">
+                <input type="text" class="form-control input-lg" required readonly maxlength="100" ng-model="form.codigoDesconto" placeholder="Clique ao lado para gerar código de desconto">
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-primary btn-lg">GERAR CÓDIGO</button>
+                    <button type="button" class="btn btn-primary btn-lg" ng-click="generateHash(24)">GERAR CÓDIGO</button>
                 </div>
             </div>
         </div>

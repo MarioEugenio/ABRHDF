@@ -25,6 +25,16 @@ app.controller('DescontoListaCtrl', function ($scope, $http, $alert) {
         }
     }
 
+    $scope.getNome = function (values) {
+        if (values.pessoa_fisica) {
+            return values.pessoa_fisica.tipo_user.nome + " - " + values.pessoa_fisica.nome;
+        }
+
+        if (values.pessoa_juridica) {
+            return values.pessoa_juridica.tipo_user.nome + " - " + values.pessoa_juridica.nome;
+        }
+    }
+
     $scope.listar = function () {
         $http.post(
             Routing.generate('desconto_listar'))

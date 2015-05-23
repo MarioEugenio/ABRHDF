@@ -23,15 +23,6 @@ class Desconto extends Entity
     private $id;
 
     /**
-     * @var TipoUser $tipoUser
-     * @ORM\ManyToOne(targetEntity="\Core\UserBundle\Entity\TipoUser")
-     * @ORM\JoinColumns({
-     *      @ORM\JoinColumn(name="id_tipo", referencedColumnName="id", nullable=false)
-     * })
-     */
-    private $tipoUser;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="descontoPorcentagem", type="boolean")
@@ -55,7 +46,7 @@ class Desconto extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="codigoDesconto", type="string", length=255)
+     * @ORM\Column(name="codigoDesconto", type="string", length=255, nullable=true)
      */
     private $codigoDesconto;
 
@@ -195,22 +186,6 @@ class Desconto extends Entity
     public function getPessoaJuridica()
     {
         return $this->pessoaJuridica;
-    }
-
-    /**
-     * @param \Evento\EventoBundle\Entity\TipoUser $tipoUser
-     */
-    public function setTipoUser($tipoUser)
-    {
-        $this->tipoUser = $tipoUser;
-    }
-
-    /**
-     * @return \Evento\EventoBundle\Entity\TipoUser
-     */
-    public function getTipoUser()
-    {
-        return $this->tipoUser;
     }
 
     /**

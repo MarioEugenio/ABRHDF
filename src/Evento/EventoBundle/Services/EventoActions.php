@@ -43,8 +43,8 @@ class EventoActions
     public function remover($id)
     {
         $entity = $this->findOneById($id);
-        $this->entityManager->remove($entity);
-        $this->entityManager->flush();
+        $entity->setAtivo(false);
+        $this->repository->save($entity);
     }
 
     public function findBy($params = array())
