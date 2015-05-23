@@ -186,6 +186,7 @@ class EventoController extends BaseController
             $objData = json_decode($this->getRequest()->getContent(), true);
             $entity = new Evento($objData);
             $entity->setDataCadastro(new \DateTime());
+            $entity->setAtivo(true);
 
             /** @var EventoActions $service */
             $service = $this->get('EventoEventoBundle.EventoActions');

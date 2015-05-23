@@ -3,6 +3,7 @@
 namespace Evento\EventoBundle\Entity;
 
 use Core\BaseBundle\Entity\Entity;
+use Core\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -134,6 +135,7 @@ class Evento extends Entity
      * @ORM\Column(name="ativo", type="boolean")
      */
     private $ativo;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="evento")
