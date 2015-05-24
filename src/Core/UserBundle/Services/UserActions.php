@@ -48,13 +48,6 @@ class UserActions
         }
         $entity->setDtCadastro(new \DateTime());
         $entity->setFlActive(true);
-        if (isset($objData['form']['dtNascimento']))
-        {
-            $arrDate = explode('/', $objData['form']['dtNascimento']);
-            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
-            $date->setTime(0,0,0);
-            $entity->setDtNascimento($date);
-        }
         $entity->setTipoUser($tipoPessoa);
         $entity = $this->repository->save($entity);
 
@@ -329,14 +322,6 @@ class UserActions
             $entity = $this->representantesRep->find($objData['form']['id']);
             $entity->setData($objData['form']);
         }
-
-        if (isset($objData['form']['dataNascimento']))
-        {
-            $arrDate = explode('/', $objData['form']['dataNascimento']);
-            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
-            $date->setTime(0,0,0);
-            $entity->setDataNascimento($date);
-        }
         $entity->setFlActive(true);
         $entity->setPessoaJuridica($juridico);
         $entity = $this->representantesRep->save($entity);
@@ -436,14 +421,6 @@ class UserActions
         if (isset($objData['form']['id'])) {
             $entity = $this->dependentesRep->find($objData['form']['id']);
             $entity->setData($objData['form']);
-        }
-
-        if (isset($objData['form']['dataNascimento']))
-        {
-            $arrDate = explode('/', $objData['form']['dataNascimento']);
-            $date = new \DateTime($arrDate[2].'-'.$arrDate[1].'-'.$arrDate[0]);
-            $date->setTime(0,0,0);
-            $entity->setDataNascimento($date);
         }
         $entity->setFlActive(true);
         $entity->setPessoaFisica($id_fisico);

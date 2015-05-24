@@ -43,13 +43,12 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
 
     $scope.edit = function (id) {
         $http.post(
-                Routing.generate('user_edit', { id: id }))
+            Routing.generate('user_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
                     $scope.form = response.data.form;
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;
-                    angular.element($('#dtNascimento')).val(response.data.form.dtNascimento);
                     $scope.getCidade();
                     return;
                 }
@@ -60,7 +59,6 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        form.dtNascimento = angular.element($('#dtNascimento')).val();
         $http.post(
             Routing.generate('user_save')
             , {form: form , contato: contato, complemento: complemento})

@@ -1,14 +1,14 @@
 
-<div class="row">
-    <div class="col-lg-12" ng-controller="UserListaDependentesCtrl" ng-init="init()">
-        <h2>Dependentes do Usuario</h2>
+<div class="row col-lg-12">
+    <form  ng-controller="UserListaDependentesCtrl" ng-init="init()">
+        <h2 ng-hide="tipoDependentes">Dependentes do Usuario</h2>
         <hr>
 
-        <ol class="breadcrumb">
+        <ol class="breadcrumb" ng-hide="tipoDependentes">
             <li><a href="#/">Inicial</a></li>
             <li class="active">Dependentes</li>
         </ol>
-        <a  href="#/user" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Voltar para listagem</a>
+        <a  href="#/user" class="btn btn-primary" ng-hide="tipoDependentes"><span class="glyphicon glyphicon-plus"></span> Voltar para listagem</a>
         <div class="col-lg-12">
             <!-- PARTE DE COMPLEMENTO -->
             <h3>Cadatro de Dependentes<br></h3>
@@ -37,7 +37,12 @@
 
                 <div class="form-group col-lg-4  col-md-6">
                     <label for="exampleInputEmail1">Data de Nascimento</label>
-                    <input id="dtNascimento" type="text" class="form-control" maxlength="255" ng-model="form.dataNascimento"  ui-date="dateOptions" ui-date-format="d/m/Y" placeholder="Digite a data de nascimento" required>
+                    <p class="input-group">
+                        <input type="date" class="form-control" ng-model="form.dataNascimento" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
 
                 <div class="form-group col-lg-4  col-md-6">
@@ -67,7 +72,7 @@
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> selecione abaixo o usuário que deseja alterar ou remover <span class="pull-right">Total de registros: <span class="label label-info">{[{ list.count  }]}</span></span></div>
+            <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> selecione abaixo o usuário que deseja alterar ou remover <span class="pull-right">Total de registros: <span class="label label-info" ng-show="list.count">{[{ list.count  }]}</span></span></div>
 
             <!-- Table -->
             <table class="table">
@@ -94,6 +99,8 @@
                 </tbody>
             </table>
         </div>
-
-    </div>
+        <div class="pull-right">
+            <a href="#/user" class="btn btn-default">FINALIZAR</a>
+        </div>
+    </form>
 </div>

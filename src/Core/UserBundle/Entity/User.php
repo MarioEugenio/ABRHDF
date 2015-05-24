@@ -238,7 +238,7 @@ class User extends Entity
      */
     public function setDtNascimento($value)
     {
-        $this->dtNascimento = $value;
+        $this->dtNascimento = new \DateTime($value);
 
         return $this;
     }

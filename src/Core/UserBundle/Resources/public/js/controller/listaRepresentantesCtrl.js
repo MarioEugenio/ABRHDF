@@ -24,10 +24,9 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
                 }
             });
     };
-
+    $scope.getInfo();
     $scope.limpar = function () {
         var id = $scope.form.id_juridico;
-        angular.element($('#dtNascimento')).val('');
         $scope.form = {
             id_juridico: id
         };
@@ -40,7 +39,6 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
             .success(function (response) {
                 if (response.success) {
                     $scope.form = response.data.form;
-                    angular.element($('#dtNascimento')).val(response.data.form.dataNascimento);
                     return;
                 }
             });
@@ -86,7 +84,6 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
 
     $scope.save = function () {
         var form = angular.copy($scope.form);
-        form.dataNascimento = angular.element($('#dtNascimento')).val();
         $http.post(
             Routing.generate('user_save_representante')
             , {form: form})

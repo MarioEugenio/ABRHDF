@@ -1,4 +1,4 @@
-<ol class="breadcrumb">
+<ol class="breadcrumb" ng-hide="tipoFisico">
     <li><a href="#/">Inicial</a></li>
     <li><a href="#/user">Usuário</a></li>
     <li class="active">Cadastro</li>
@@ -30,7 +30,12 @@
 
     <div class="form-group col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Data de Nascimento</label>
-        <input id="dtNascimento" type="text" class="form-control" maxlength="255" ng-model="form.dtNascimento"  ui-date="dateOptions" ui-date-format="d/m/Y" placeholder="Digite a data de nascimento" required>
+        <p class="input-group">
+            <input type="date" class="form-control" ng-model="form.dtNascimento" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+        </p>
     </div>
 
     <div class="form-group  col-lg-3 col-md-6">
@@ -63,7 +68,7 @@
     </div>
 
     <!-- PARTE DE CONTATOS -->
-    <h2>Informações para contato<br> </h2>
+    <h2 class="col-md-12 ">Informações para contato </h2>
     <hr>
 
     <div class="form-group col-lg-6 col-md-6">
@@ -124,7 +129,7 @@
 
 
     <!-- PARTE DE COMPLEMENTO -->
-    <h2>Informações Complementares<br></h2>
+    <h2 class="col-md-12 ">Informações Complementares</h2>
     <hr>
 
     <div class="form-group  col-lg-6 col-md-6">

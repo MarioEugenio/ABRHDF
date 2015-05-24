@@ -250,7 +250,7 @@ class Representantes extends Entity
      */
     public function setDataNascimento($dataNascimento)
     {
-        $this->dataNascimento = $dataNascimento;
+        $this->dataNascimento = new \DateTime($dataNascimento);
 
         return $this;
     }
