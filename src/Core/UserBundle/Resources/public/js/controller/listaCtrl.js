@@ -1,7 +1,7 @@
 app.controller('UserListaCtrl', function ($scope, $http, $alert) {
 
     $scope.list = [];
-    $scope.page = 1;
+    $scope.page = 0;
 
     $scope.init = function () {
         $scope.listar();
@@ -28,7 +28,7 @@ app.controller('UserListaCtrl', function ($scope, $http, $alert) {
     };
 
     $scope.buscar = function () {
-        $scope.page = 1;
+        $scope.page = 0;
         $scope.listar();
     };
 

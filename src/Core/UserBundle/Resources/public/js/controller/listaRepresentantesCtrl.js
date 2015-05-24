@@ -65,7 +65,7 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
     };
 
     $scope.buscar = function () {
-        $scope.page = 1;
+        $scope.page = 0;
         $scope.listar();
     };
 

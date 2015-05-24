@@ -62,7 +62,7 @@ app.controller('UserListaDependentesCtrl', function ($scope, $http, $alert, $rou
     };
 
     $scope.buscar = function () {
-        $scope.page = 1;
+        $scope.page = 0;
         $scope.listar();
     };
 
