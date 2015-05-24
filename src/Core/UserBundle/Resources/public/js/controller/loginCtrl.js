@@ -68,8 +68,16 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
     };
 
     $scope.cadastrar = function () {
-        $scope.tipo = true;
-        $scope.login = false;
+        $http.post(
+            Routing.generate('user_valid_email'),{email:$scope.verify.email})
+            .success(function (data) {
+                if (data.data) {
+                    $scope.tipo = true;
+                    $scope.login = false;
+                } else {
+                    $alert({title: 'MENSAGEM: ', content: 'E-mail ja cadastrado', container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
+                }
+            });
     };
 
     $scope.fisico = function () {

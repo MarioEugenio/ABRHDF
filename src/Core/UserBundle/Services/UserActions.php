@@ -499,4 +499,13 @@ class UserActions
         $user->setFlActive(false);
         $this->dependentesRep->save($user);
     }
+
+    public function getInfoEmail($post) {
+        $user = $this->repository->getInfoEmail($post);
+        if($user){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

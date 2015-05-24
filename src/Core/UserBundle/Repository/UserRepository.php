@@ -111,4 +111,14 @@ class UserRepository extends EntityRepository
         }
         return $this->paginate($qb, $page);
     }
+
+    public function getInfoEmail($params = array())
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('u')
+            ->from('CoreUserBundle:User', 'u')
+            ->where($qb->expr()->eq('LOWER(u.email)',':email'))
+            ->setParameter('email', mb_strtolower($params['email'], 'UTF-8'));
+        return $qb->getQuery()->getResult();
+    }
 }

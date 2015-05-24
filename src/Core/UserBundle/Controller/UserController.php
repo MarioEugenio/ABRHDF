@@ -538,4 +538,30 @@ class UserController extends BaseController
             ), 404);
         }
     }
+
+    /**
+     * @Route("/user/valid/email", name="user_valid_email", options={"expose"=true})
+     */
+    public function validEmailAction()
+    {
+        try {
+
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getInfoEmail($objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
 }

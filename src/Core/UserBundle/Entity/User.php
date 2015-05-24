@@ -104,6 +104,13 @@ class User extends Entity
     private $flActive;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="flAdmin", type="boolean", nullable=true)
+     */
+    private $flAdmin;
+
+    /**
      * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="pessoaJuridica")
      */
     protected $descontoPessoaJuridica;
@@ -412,5 +419,23 @@ class User extends Entity
     public function getFlActive()
     {
         return $this->flActive;
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setFlAdmin($value)
+    {
+        $this->flAdmin = $value;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getFlAdmin()
+    {
+        return $this->flAdmin;
     }
 }
