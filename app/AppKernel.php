@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Tritoq\Bundle\ManagerBoletoBundle\TritoqManagerBoletoBundle(),
             new Core\BaseBundle\CoreBaseBundle(),
             new Core\UserBundle\CoreUserBundle(),
             new Evento\PessoaBundle\EventoPessoaBundle(),

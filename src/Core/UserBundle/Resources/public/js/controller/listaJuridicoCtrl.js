@@ -1,7 +1,7 @@
 app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
 
     $scope.list = [];
-    $scope.page = 1;
+    $scope.page = 0;
 
     $scope.init = function () {
         $scope.listar();

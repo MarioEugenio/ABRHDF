@@ -11,7 +11,7 @@ app.controller('EventoListaCtrl', function ($scope, $http, $alert) {
 
         if (conf) {
             $http.post(
-                    Routing.generate('evento_remove'), { id: id})
+                    Routing.generate('evento_remover'), { id: id})
                 .success(function (response) {
                     if (response.success) {
                         $scope.list.splice(index, 1);

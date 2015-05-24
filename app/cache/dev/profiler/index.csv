@@ -1,0 +1,8 @@
+6d92b4,::1,GET,http://localhost/ABRHDF/web/app_dev.php/core/admin,1432418723,
+8e331e,::1,GET,http://localhost/ABRHDF/web/app_dev.php/js/routing?callback=fos.Router.setData,1432418724,
+431d65,::1,GET,http://localhost/ABRHDF/web/app_dev.php/core/admin/home,1432418725,
+efe31a,::1,GET,http://localhost/ABRHDF/web/app_dev.php/user/lista,1432418727,
+338182,::1,POST,http://localhost/ABRHDF/web/app_dev.php/user/listar?page=1&searchText=undefined,1432418728,
+73fd2d,::1,GET,http://localhost/ABRHDF/web/app_dev.php/core/admin,1432420798,
+5783b6,::1,GET,http://localhost/ABRHDF/web/app_dev.php/js/routing?callback=fos.Router.setData,1432420799,
+5db98b,::1,GET,http://localhost/ABRHDF/web/app_dev.php/core/admin/home,1432420799,

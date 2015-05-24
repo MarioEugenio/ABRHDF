@@ -96,14 +96,14 @@ class EventoController extends BaseController
     }
 
     /**
-     * @Route("/desconto/listar", name="evento_listar", options={"expose"=true})
+     * @Route("/evento/listar", name="evento_listar", options={"expose"=true})
      */
     public function listarAction()
     {
         try {
             /** @var DescontoActions $service */
             $service = $this->get('EventoEventoBundle.EventoActions');
-            $resource = $service->findAll();
+            $resource = $service->findBy(array('ativo' => 1));
 
             return $this->createJsonResponse(array(
                 'success' => true,
@@ -186,6 +186,7 @@ class EventoController extends BaseController
             $objData = json_decode($this->getRequest()->getContent(), true);
             $entity = new Evento($objData);
             $entity->setDataCadastro(new \DateTime());
+            $entity->setAtivo(true);
 
             /** @var EventoActions $service */
             $service = $this->get('EventoEventoBundle.EventoActions');
@@ -201,6 +202,56 @@ class EventoController extends BaseController
                 'success' => true,
                 'message' => 'Processo realizado com sucesso',
                 'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/evento/remover", name="evento_remover", options={"expose"=true})
+     */
+    public function removerAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('EventoEventoBundle.EventoActions');
+            $service->remover($objData['id']);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Registro removido com sucesso'
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/desconto/remover", name="desconto_remove", options={"expose"=true})
+     */
+    public function removerDescontoAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('EventoEventoBundle.DescontoActions');
+            $service->remover($objData['id']);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'message' => 'Registro removido com sucesso'
             ));
 
         } catch (Exception $ex) {

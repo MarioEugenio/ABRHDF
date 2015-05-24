@@ -5,6 +5,7 @@ namespace Core\UserBundle\Entity;
 use Core\BaseBundle\Entity\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Evento\EventoBundle\Entity\Evento;
 
 /**
  * User

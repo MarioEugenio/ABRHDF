@@ -12,5 +12,9 @@
         <service id="EventoEventoBundle.DescontoActions" class="Evento\EventoBundle\Services\DescontoActions">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
+
+        <service id="EventoEventoBundle.EventoUserActions" class="Evento\EventoBundle\Services\EventoUserActions">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
     </services>
 </container>

@@ -192,11 +192,6 @@ class UserActions
 
     public function getListUser($tipoPessoa, $params = array())
     {
-        if (!isset($params['page']))
-        {
-            $params['page'] = 1;
-        }
-
         /** @var Paginator $paginator */
         $paginator = $this->repository->getListUser($tipoPessoa, $params);
         $objResult = array();

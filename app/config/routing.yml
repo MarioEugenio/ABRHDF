@@ -21,6 +21,10 @@ core_user:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
+TritoqManagerBoletoBundle:
+    resource: "@TritoqManagerBoletoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

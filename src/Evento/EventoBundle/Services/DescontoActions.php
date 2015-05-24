@@ -17,9 +17,19 @@ class DescontoActions
     private $entityManager;
 
     /**
-     * @var UserRepository
+     * @var $repository
      */
     private $repository;
+
+    /**
+     * @var $userRepository
+     */
+    private $userRepository;
+
+    /**
+     * @var $eventoRepository
+     */
+    private $eventoRepository;
 
     /**
      * @param EntityManager $em
@@ -28,6 +38,8 @@ class DescontoActions
     {
         $this->entityManager = $em;
         $this->repository = $em->getRepository("EventoEventoBundle:Desconto");
+        $this->userRepository = $em->getRepository("CoreUserBundle:User");
+        $this->eventoRepository = $em->getRepository("EventoEventoBundle:Evento");
     }
 
     /**
@@ -35,6 +47,23 @@ class DescontoActions
     */
     public function save(Entity $entity)
     {
+        /** @var Desconto $entity */
+        if ($entity->getPessoaFisica()) {
+            $entity->setPessoaFisica(
+                $this->userRepository->find($entity->getPessoaFisica())
+            );
+        }
+
+        if ($entity->getPessoaJuridica()) {
+            $entity->setPessoaJuridica(
+                $this->userRepository->find($entity->getPessoaJuridica())
+            );
+        }
+
+        $entity->setEvento(
+            $this->eventoRepository->find($entity->getEvento())
+        );
+
         $this->repository->save($entity);
 
         return $entity;
