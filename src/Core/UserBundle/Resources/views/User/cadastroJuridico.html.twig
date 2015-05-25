@@ -1,10 +1,12 @@
+<hr>
+
 <ol class="breadcrumb" ng-hide="tipoJuridico">
     <li><a href="#/">Inicial</a></li>
     <li><a href="#/user">Usuário</a></li>
     <li class="active">Cadastro</li>
 </ol>
 
-<form ng-controller="UserCadastroJuridicoCtrl" ng-init="init()" ng-submit="save()">
+<form name="formCad" ng-controller="UserCadastroJuridicoCtrl" ng-init="init()" ng-submit="save()">
     <h2>Cadastro de Pessoa Jurídica<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
     <hr>
 
@@ -12,7 +14,7 @@
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">CNPJ</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="empresa.cnpj" ui-mask="'99.999.999/9999-99'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="empresa.cnpj" name="cnpj" name="formCad" ng-cnpj ui-mask="'99.999.999/9999-99'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
@@ -42,7 +44,7 @@
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Numero do FAX</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax" placeholder="Digite o numero do fax" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax"  ui-mask="'(99)9999-9999'" required>
     </div>
 
     <div class="form-group col-lg-12 col-md-6">
@@ -80,13 +82,13 @@
         <label for="exampleInputEmail1">Cidade</label>
         <select class="form-control" ng-model="contato.cidade" required>
             <option value="">Selecione</option>
-            <option ng-repeat="cidade in cidades" value="{[{ cidade.id }]}">{[{ cidade.noCidade }]}</option>
+            <option ng-repeat="cidade in cidades" value="{[{ cidade.id }]}"  ng-selected="contato.cidade == cidade.id">{[{ cidade.noCidade }]}</option>
         </select>
     </div>
 
     <div class="form-group col-lg-4 col-md-6">
         <label for="exampleInputEmail1">Cep</label>
-        <input type="number" class="form-control" maxlength="255" ng-model="contato.cep" placeholder="Digite o cep" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.cep" ui-mask="'99999-999'" required>
     </div>
 
 

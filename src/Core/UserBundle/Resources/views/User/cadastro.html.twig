@@ -1,10 +1,12 @@
+<hr>
+
 <ol class="breadcrumb" ng-hide="tipoFisico">
     <li><a href="#/">Inicial</a></li>
     <li><a href="#/user">Usuário</a></li>
     <li class="active">Cadastro</li>
 </ol>
 
-<form ng-controller="UserCadastroCtrl"  ng-init="init()" ng-submit="save()">
+<form name="formCad" ng-controller="UserCadastroCtrl"  ng-init="init()" ng-submit="save()">
     <h2>Cadastro de Pessoa Fisica<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
     <hr>
 
@@ -17,7 +19,7 @@
 
     <div class="form-group col-lg-4 col-md-6">
         <label for="exampleInputEmail1">CPF</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="form.cpf" ui-mask="'999.999.999-99'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="form.cpf" ng-cpf name="cpf" ui-mask="'999.999.999-99'" required>
     </div>
 
     <div class="form-group col-lg-12 col-md-6">
@@ -31,7 +33,7 @@
     <div class="form-group col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Data de Nascimento</label>
         <p class="input-group">
-            <input type="date" class="form-control" ng-model="form.dtNascimento" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+            <input id="dtNascimento" type="date" class="form-control" ng-model="form.dtNascimento" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -88,7 +90,7 @@
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Numero do FAX</label>
-        <input type="number" class="form-control" maxlength="255" ng-model="contato.fax" placeholder="Digite o numero do fax" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax" ui-mask="'(99)9999-9999'" required>
     </div>
 
     <div class="form-group col-lg-8 col-md-6">
@@ -124,7 +126,7 @@
 
     <div class="form-group  col-lg-4 col-md-6">
         <label for="exampleInputEmail1">Cep</label>
-        <input type="number" class="form-control" maxlength="255" ng-model="contato.cep" placeholder="Digite o cep"  required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.cep" ui-mask="'99999-999'"  required>
     </div>
 
 

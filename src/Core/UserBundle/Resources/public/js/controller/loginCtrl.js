@@ -10,6 +10,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
     $scope.form = {};
     $scope.contato = {};
     $scope.complemento = {};
+    $scope.empresa = {};
 
     $scope.dateOptions = {
         changeYear: true,
@@ -117,19 +118,48 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        $http.post(
-            Routing.generate('user_save')
-            , {form: form , contato: contato, complemento: complemento})
-            .success(function (response) {
-                if (response.success) {
-                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
+        if ($scope.formCad.$valid) {
+            $http.post(
+                Routing.generate('user_save')
+                , {form: form, contato: contato, complemento: complemento})
+                .success(function (response) {
+                    if (response.success) {
+                        $alert({
+                            title: 'MENSAGEM: ',
+                            content: response.message,
+                            container: '#alerts-container',
+                            placement: 'top-right',
+                            duration: 4,
+                            type: 'success',
+                            show: true
+                        });
 
-                    $scope.dependentes(response.data.id);
-                }
+                        $scope.dependentes(response.data.id);
+                    }
 
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
+                    $alert({
+                        title: 'MENSAGEM: ',
+                        content: response.message,
+                        container: '#alerts-container',
+                        placement: 'top-right',
+                        duration: 4,
+                        type: 'info',
+                        show: true
+                    });
 
+                });
+        } else {
+            $('html, body').animate({scrollTop:0}, 'slow');
+            $alert({
+                title: 'MENSAGEM: ',
+                content: 'CPF Invalido',
+                container: '#alerts-container',
+                placement: 'top-right',
+                duration: 4,
+                type: 'info',
+                show: true
             });
+        }
     };
 
     $scope.cadastroJuridico = function () {
@@ -138,6 +168,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
 
+        if ($scope.formCad.$valid) {
         $http.post(
             Routing.generate('user_save_juridico')
             , {form: form , contato: contato, complemento: complemento, empresa: empresa})
@@ -151,6 +182,18 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
                 $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
 
             });
+        } else {
+            $('html, body').animate({scrollTop:0}, 'slow');
+            $alert({
+                title: 'MENSAGEM: ',
+                content: 'CNPJ Invalido',
+                container: '#alerts-container',
+                placement: 'top-right',
+                duration: 4,
+                type: 'info',
+                show: true
+            });
+        }
     };
 
 
@@ -197,6 +240,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
                 .success(function (response) {
                     if (response.success) {
                         $scope.form = response.data.form;
+                        $scope.form.dataNascimento = new Date(response.data.form.dataNascimento);
                         return;
                     }
                 });
@@ -207,6 +251,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
                 .success(function (response) {
                     if (response.success) {
                         $scope.form = response.data.form;
+                        $scope.form.dataNascimento = new Date(response.data.form.dataNascimento);
                         return;
                     }
                 });
