@@ -49,6 +49,8 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
                     $scope.form = response.data.form;
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;
+                    $scope.rsenha = response.data.form.senha;
+                    $scope.form.dtNascimento = new Date(response.data.form.dtNascimento);
                     $scope.getCidade();
                     return;
                 }
@@ -59,18 +61,47 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        $http.post(
-            Routing.generate('user_save')
-            , {form: form , contato: contato, complemento: complemento})
-            .success(function (response) {
-                if (response.success) {
-                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $location.path('/user/'+response.data.id+'/dependentes');
-                    return;
-                }
+        if ($scope.formCad.$valid) {
+            $http.post(
+                Routing.generate('user_save')
+                , {form: form, contato: contato, complemento: complemento})
+                .success(function (response) {
+                    if (response.success) {
+                        $alert({
+                            title: 'MENSAGEM: ',
+                            content: response.message,
+                            container: '#alerts-container',
+                            placement: 'top-right',
+                            duration: 4,
+                            type: 'success',
+                            show: true
+                        });
+                        $location.path('/user/' + response.data.id + '/dependentes');
+                        return;
+                    }
 
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
+                    $alert({
+                        title: 'MENSAGEM: ',
+                        content: response.message,
+                        container: '#alerts-container',
+                        placement: 'top-right',
+                        duration: 4,
+                        type: 'info',
+                        show: true
+                    });
 
+                });
+        } else {
+            $('html, body').animate({scrollTop:0}, 'slow');
+            $alert({
+                title: 'MENSAGEM: ',
+                content: 'CPF Invalido',
+                container: '#alerts-container',
+                placement: 'top-right',
+                duration: 4,
+                type: 'info',
+                show: true
             });
+        }
     };
 });

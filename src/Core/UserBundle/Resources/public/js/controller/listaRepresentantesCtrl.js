@@ -39,6 +39,7 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
             .success(function (response) {
                 if (response.success) {
                     $scope.form = response.data.form;
+                    $scope.form.dataNascimento = new Date(response.data.form.dataNascimento);
                     return;
                 }
             });

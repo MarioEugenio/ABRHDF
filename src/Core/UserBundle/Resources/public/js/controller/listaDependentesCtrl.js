@@ -36,6 +36,7 @@ app.controller('UserListaDependentesCtrl', function ($scope, $http, $alert, $rou
             .success(function (response) {
                 if (response.success) {
                     $scope.form = response.data.form;
+                    $scope.form.dataNascimento = new Date(response.data.form.dataNascimento);
                     return;
                 }
             });

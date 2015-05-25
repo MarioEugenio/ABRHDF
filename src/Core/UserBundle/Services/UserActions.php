@@ -200,11 +200,24 @@ class UserActions
             /** @var User $user */
             foreach($paginator->getIterator() as $user)
             {
-                $objResult[] = array(
+                $data = array(
                     'id' => $user->getId(),
                     'nome' => $user->getNome(),
-                    'email' => $user->getEmail()
+                    'email' => $user->getEmail(),
+                    'cnpj' => '',
+                    'nomeFantasia' => ''
                 );
+                if ($user->getTipoUser()->getId() == 2){
+                    $this->empresaRep = $this->entityManager->getRepository("CoreUserBundle:Empresa");
+                    /** @var Empresa $empresa */
+                    $empresa = $this->empresaRep->findOneBy(array('user' => $user));
+
+                    if($empresa) {
+                        $data['cnpj'] = $empresa->getCnpj();
+                        $data['nomeFantasia'] = $empresa->getNomeFantasia();
+                    }
+                }
+                $objResult[] = $data;
             }
         }
 
@@ -235,7 +248,7 @@ class UserActions
             $date = null;
             if ($user->getDtNascimento())
             {
-                $date = $user->getDtNascimento()->format('d/m/Y');
+                $date = $user->getDtNascimento();
             }
             $arrUser = array(
                 'id' => $user->getId(),
@@ -246,6 +259,7 @@ class UserActions
                 'sexo' => $user->getSexo(),
                 'rg' => (int) $user->getRg(),
                 'emissor' => $user->getEmissor(),
+                'senha' => $user->getSenha()
             );
 
             $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
@@ -336,7 +350,7 @@ class UserActions
             $date = null;
             if ($user->getDataNascimento())
             {
-                $date = $user->getDataNascimento()->format('d/m/Y');
+                $date = $user->getDataNascimento();
             }
             $arrUser = array(
                 'id' => $user->getId(),
@@ -436,7 +450,7 @@ class UserActions
             $date = null;
             if ($user->getDataNascimento())
             {
-                $date = $user->getDataNascimento()->format('d/m/Y');
+                $date = $user->getDataNascimento();
             }
             $arrUser = array(
                 'id' => $user->getId(),

@@ -46,6 +46,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;
                     $scope.empresa = response.data.empresa;
+                    $scope.rsenha = response.data.form.senha;
                     $scope.getCidade();
                     return;
                 }
@@ -57,19 +58,47 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
+        if ($scope.formCad.$valid) {
+            $http.post(
+                Routing.generate('user_save_juridico')
+                , {form: form, contato: contato, complemento: complemento, empresa: empresa})
+                .success(function (response) {
+                    if (response.success) {
+                        $alert({
+                            title: 'MENSAGEM: ',
+                            content: response.message,
+                            container: '#alerts-container',
+                            placement: 'top-right',
+                            duration: 4,
+                            type: 'success',
+                            show: true
+                        });
+                        $location.path('/user/' + response.data.id + '/representantes');
+                        return;
+                    }
 
-        $http.post(
-            Routing.generate('user_save_juridico')
-            , {form: form , contato: contato, complemento: complemento, empresa: empresa})
-            .success(function (response) {
-                if (response.success) {
-                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $location.path('/user/'+response.data.id+'/representantes');
-                    return;
-                }
+                    $alert({
+                        title: 'MENSAGEM: ',
+                        content: response.message,
+                        container: '#alerts-container',
+                        placement: 'top-right',
+                        duration: 4,
+                        type: 'info',
+                        show: true
+                    });
 
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
-
+                });
+        } else {
+            $('html, body').animate({scrollTop:0}, 'slow');
+            $alert({
+                title: 'MENSAGEM: ',
+                content: 'CNPJ Invalido',
+                container: '#alerts-container',
+                placement: 'top-right',
+                duration: 4,
+                type: 'info',
+                show: true
             });
+        }
     };
 });
