@@ -10,6 +10,10 @@ app.config(['$routeProvider', '$interpolateProvider',
                 templateUrl: Routing.generate('evento_cadastro'),
                 controller: 'EventoCadastroCtrl'
             }).
+            when('/evento/:id/detalhe', {
+                templateUrl: Routing.generate('evento_detalhe'),
+                controller: 'EventoDetalheCtrl'
+            }).
             when('/evento', {
                 templateUrl: Routing.generate('evento_lista'),
                 controller: 'EventoListaCtrl'

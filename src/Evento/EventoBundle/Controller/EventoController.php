@@ -21,6 +21,15 @@ class EventoController extends BaseController
     }
 
     /**
+     * @Route("/evento/detalhe", name="evento_detalhe", options={"expose"=true})
+     * @Template()
+     */
+    public function detalhesAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/desconto", name="desconto_lista", options={"expose"=true})
      * @Template()
      */
@@ -94,6 +103,8 @@ class EventoController extends BaseController
             ), 404);
         }
     }
+
+
 
     /**
      * @Route("/evento/listar", name="evento_listar", options={"expose"=true})

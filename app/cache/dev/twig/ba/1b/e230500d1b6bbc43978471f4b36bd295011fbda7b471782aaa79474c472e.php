@@ -44,58 +44,68 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
     public function block_javascripts($context, array $blocks = array())
     {
         // line 9
-        echo "    ";
-        // line 10
-        echo "
+        echo "    <script type=\"text/javascript\"> var baseUrl = \"";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "baseurl", array()), "html", null, true);
+        echo "\"; </script>
     ";
-        // line 12
+        // line 11
+        echo "    <script src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/BaseCtrl.js"), "html", null, true);
+        echo "\"></script>
+
+    ";
+        // line 14
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/controller/cadastroCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 13
+        // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/controller/cadastroJuridicoCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 14
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/controller/listaCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 15
+        // line 17
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/controller/listaJuridicoCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 16
+        // line 18
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/controller/listaRepresentantesCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 17
+        // line 19
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/controller/listaDependentesCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 18
+        // line 20
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/coreuser/js/router/routerUser.js"), "html", null, true);
         echo "\"></script>
 
     <script src=\"";
-        // line 20
+        // line 22
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/eventoevento/js/controller/cadastroCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 21
+        // line 23
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/eventoevento/js/controller/listaCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 22
+        // line 24
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/eventoevento/js/controller/descontoCadastroCtrl.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 23
+        // line 25
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/eventoevento/js/controller/listaDescontoCtrl.js"), "html", null, true);
+        echo "\"></script>
+    <script src=\"";
+        // line 26
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/eventoevento/js/controller/detalheCtrl.js"), "html", null, true);
         echo "\"></script>
 
     <script src=\"";
-        // line 25
+        // line 28
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/eventoevento/js/router/routers.js"), "html", null, true);
         echo "\"></script>
 
@@ -103,10 +113,10 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
 ";
     }
 
-    // line 30
+    // line 33
     public function block_body($context, array $blocks = array())
     {
-        // line 31
+        // line 34
         echo "    <div id=\"wrapper\">
     <!-- Navigation -->
     <nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\" style=\"margin-bottom: 0\">
@@ -210,6 +220,6 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
 
     public function getDebugInfo()
     {
-        return array (  110 => 31,  107 => 30,  99 => 25,  94 => 23,  90 => 22,  86 => 21,  82 => 20,  77 => 18,  73 => 17,  69 => 16,  65 => 15,  61 => 14,  57 => 13,  52 => 12,  49 => 10,  47 => 9,  44 => 8,  38 => 5,  33 => 4,  30 => 3,  11 => 1,);
+        return array (  120 => 34,  117 => 33,  109 => 28,  104 => 26,  100 => 25,  96 => 24,  92 => 23,  88 => 22,  83 => 20,  79 => 19,  75 => 18,  71 => 17,  67 => 16,  63 => 15,  58 => 14,  52 => 11,  47 => 9,  44 => 8,  38 => 5,  33 => 4,  30 => 3,  11 => 1,);
     }
 }

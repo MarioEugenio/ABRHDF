@@ -2,6 +2,7 @@ var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney', 'ui
     .run(['$rootScope',
         function($scope) {
 
+
             $scope.real = {
                 prefix: 'R$'
             }

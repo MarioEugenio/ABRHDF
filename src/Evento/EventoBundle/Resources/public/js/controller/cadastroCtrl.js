@@ -2,6 +2,7 @@ app.controller('EventoCadastroCtrl', function ($scope, $http, $location, $routeP
 
     $scope.form = {};
     $scope.tabActive = true;
+    $scope.format = "dd/MM/yyyy";
 
     $scope.init = function () {
         var id = $routeParams.id;
@@ -9,6 +10,18 @@ app.controller('EventoCadastroCtrl', function ($scope, $http, $location, $routeP
             $scope.edit(id);
         }
     }
+
+    $scope.open = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yyyy',
+        startingDay: 1
+    };
 
     $scope.edit = function (id) {
         $http.post(

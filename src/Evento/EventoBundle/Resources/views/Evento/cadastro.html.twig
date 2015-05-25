@@ -30,9 +30,9 @@
                 <div class="form-group col-md-3" ng-class="{'has-error': form.inscricaoInicio.$invalid}">
                     <label >Início das Inscrições</label>
                     <p class="input-group">
-                        <input type="date" class="form-control" ng-model="form.inscricaoInicio" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <input type="date" class="form-control" ng-model="form.inscricaoInicio" is-open="opened" datepicker-options="dateOptions" datepicker-popup="{[{ format }]}" ng-required="true" close-text="Fechar" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </p>
                 </div>
@@ -40,9 +40,9 @@
                 <div class="form-group col-md-3" ng-class="{'has-error': form.inscricaoFim.$invalid}">
                     <label >Fim das Inscrições</label>
                     <p class="input-group">
-                        <input type="date" class="form-control" ng-model="form.inscricaoFim" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <input type="date" class="form-control" ng-model="form.inscricaoFim" datepicker-options="dateOptions" is-open="opened" datepicker-popup="{[{ format }]}" ng-required="true" close-text="Fechar" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </p>
                 </div>
@@ -54,9 +54,9 @@
                 <div class="form-group col-md-3" ng-class="{'has-error': form.dataInicio.$invalid}">
                     <label >Início do Evento</label>
                     <p class="input-group">
-                        <input type="date" class="form-control"  ng-model="form.dataInicio" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <input type="date" class="form-control"  ng-model="form.dataInicio" is-open="opened" datepicker-options="dateOptions" datepicker-popup="{[{ format }]}" ng-required="true" close-text="Fechar" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </p>
                 </div>
@@ -64,9 +64,9 @@
                 <div class="form-group col-md-3" ng-class="{'has-error': form.dataFim.$invalid}">
                     <label >Fim do Evento</label>
                     <p class="input-group">
-                        <input type="date" class="form-control" ng-model="form.dataFim" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+                        <input type="date" class="form-control" ng-model="form.dataFim" is-open="opened" datepicker-options="dateOptions" datepicker-popup="{[{ format }]}" ng-required="true" close-text="Fechar" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </p>
                 </div>

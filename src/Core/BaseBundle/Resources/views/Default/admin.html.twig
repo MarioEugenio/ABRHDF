@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript"> var baseUrl = "{{ app.request.baseurl }}"; </script>
     {# Inicializando rotas angular #}
+    <script src="{{ asset('bundles/corebase/js/BaseCtrl.js') }}"></script>
 
     {# CORE-USER-BUNDLE #}
     <script src="{{ asset('bundles/coreuser/js/controller/cadastroCtrl.js') }}"></script>
@@ -21,6 +23,7 @@
     <script src="{{ asset('bundles/eventoevento/js/controller/listaCtrl.js') }}"></script>
     <script src="{{ asset('bundles/eventoevento/js/controller/descontoCadastroCtrl.js') }}"></script>
     <script src="{{ asset('bundles/eventoevento/js/controller/listaDescontoCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/eventoevento/js/controller/detalheCtrl.js') }}"></script>
 
     <script src="{{ asset('bundles/eventoevento/js/router/routers.js') }}"></script>
 

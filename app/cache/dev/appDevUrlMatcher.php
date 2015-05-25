@@ -127,9 +127,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // evento_lista
-        if ($pathinfo === '/evento') {
-            return array (  '_controller' => 'Evento\\EventoBundle\\Controller\\EventoController::listaAction',  '_route' => 'evento_lista',);
+        if (0 === strpos($pathinfo, '/evento')) {
+            // evento_lista
+            if ($pathinfo === '/evento') {
+                return array (  '_controller' => 'Evento\\EventoBundle\\Controller\\EventoController::listaAction',  '_route' => 'evento_lista',);
+            }
+
+            // evento_detalhe
+            if ($pathinfo === '/evento/detalhe') {
+                return array (  '_controller' => 'Evento\\EventoBundle\\Controller\\EventoController::detalhesAction',  '_route' => 'evento_detalhe',);
+            }
+
         }
 
         // desconto_lista
@@ -401,6 +409,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // user_edit_dependentes
             if (0 === strpos($pathinfo, '/user/dependentes') && preg_match('#^/user/dependentes/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_edit_dependentes')), array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::editDependentesAction',));
+            }
+
+            // user_valid_email
+            if ($pathinfo === '/user/valid/email') {
+                return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::validEmailAction',  '_route' => 'user_valid_email',);
             }
 
         }
