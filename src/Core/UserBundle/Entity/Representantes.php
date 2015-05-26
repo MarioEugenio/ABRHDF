@@ -87,6 +87,52 @@ class Representantes extends Entity
     private $flActive;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco", type="string", length=255, nullable=true)
+     */
+    private $endereco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bairro", type="string", length=255, nullable=true)
+     */
+    private $bairro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="complemento", type="string", length=255, nullable=true)
+     */
+    private $complemento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep", type="string", length=255, nullable=true)
+     */
+    private $cep;
+
+    /**
+     * @var Cidade $cidade
+     * @ORM\ManyToOne(targetEntity="\Core\UserBundle\Entity\Cidade")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="id_cidade", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $cidade;
+
+    /**
+     * @var Estado $estado
+     * @ORM\ManyToOne(targetEntity="\Core\UserBundle\Entity\Estado")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="id_uf", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $estado;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -297,5 +343,133 @@ class Representantes extends Entity
     public function getFlActive()
     {
         return $this->flActive;
+    }
+
+    /**
+     * Set
+     *
+     * @param string $value
+     * @return User
+     */
+    public function setEndereco($value)
+    {
+        $this->endereco = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get
+     *
+     * @return string
+     */
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    /**
+     * Set
+     *
+     * @param string $value
+     * @return User
+     */
+    public function setBairro($value)
+    {
+        $this->bairro = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get
+     *
+     * @return string
+     */
+    public function getBairro()
+    {
+        return $this->bairro;
+    }
+
+    /**
+     * Set
+     *
+     * @param string $value
+     * @return User
+     */
+    public function setComplemento($value)
+    {
+        $this->complemento = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get
+     *
+     * @return string
+     */
+    public function getComplemento()
+    {
+        return $this->complemento;
+    }
+
+    /**
+     * Set
+     *
+     * @param string $value
+     * @return User
+     */
+    public function setCep($value)
+    {
+        $this->cep = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get
+     *
+     * @return string
+     */
+    public function getCep()
+    {
+        return $this->cep;
+    }
+
+    /**
+     * @param int $cidade
+     */
+    public function setCidade($cidade)
+    {
+        $this->cidade = $cidade;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getCidade()
+    {
+        return $this->cidade;
+    }
+
+    /**
+     * @param int $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

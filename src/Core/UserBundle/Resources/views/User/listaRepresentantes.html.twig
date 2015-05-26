@@ -59,9 +59,45 @@
                     <input type="text" class="form-control" maxlength="255" ng-model="form.celular" ui-mask="'(99)9999-9999'" required>
                 </div>
 
+                <div class="form-group col-lg-8 col-md-6">
+                    <label for="exampleInputEmail1">Endereço</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.endereco" placeholder="Digite o endereço" required>
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">Bairro</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.bairro" placeholder="Digite o bairro" required>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-6">
+                    <label for="exampleInputEmail1">Complemento</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.complemento" placeholder="Digite o complemento" required>
+                </div>
+
+                <div class="form-group  col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">UF</label>
+                    <select class="form-control" ng-model="form.estado" required ng-change="getCidade()">
+                        <option value="">Selecione</option>
+                        <option ng-repeat="estado in estados" value="{[{ estado.id }]}">{[{ estado.estado }]}</option>
+                    </select>
+                </div>
+
+                <div class="form-group  col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">Cidade</label>
+                    <select class="form-control" ng-model="form.cidade" required>
+                        <option value="">Selecione</option>
+                        <option ng-repeat="cidade in cidades" value="{[{ cidade.id }]}" ng-selected="contato.cidade == cidade.id">{[{ cidade.noCidade }]}</option>
+                    </select>
+                </div>
+
+                <div class="form-group  col-lg-4 col-md-6">
+                    <label for="exampleInputEmail1">Cep</label>
+                    <input type="text" class="form-control" maxlength="255" ng-model="form.cep" ui-mask="'99999-999'"  required>
+                </div>
+
                 <div class="pull-right">
                     <button ng-click="limpar()" class="btn btn-default">LIMPAR</button>
-                    <button type="submit" class="btn btn-primary">SALVAR</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="list.count == 3">SALVAR</button>
                 </div>
         </div>
 

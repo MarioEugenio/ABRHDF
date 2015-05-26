@@ -337,6 +337,13 @@ class UserActions
         }
         $entity->setFlActive(true);
         $entity->setPessoaJuridica($juridico);
+
+        $this->cidadeRep = $this->entityManager->getRepository("CoreUserBundle:Cidade");
+        $this->estadoRep = $this->entityManager->getRepository("CoreUserBundle:Estado");
+
+        $entity->setCidade($this->cidadeRep->find((int)$objData['form']['cidade']));
+        $entity->setEstado($this->estadoRep->find((int)$objData['form']['estado']));
+
         $entity = $this->representantesRep->save($entity);
 
         return $entity;
@@ -365,7 +372,13 @@ class UserActions
                 'cargo' => $user->getCargo(),
                 'celular' => $user->getCelular(),
                 'telefone' => $user->getTelefone(),
-                'id_juridico' => $user->getPessoaJuridica()->getId()
+                'id_juridico' => $user->getPessoaJuridica()->getId(),
+                'endereco' => $user->getEndereco(),
+                'bairro' => $user->getBairro(),
+                'complemento' => $user->getComplemento(),
+                'cidade' => $user->getCidade()->getId(),
+                'estado' => $user->getEstado()->getId(),
+                'cep' => $user->getCep()
             );
         }
 

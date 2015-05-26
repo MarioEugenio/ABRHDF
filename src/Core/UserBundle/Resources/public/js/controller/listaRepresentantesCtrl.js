@@ -12,6 +12,31 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
         $scope.getInfo();
     };
 
+    $scope.estados = [];
+    $scope.cidades = [];
+
+    $scope.getEstados = function () {
+        $http.post(
+            Routing.generate('get_estado'))
+            .success(function (response) {
+                if (response.success) {
+                    $scope.estados = response.data;
+                }
+            });
+    };
+
+    $scope.getEstados();
+
+    $scope.getCidade = function () {
+        $http.post(
+            Routing.generate('get_cidade',{id: $scope.form.estado}))
+            .success(function (response) {
+                if (response.success) {
+                    $scope.cidades = response.data;
+                }
+            });
+    };
+
     $scope.getInfo = function () {
         $http.post(
             Routing.generate('user_edit', { id: $routeParams.id }))
@@ -21,6 +46,7 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
                     $scope.empresaUser = response.data.form;
                     $scope.empresa = response.data.empresa;
                     $scope.listar();
+                    $scope.getCidade();
                 }
             });
     };
