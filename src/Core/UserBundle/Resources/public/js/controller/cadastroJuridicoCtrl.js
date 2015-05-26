@@ -1,6 +1,8 @@
 app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $routeParams, $alert) {
 
-    $scope.form = {};
+    $scope.form = {
+        flAssociado:false
+    };
     $scope.contato = {};
     $scope.complemento = {};
     $scope.empresa = {};
@@ -73,7 +75,12 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                             type: 'success',
                             show: true
                         });
-                        $location.path('/user/' + response.data.id + '/representantes');
+
+                        if ($scope.form.flAssociado) {
+                            $location.path('/user/' + response.data.id + '/representantes');
+                        } else {
+                            $location.path('/user/juridico');
+                        }
                         return;
                     }
 

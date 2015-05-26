@@ -1,6 +1,8 @@
 app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert) {
 
-    $scope.form = {};
+    $scope.form = {
+        flAssociado:false
+    };
     $scope.contato = {};
     $scope.complemento = {};
 
@@ -76,7 +78,11 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
                             type: 'success',
                             show: true
                         });
-                        $location.path('/user/' + response.data.id + '/dependentes');
+                        if ($scope.form.flAssociado) {
+                            $location.path('/user/' + response.data.id + '/dependentes');
+                        } else {
+                            $location.path('/user');
+                        }
                         return;
                     }
 

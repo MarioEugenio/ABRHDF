@@ -45,6 +45,8 @@ class UserActions
         if (isset($objData['form']['id'])) {
             $entity = $this->find($objData['form']['id']);
             $entity->setData($objData['form']);
+        } else {
+            $entity->setFlAssociado(false);
         }
         $entity->setDtCadastro(new \DateTime());
         $entity->setFlActive(true);
@@ -204,6 +206,7 @@ class UserActions
                     'id' => $user->getId(),
                     'nome' => $user->getNome(),
                     'email' => $user->getEmail(),
+                    'flAssociado' => $user->getFlAssociado(),
                     'cnpj' => '',
                     'nomeFantasia' => ''
                 );
@@ -259,7 +262,8 @@ class UserActions
                 'sexo' => $user->getSexo(),
                 'rg' => (int) $user->getRg(),
                 'emissor' => $user->getEmissor(),
-                'senha' => $user->getSenha()
+                'senha' => $user->getSenha(),
+                'flAssociado' => $user->getFlAssociado()
             );
 
             $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");

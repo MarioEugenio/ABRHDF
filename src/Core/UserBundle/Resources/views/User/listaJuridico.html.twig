@@ -43,7 +43,7 @@
                         <td>{[{ item.cnpj }]}</td>
                         <td>{[{ item.nomeFantasia }]}</td>
                         <td style="width: 150px">
-                            <a href="#/user/{[{ item.id }]}/representantes" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
+                            <a href="#/user/{[{ item.id }]}/representantes" class="btn btn-default"  ng-show="item.flAssociado"><span class="glyphicon glyphicon-user"></span></a>
                             <a href="#/user/{[{ item.id }]}/edit/juridico" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a ng-click="remove($index, item.id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>

@@ -44,6 +44,9 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
 
     $scope.init = function () {
         $scope.form = {};
+        $scope.contato = {};
+        $scope.complemento = {};
+        $scope.empresa = {};
         $scope.verify = {};
         $scope.tipo = false;
         $scope.login = true;
@@ -118,7 +121,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        if ($scope.formCad.$valid) {
+        if ($scope.formCadFisica.$valid) {
             $http.post(
                 Routing.generate('user_save')
                 , {form: form, contato: contato, complemento: complemento})
@@ -133,8 +136,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
                             type: 'success',
                             show: true
                         });
-
-                        $scope.dependentes(response.data.id);
+                        $scope.init();
                     }
 
                     $alert({
@@ -168,14 +170,15 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
 
-        if ($scope.formCad.$valid) {
+        if ($scope.formCadJurico.$valid) {
         $http.post(
             Routing.generate('user_save_juridico')
             , {form: form , contato: contato, complemento: complemento, empresa: empresa})
             .success(function (response) {
                 if (response.success) {
                     $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $scope.representantes(response.data.id);
+
+                    $scope.init();
                     return;
                 }
 
@@ -194,184 +197,5 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
                 show: true
             });
         }
-    };
-
-
-    $scope.list = [];
-    $scope.page = 0;
-
-    $scope.init = function () {
-        $scope.getInfo();
-    };
-
-    $scope.getInfo = function () {
-        $http.post(
-            Routing.generate('user_edit', { id: $routeParams.id }))
-            .success(function (response) {
-                if (response.success) {
-                    $scope.form.id_fisico = response.data.form.id;
-                    $scope.listar();
-                }
-            });
-    };
-
-    $scope.limpar = function () {
-        if ($scope.tipoDependentes) {
-            var id = $scope.form.id_fisico;
-            $scope.form = {
-                id_fisico: id
-            };
-            $scope.form.id_fisico = id;
-        }
-
-        if ($scope.tipoRepresentantes) {
-            var id = $scope.form.id_juridico;
-            $scope.form = {
-                id_juridico: id
-            };
-            $scope.form.id_juridico = id;
-        }
-    };
-
-    $scope.edit = function (id) {
-        if ($scope.tipoDependentes) {
-            $http.post(
-                Routing.generate('user_edit_dependentes', {id: id}))
-                .success(function (response) {
-                    if (response.success) {
-                        $scope.form = response.data.form;
-                        $scope.form.dataNascimento = new Date(response.data.form.dataNascimento);
-                        return;
-                    }
-                });
-        }
-        if ($scope.tipoRepresentantes) {
-            $http.post(
-                Routing.generate('user_edit_representante', { id: id }))
-                .success(function (response) {
-                    if (response.success) {
-                        $scope.form = response.data.form;
-                        $scope.form.dataNascimento = new Date(response.data.form.dataNascimento);
-                        return;
-                    }
-                });
-        }
-    };
-
-    $scope.remove = function(index, id) {
-        var conf = confirm('Tem certeza que deseja excluir o registro?');
-
-        if (conf) {
-
-            if ($scope.tipoDependentes) {
-                $http.post(
-                    Routing.generate('user_remove_dependentes'), {id: id})
-                    .success(function (response) {
-                        if (response.success) {
-                            $scope.list.items.splice(index, 1);
-                            $scope.listar();
-                            $alert({
-                                title: 'MENSAGEM: ',
-                                content: response.message,
-                                container: '#alerts-container',
-                                placement: 'top-right',
-                                duration: 4,
-                                type: 'success',
-                                show: true
-                            });
-                            $scope.limpar();
-                            return;
-                        }
-
-                        $scope.list = [];
-                    });
-            }
-
-            if ($scope.tipoRepresentantes) {
-                $http.post(
-                    Routing.generate('user_remove_representantes'), { id: id})
-                    .success(function (response) {
-                        if (response.success) {
-                            $scope.list.items.splice(index, 1);
-                            $scope.listar();
-                            $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                            $scope.limpar();
-                            return;
-                        }
-
-                        $scope.list = [];
-                    });
-            }
-        }
-    };
-
-    $scope.buscar = function () {
-        $scope.page = 0;
-        $scope.listar();
-    };
-
-    $scope.listar = function () {
-
-        if ($scope.tipoDependentes) {
-            $http.post(
-                Routing.generate('user_listar_dependentes'),{page:$scope.page,  id_fisico: $scope.form.id_fisico, searchText:$scope.searchText})
-                .success(function (data) {
-                    if (data.success) {
-                        $scope.list = data.data;
-                        return;
-                    }
-
-                    $scope.list = [];
-                });
-        }
-
-        if ($scope.tipoRepresentantes) {
-            $http.post(
-                Routing.generate('user_listar_representantes'),{page:$scope.page,  id_juridico: $scope.form.id_juridico, searchText:$scope.searchText})
-                .success(function (data) {
-                    if (data.success) {
-                        $scope.list = data.data;
-                        return;
-                    }
-
-                    $scope.list = [];
-                });
-        }
-    };
-
-    $scope.cadastroDependentes = function () {
-        var form = angular.copy($scope.form);
-        $http.post(
-            Routing.generate('user_save_dependentes')
-            , {form: form})
-            .success(function (response) {
-                if (response.success) {
-                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $scope.limpar();
-                    $scope.listar();
-                    return;
-                }
-
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
-
-            });
-    };
-
-    $scope.cadastroRepresentantes = function () {
-        var form = angular.copy($scope.form);
-        $http.post(
-            Routing.generate('user_save_representante')
-            , {form: form})
-            .success(function (response) {
-                if (response.success) {
-                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-                    $scope.limpar();
-                    $scope.listar();
-                    return;
-                }
-
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
-
-            });
     };
 });
