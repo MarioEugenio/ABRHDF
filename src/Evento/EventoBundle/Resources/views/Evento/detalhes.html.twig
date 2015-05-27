@@ -1,47 +1,89 @@
 <div ng-controller="EventoDetalheCtrl" ng-init="init()">
     <div class="page-header">
-        <h1>Evento</h1>
+        <h1><i class="fa fa-calendar-o"></i> Evento </h1>
         <p class="lead">{[{ item.titulo }]}</p>
     </div>
 
-    <h3>Descrição</h3>
-    <p class="lead">{[{ item.descricao }]}</p>
+    <h4>Descrição</h4>
+    <p>{[{ item.descricao }]}</p>
 
     <div class="row">
         <div class="col-lg-12">
-            <h4>Local</h4>
+            <h4><i class="fa fa-location-arrow"></i> Local</h4>
             <p>{[{ item.local }]}</p>
         </div>
 
         <div class="col-lg-6">
-            <h4>Carga Horária</h4>
+            <h4><i class="fa fa-clock-o"></i> Carga Horária</h4>
             <p>{[{ item.cargaHoraria }]} horas</p>
         </div>
+    </div>
 
+    <div class="row">
         <div class="col-lg-6">
-            <h4>Período de Inscrição</h4>
-            <p>de {[{ item.inscricaoInicio }]} até {[{ item.inscricaofim }]}</p>
+            <h4><i class="fa fa-calendar"></i> Período de Inscrição</h4>
+            <p>de {[{ formatarData(item.inscricaoInicio) }]} até {[{ formatarData(item.inscricaoFim) }]}</p>
         </div>
 
         <div class="col-lg-6">
-            <h4>Período do Evento</h4>
-            <p>de {[{ item.dataInicio }]} até {[{ item.dataFim }]}</p>
+            <h4><i class="fa fa-calendar"></i> Período do Evento</h4>
+            <p>de {[{ formatarData(item.dataInicio) }]} até {[{ formatarData(item.dataFim) }]}</p>
         </div>
     </div>
 
-    <div class="box" ng-show="item.eventoPago">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>VALORES PARA INSCRIÇÃO</h3>
-                <hr>
-                <p class="lead"><label>Para estudante:</label> R$ {[{ item.valorEstudante }]}</p>
-                <p class="lead"><label>Para estudante associado:</label> R$ {[{ item.valorEstudanteAssociado }]}</p>
-                <p class="lead"><label>Para não sócio:</label> R$ {[{ item.valorNSocio }]}</p>
-                <p class="lead"><label>Para sócio:</label> R$ {[{ item.valorSocio }]}</p>
+    <div class="row" ng-show="item.eventoPago">
+        <div class="col-lg-12">
+            <h3><i class="fa fa-money"></i> Valores para Inscrição</h3>
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Estudante</h3>
+                            <p>Valor da inscrição <strong>R$ {[{ item.valorEstudante }]}</strong></p>
+                            <p><a href="#" class="btn btn-primary" role="button">FAZER INSCRIÇÃO</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Estudante Associado</h3>
+                            <p>Valor da inscrição <strong>R$ {[{ item.valorEstudanteAssociado }]}</strong></p>
+                            <p><a href="#" class="btn btn-primary" role="button">FAZER INSCRIÇÃO</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Sócio</h3>
+                            <p>Valor da inscrição <strong>R$ {[{ item.valorSocio }]}</strong></p>
+                            <p><a href="#" class="btn btn-primary" role="button">FAZER INSCRIÇÃO</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Não Sócio</h3>
+                            <p>Valor da inscrição <strong>R$ {[{ item.valorSocio }]}</strong></p>
+                            <p><a href="#" class="btn btn-primary" role="button">FAZER INSCRIÇÃO</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <a href="#/evento" class="btn btn-default btn-lg">CANCELAR INSCRIÇÃO</a>
-        <button type="button" class="btn btn-primary btn-lg">INSCREVER NO EVENTO</button>
+        </div>
     </div>
+
+    <div class="box">
+        <a href="#/" class="btn btn-danger btn-lg">CANCELAR INSCRIÇÃO</a>
+        <a href="#/" ng-show="!item.eventoPago" class="btn btn-primary btn-lg">FAZER INSCRIÇÃO</a>&nbsp;
+    </div>
+
 </div>

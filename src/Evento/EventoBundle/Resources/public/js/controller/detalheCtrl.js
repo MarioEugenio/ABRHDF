@@ -14,7 +14,6 @@ app.controller('EventoDetalheCtrl', function ($scope, $http, $location, $routePa
                 Routing.generate('evento_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
-                    console.log(response.data);
                     var obj = {
                         id: response.data.id,
                         titulo: response.data.titulo,

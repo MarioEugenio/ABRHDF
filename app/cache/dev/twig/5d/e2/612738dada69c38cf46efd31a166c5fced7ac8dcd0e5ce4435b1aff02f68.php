@@ -47,8 +47,8 @@ class __TwigTemplate_5de2612738dada69c38cf46efd31a166c5fced7ac8dcd0e5ce4435b1aff
             <table class=\"table\">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>E-mail</th>
+                        <th>CNPJ</th>
+                        <th>Nome Fantasia</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -58,10 +58,10 @@ class __TwigTemplate_5de2612738dada69c38cf46efd31a166c5fced7ac8dcd0e5ce4435b1aff
                     </tr>
 
                     <tr ng-show=\"list.items.length > 0\" ng-repeat=\"item in list.items | filter:searchText\">
-                        <td>{[{ item.nome }]}</td>
-                        <td>{[{ item.email }]}</td>
+                        <td>{[{ item.cnpj }]}</td>
+                        <td>{[{ item.nomeFantasia }]}</td>
                         <td style=\"width: 150px\">
-                            <a href=\"#/user/{[{ item.id }]}/representantes\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-user\"></span></a>
+                            <a href=\"#/user/{[{ item.id }]}/representantes\" class=\"btn btn-default\"  ng-show=\"item.flAssociado\"><span class=\"glyphicon glyphicon-user\"></span></a>
                             <a href=\"#/user/{[{ item.id }]}/edit/juridico\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></a>
                             <a ng-click=\"remove(\$index, item.id)\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></a>
                         </td>

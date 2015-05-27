@@ -101,7 +101,7 @@ class __TwigTemplate_a04661de80561d7b1c2598b8ea8f2ff3b06ecde4b168e7864938f9c4c27
                 <h3 class=\"panel-title\">Cadastro de Pessoa Fisica</h3>
             </div>
             <div class=\"panel-body\">
-                <form role=\"form\" ng-submit=\"cadastroFisico()\">
+                <form role=\"form\" ng-submit=\"cadastroFisico()\" name=\"formCadFisica\">
                     <fieldset>
                         <div ng-include=\"formulario\"></div>
                     </fieldset>
@@ -117,39 +117,7 @@ class __TwigTemplate_a04661de80561d7b1c2598b8ea8f2ff3b06ecde4b168e7864938f9c4c27
                 <h3 class=\"panel-title\">Cadastro de Pessoa Juridica</h3>
             </div>
             <div class=\"panel-body\">
-                <form role=\"form\" ng-submit=\"cadastroJuridico()\">
-                    <fieldset>
-                        <div ng-include=\"formulario\"></div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class=\"row\"  ng-show=\"tipoDependentes\">
-    <div class=\"col-md-12\" style=\"top:-205px\">
-        <div class=\"login-panel panel panel-default\">
-            <div class=\"panel-heading\">
-                <h3 class=\"panel-title\">Cadastro de Dependentes</h3>
-            </div>
-            <div class=\"panel-body\">
-                <form role=\"form\" ng-submit=\"cadastroDependentes()\">
-                    <fieldset>
-                        <div ng-include=\"formulario\"></div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class=\"row\"  ng-show=\"tipoRepresentantes\">
-    <div class=\"col-md-12\" style=\"top:-205px\">
-        <div class=\"login-panel panel panel-default\">
-            <div class=\"panel-heading\">
-                <h3 class=\"panel-title\">Cadastro de Representantes</h3>
-            </div>
-            <div class=\"panel-body\">
-                <form role=\"form\" ng-submit=\"cadastroRepresentantes()\">
+                <form role=\"form\" ng-submit=\"cadastroJuridico()\"  name=\"formCadJurico\">
                     <fieldset>
                         <div ng-include=\"formulario\"></div>
                     </fieldset>

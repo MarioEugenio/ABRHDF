@@ -219,7 +219,7 @@ class __TwigTemplate_9cfd1e56b6a43f934a71cc8f7c073e86d1ccb77a40e212d0d00c52fc08d
                     <div class=\"list-group\">
                         <a href=\"#/evento/{[{ evento.id }]}/detalhe\" class=\"list-group-item\" ng-repeat=\"evento in listEventos\">
                             <i class=\"fa fa-calendar fa-fw\"></i> {[{ evento.titulo }]}
-                                        <span class=\"pull-right text-muted small\"><em>{[{ evento.inscricao_inicio }]}</em>
+                                        <span class=\"pull-right text-muted small\"><em>{[{ formatarData(evento.inscricao_inicio) }]}</em>
                                         </span>
                         </a>
 

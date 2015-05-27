@@ -40,7 +40,7 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
 
             <div class=\"form-group\">
                 <label for=\"exampleInputEmail1\">Descrição</label>
-                <input type=\"text\" class=\"form-control\" maxlength=\"2000\" ng-model=\"form.descricao\" placeholder=\"Digite a descrição do evento\" required>
+                <textarea rows=\"20\" class=\"form-control\" ng-maxlength=\"2000\" ng-model=\"form.descricao\" placeholder=\"Digite a descrição do evento\" required></textarea>
             </div>
 
             <div class=\"row\">

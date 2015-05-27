@@ -201,7 +201,7 @@
                     <div class="list-group">
                         <a href="#/evento/{[{ evento.id }]}/detalhe" class="list-group-item" ng-repeat="evento in listEventos">
                             <i class="fa fa-calendar fa-fw"></i> {[{ evento.titulo }]}
-                                        <span class="pull-right text-muted small"><em>{[{ evento.inscricao_inicio }]}</em>
+                                        <span class="pull-right text-muted small"><em>{[{ formatarData(evento.inscricao_inicio) }]}</em>
                                         </span>
                         </a>
 

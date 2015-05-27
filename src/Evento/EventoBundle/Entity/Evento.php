@@ -125,14 +125,14 @@ class Evento extends Entity
     /**
      * @var boolean
      *
-     * @ORM\Column(name="eventoPago", type="boolean")
+     * @ORM\Column(name="eventoPago", type="boolean", nullable=true)
      */
     private $eventoPago;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="ativo", type="boolean")
+     * @ORM\Column(name="ativo", type="boolean", nullable=true)
      */
     private $ativo;
 

@@ -62,7 +62,7 @@ class __TwigTemplate_acbd51f8ab2d0798478c8e82c3e37607630e7efee45e801265cb991c52c
     public function block_body($context, array $blocks = array())
     {
         // line 17
-        echo "    <div style=\"width: 40%;position: absolute;left: 55%;margin-top: 20px;z-index: 9999999;\" id=\"alerts-container\"></div>
+        echo "    <div style=\"width: 40%;position: absolute;left: 55%;margin-top: 20px;z-index: 999999;\" id=\"alerts-container\"></div>
     <div id=\"content\" class=\"container\" ng-view></div>
 ";
     }

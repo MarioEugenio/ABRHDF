@@ -110,61 +110,73 @@ class __TwigTemplate_f7a4680f7c5adc5e383cf7225c3f7ddbb3814252f70992369c5b8842466
         // line 36
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/angular-maskmoney.js"), "html", null, true);
         echo "\"></script>
-
+<script src=\"";
+        // line 37
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/cnpj.js"), "html", null, true);
+        echo "\"></script>
 <script src=\"";
         // line 38
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/strap/angular-strap.min.js"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/cpf.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
         // line 39
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/strap/angular-strap.tpl.min.js"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/ngCpfCnpj.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
         // line 41
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/strap/angular-strap.min.js"), "html", null, true);
+        echo "\"></script>
+<script src=\"";
+        // line 42
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/strap/angular-strap.tpl.min.js"), "html", null, true);
+        echo "\"></script>
+
+<script src=\"";
+        // line 44
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/switch/angular-bootstrap-switch.min.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 43
+        // line 46
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/bower_components/metisMenu/dist/metisMenu.min.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 44
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 46
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/jquery/bootstrap-switch.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 47
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/jquery-ui.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 48
+        // line 51
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/ui/i18n/datepicker-pt-BR.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 49
+        // line 52
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/ui-utils-0.2.3/ui-utils.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 50
+        // line 53
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/date.js"), "html", null, true);
         echo "\"></script>
 
 ";
-        // line 53
+        // line 56
         echo "<script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/Core.js"), "html", null, true);
         echo "\"></script>
 
 ";
-        // line 55
+        // line 58
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 56
+        // line 59
         echo "</body>
 </html>
 ";
@@ -186,7 +198,7 @@ class __TwigTemplate_f7a4680f7c5adc5e383cf7225c3f7ddbb3814252f70992369c5b8842466
     {
     }
 
-    // line 55
+    // line 58
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -203,6 +215,6 @@ class __TwigTemplate_f7a4680f7c5adc5e383cf7225c3f7ddbb3814252f70992369c5b8842466
 
     public function getDebugInfo()
     {
-        return array (  190 => 55,  185 => 20,  180 => 16,  174 => 7,  168 => 56,  166 => 55,  160 => 53,  155 => 50,  151 => 49,  147 => 48,  143 => 47,  139 => 46,  134 => 44,  130 => 43,  125 => 41,  120 => 39,  116 => 38,  111 => 36,  107 => 35,  103 => 34,  98 => 33,  93 => 30,  88 => 29,  83 => 26,  78 => 24,  73 => 23,  70 => 21,  68 => 20,  63 => 17,  61 => 16,  56 => 14,  52 => 13,  48 => 12,  44 => 11,  40 => 10,  36 => 9,  31 => 7,  23 => 1,);
+        return array (  202 => 58,  197 => 20,  192 => 16,  186 => 7,  180 => 59,  178 => 58,  172 => 56,  167 => 53,  163 => 52,  159 => 51,  155 => 50,  151 => 49,  146 => 47,  142 => 46,  137 => 44,  132 => 42,  128 => 41,  123 => 39,  119 => 38,  115 => 37,  111 => 36,  107 => 35,  103 => 34,  98 => 33,  93 => 30,  88 => 29,  83 => 26,  78 => 24,  73 => 23,  70 => 21,  68 => 20,  63 => 17,  61 => 16,  56 => 14,  52 => 13,  48 => 12,  44 => 11,  40 => 10,  36 => 9,  31 => 7,  23 => 1,);
     }
 }

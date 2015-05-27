@@ -61,7 +61,7 @@ class __TwigTemplate_d4a7771bdd394268b8e3e220d1d2e2700cc99be1d01f56f4346231b1b93
                         <td>{[{ item.nome }]}</td>
                         <td>{[{ item.email }]}</td>
                         <td style=\"width: 150px\">
-                            <a href=\"#/user/{[{ item.id }]}/dependentes\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-user\"></span></a>
+                            <a href=\"#/user/{[{ item.id }]}/dependentes\" class=\"btn btn-default\" ng-show=\"item.flAssociado\"><span class=\"glyphicon glyphicon-user\"></span></a>
                             <a href=\"#/user/{[{ item.id }]}/edit\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></a>
                             <a ng-click=\"remove(\$index, item.id)\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></a>
                         </td>
