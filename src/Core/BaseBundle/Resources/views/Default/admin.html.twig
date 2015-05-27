@@ -9,6 +9,7 @@
     <script type="text/javascript"> var baseUrl = "{{ app.request.baseurl }}"; </script>
     {# Inicializando rotas angular #}
     <script src="{{ asset('bundles/corebase/js/BaseCtrl.js') }}"></script>
+    <script src="{{ asset('bundles/corebase/js/HomeCtrl.js') }}"></script>
 
     {# CORE-USER-BUNDLE #}
     <script src="{{ asset('bundles/coreuser/js/controller/cadastroCtrl.js') }}"></script>
@@ -31,7 +32,7 @@
 {% endblock %}
 
 {% block body %}
-    <div id="wrapper">
+    <div id="wrapper"  ng-controller="HomeCtrl">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
@@ -94,7 +95,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
+                <li ng-show="currentUser.flAdmin">
                     <a href="#"><i class="fa fa-user fa-fw"></i> Pessoa<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -119,4 +120,6 @@
     <!-- /.row -->
 
     </div>
+    </div>
+
 {% endblock %}

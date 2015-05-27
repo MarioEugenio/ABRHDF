@@ -24,6 +24,14 @@ class DefaultController extends BaseController
      */
     public  function  adminAction()
     {
+        /** @var UserActions $service */
+        $service = $this->get('CoreUserBundle.UserActions');
+        $result = $service->getUserAuth();
+
+        if (!$result){
+            return $this->redirect($this->getRequest()->getBaseUrl() . '/');
+        }
+
         return array();
     }
 

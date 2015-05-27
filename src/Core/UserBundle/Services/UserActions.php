@@ -27,12 +27,23 @@ class UserActions
     private $repository;
 
     /**
+     * Instância Container
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    protected $container;
+
+    /**
      * @param EntityManager $em
      */
     public function __construct(EntityManager $em)
     {
         $this->entityManager = $em;
         $this->repository = $em->getRepository("CoreUserBundle:User");
+    }
+
+    public function setContainer ($container)
+    {
+        $this->container = $container;
     }
 
     /**
@@ -128,10 +139,35 @@ class UserActions
         $objResult = $this->repository->findOneBy(array('email' => $entity->getEmail(), 'senha' => $entity->getSenha()));
 
         if ($objResult instanceof User) {
+            /** @var $request Request */
+            $request = $this->container->get('request');
+            $arrResult = array(
+                'id' => $objResult->getId(),
+                'nome' => $objResult->getNome(),
+                'flAdmin' => $objResult->getFlADmin()
+            );
+            $request->getSession()->set('user', $arrResult);
+
             return true;
         }
 
         return false;
+    }
+
+    public function logout()
+    {
+        /** @var $request Request */
+        $request = $this->container->get('request');
+        $request->getSession()->invalidate();
+        $request->getSession()->set('user', '');
+        return true;
+    }
+
+    public function getUserAuth() {
+        /** @var $request Request */
+        $request = $this->container->get('request');
+        $result = $request->getSession()->get('user');
+        return $result;
     }
 
     public function findBy($params = array())

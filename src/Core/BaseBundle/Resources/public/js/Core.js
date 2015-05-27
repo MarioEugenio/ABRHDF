@@ -27,3 +27,10 @@ var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney', 'ui
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     }
 );
+app.factory("currentUser", function($http) {
+    return {
+        getSessions: function() {
+            return $http.post(Routing.generate('user_get'));
+        }
+    };
+});

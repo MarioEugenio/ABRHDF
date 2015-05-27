@@ -90,6 +90,8 @@ class UserController extends BaseController
      */
     public function logoffAction()
     {
+        $service = $this->get('CoreUserBundle.UserActions');
+        $service->logout();
         return $this->redirect($this->getRequest()->getBaseUrl() . '/');
     }
 
@@ -554,6 +556,40 @@ class UserController extends BaseController
             return $this->createJsonResponse(array(
                 'success' => true,
                 'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/user/get", name="user_get", options={"expose"=true})
+     */
+    public function userGetAction()
+    {
+        try {
+            $objData = json_decode($this->getRequest()->getContent(), true);
+
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $result = $service->getUserAuth();
+
+            if ($result) {
+                return $this->createJsonResponse(array(
+                    'success' => true,
+                    'message' => 'Usuário autenticado com sucesso',
+                    'data' => $result
+                ));
+            }
+
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => 'Usuário não encontrado, tente novemente'
             ));
 
         } catch (Exception $ex) {

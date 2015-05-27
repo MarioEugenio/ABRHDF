@@ -7,6 +7,10 @@
     <services>
         <service id="CoreUserBundle.UserActions" class="Core\UserBundle\Services\UserActions">
             <argument type="service" id="doctrine.orm.entity_manager"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
     </services>
 </container>

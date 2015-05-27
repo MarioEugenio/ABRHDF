@@ -1,7 +1,11 @@
-app.controller('BaseCtrl', function ($scope, $http, $modal) {
+app.controller('BaseCtrl', function ($scope, $http, $modal, currentUser) {
     $scope.listEventos = [];
     $scope.listFisica = [];
     $scope.listJuridica = [];
+
+    currentUser.getSessions().success(function(response, status){
+        $scope.currentUser = response.data;
+    });
 
     $scope.init = function () {
         $scope.listar();
