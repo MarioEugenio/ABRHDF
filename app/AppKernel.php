@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Core\UserBundle\CoreUserBundle(),
             new Evento\PessoaBundle\EventoPessoaBundle(),
             new Evento\EventoBundle\EventoEventoBundle(),
+            new Core\FinanceiroBundle\CoreFinanceiroBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

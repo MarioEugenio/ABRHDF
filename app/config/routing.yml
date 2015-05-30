@@ -1,3 +1,8 @@
+financeiro_evento:
+    resource: "@CoreFinanceiroBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 evento_evento:
     resource: "@EventoEventoBundle/Controller/"
     type:     annotation

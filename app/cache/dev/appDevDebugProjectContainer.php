@@ -49,6 +49,7 @@ class appDevDebugProjectContainer extends Container
             'cache_warmer' => 'getCacheWarmerService',
             'colihcorebundle.atualizacaoactions' => 'getColihcorebundle_AtualizacaoactionsService',
             'controller_name_converter' => 'getControllerNameConverterService',
+            'corefinanceirobundle.financeiroactions' => 'getCorefinanceirobundle_FinanceiroactionsService',
             'coreuserbundle.useractions' => 'getCoreuserbundle_UseractionsService',
             'data_collector.dump' => 'getDataCollector_DumpService',
             'data_collector.form' => 'getDataCollector_FormService',
@@ -457,6 +458,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'corefinanceirobundle.financeiroactions' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Core\FinanceiroBundle\Services\FinanceiroActions A Core\FinanceiroBundle\Services\FinanceiroActions instance.
+     */
+    protected function getCorefinanceirobundle_FinanceiroactionsService()
+    {
+        return $this->services['corefinanceirobundle.financeiroactions'] = new \Core\FinanceiroBundle\Services\FinanceiroActions($this->get('doctrine.orm.default_entity_manager'));
+    }
+
+    /**
      * Gets the 'coreuserbundle.useractions' service.
      *
      * This service is shared.
@@ -718,16 +732,17 @@ class appDevDebugProjectContainer extends Container
     {
         $a = $this->get('annotation_reader');
 
-        $b = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => ($this->targetDirs[3].'/vendor/tritoq/managerboleto-bundle/Tritoq/Bundle/ManagerBoletoBundle/Entity'), 1 => ($this->targetDirs[3].'/src/Core/BaseBundle/Entity'), 2 => ($this->targetDirs[3].'/src/Core/UserBundle/Entity'), 3 => ($this->targetDirs[3].'/src/Evento/EventoBundle/Entity')));
+        $b = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => ($this->targetDirs[3].'/vendor/tritoq/managerboleto-bundle/Tritoq/Bundle/ManagerBoletoBundle/Entity'), 1 => ($this->targetDirs[3].'/src/Core/BaseBundle/Entity'), 2 => ($this->targetDirs[3].'/src/Core/UserBundle/Entity'), 3 => ($this->targetDirs[3].'/src/Evento/EventoBundle/Entity'), 4 => ($this->targetDirs[3].'/src/Core/FinanceiroBundle/Entity')));
 
         $c = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
         $c->addDriver($b, 'Tritoq\\Bundle\\ManagerBoletoBundle\\Entity');
         $c->addDriver($b, 'Core\\BaseBundle\\Entity');
         $c->addDriver($b, 'Core\\UserBundle\\Entity');
         $c->addDriver($b, 'Evento\\EventoBundle\\Entity');
+        $c->addDriver($b, 'Core\\FinanceiroBundle\\Entity');
 
         $d = new \Doctrine\ORM\Configuration();
-        $d->setEntityNamespaces(array('TritoqManagerBoletoBundle' => 'Tritoq\\Bundle\\ManagerBoletoBundle\\Entity', 'CoreBaseBundle' => 'Core\\BaseBundle\\Entity', 'CoreUserBundle' => 'Core\\UserBundle\\Entity', 'EventoEventoBundle' => 'Evento\\EventoBundle\\Entity'));
+        $d->setEntityNamespaces(array('TritoqManagerBoletoBundle' => 'Tritoq\\Bundle\\ManagerBoletoBundle\\Entity', 'CoreBaseBundle' => 'Core\\BaseBundle\\Entity', 'CoreUserBundle' => 'Core\\UserBundle\\Entity', 'EventoEventoBundle' => 'Evento\\EventoBundle\\Entity', 'CoreFinanceiroBundle' => 'Core\\FinanceiroBundle\\Entity'));
         $d->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
         $d->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
         $d->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
@@ -1484,7 +1499,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFosJsRouting_ExtractorService()
     {
-        return $this->services['fos_js_routing.extractor'] = new \FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor($this->get('router'), array(), __DIR__, array('FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle', 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle', 'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle', 'MonologBundle' => 'Symfony\\Bundle\\MonologBundle\\MonologBundle', 'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle', 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle', 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle', 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle', 'AppBundle' => 'AppBundle\\AppBundle', 'FOSJsRoutingBundle' => 'FOS\\JsRoutingBundle\\FOSJsRoutingBundle', 'JMSSerializerBundle' => 'JMS\\SerializerBundle\\JMSSerializerBundle', 'TritoqManagerBoletoBundle' => 'Tritoq\\Bundle\\ManagerBoletoBundle\\TritoqManagerBoletoBundle', 'CoreBaseBundle' => 'Core\\BaseBundle\\CoreBaseBundle', 'CoreUserBundle' => 'Core\\UserBundle\\CoreUserBundle', 'EventoPessoaBundle' => 'Evento\\PessoaBundle\\EventoPessoaBundle', 'EventoEventoBundle' => 'Evento\\EventoBundle\\EventoEventoBundle', 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle', 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle', 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle', 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle', 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle'));
+        return $this->services['fos_js_routing.extractor'] = new \FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor($this->get('router'), array(), __DIR__, array('FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle', 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle', 'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle', 'MonologBundle' => 'Symfony\\Bundle\\MonologBundle\\MonologBundle', 'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle', 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle', 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle', 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle', 'AppBundle' => 'AppBundle\\AppBundle', 'FOSJsRoutingBundle' => 'FOS\\JsRoutingBundle\\FOSJsRoutingBundle', 'JMSSerializerBundle' => 'JMS\\SerializerBundle\\JMSSerializerBundle', 'TritoqManagerBoletoBundle' => 'Tritoq\\Bundle\\ManagerBoletoBundle\\TritoqManagerBoletoBundle', 'CoreBaseBundle' => 'Core\\BaseBundle\\CoreBaseBundle', 'CoreUserBundle' => 'Core\\UserBundle\\CoreUserBundle', 'EventoPessoaBundle' => 'Evento\\PessoaBundle\\EventoPessoaBundle', 'EventoEventoBundle' => 'Evento\\EventoBundle\\EventoEventoBundle', 'CoreFinanceiroBundle' => 'Core\\FinanceiroBundle\\CoreFinanceiroBundle', 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle', 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle', 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle', 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle', 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle'));
     }
 
     /**
@@ -1669,7 +1684,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getJmsSerializer_DatetimeHandlerService()
     {
-        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'America/Sao_Paulo', true);
+        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'Europe/Berlin', true);
     }
 
     /**
@@ -1751,7 +1766,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getJmsSerializer_MetadataDriverService()
     {
-        $a = new \Metadata\Driver\FileLocator(array('Symfony\\Bundle\\FrameworkBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer'), 'Symfony\\Bundle\\SecurityBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer'), 'Symfony\\Bundle\\TwigBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer'), 'Symfony\\Bundle\\MonologBundle' => ($this->targetDirs[3].'/vendor/symfony/monolog-bundle/Resources/config/serializer'), 'Symfony\\Bundle\\SwiftmailerBundle' => ($this->targetDirs[3].'/vendor/symfony/swiftmailer-bundle/Resources/config/serializer'), 'Symfony\\Bundle\\AsseticBundle' => ($this->targetDirs[3].'/vendor/symfony/assetic-bundle/Resources/config/serializer'), 'Doctrine\\Bundle\\DoctrineBundle' => ($this->targetDirs[3].'/vendor/doctrine/doctrine-bundle/Resources/config/serializer'), 'Sensio\\Bundle\\FrameworkExtraBundle' => ($this->targetDirs[3].'/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer'), 'AppBundle' => ($this->targetDirs[3].'/src/AppBundle/Resources/config/serializer'), 'FOS\\JsRoutingBundle' => ($this->targetDirs[3].'/vendor/friendsofsymfony/jsrouting-bundle/Resources/config/serializer'), 'JMS\\SerializerBundle' => ($this->targetDirs[3].'/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer'), 'Tritoq\\Bundle\\ManagerBoletoBundle' => ($this->targetDirs[3].'/vendor/tritoq/managerboleto-bundle/Tritoq/Bundle/ManagerBoletoBundle/Resources/config/serializer'), 'Core\\BaseBundle' => ($this->targetDirs[3].'/src/Core/BaseBundle/Resources/config/serializer'), 'Core\\UserBundle' => ($this->targetDirs[3].'/src/Core/UserBundle/Resources/config/serializer'), 'Evento\\PessoaBundle' => ($this->targetDirs[3].'/src/Evento/PessoaBundle/Resources/config/serializer'), 'Evento\\EventoBundle' => ($this->targetDirs[3].'/src/Evento/EventoBundle/Resources/config/serializer'), 'Symfony\\Bundle\\DebugBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer'), 'Acme\\DemoBundle' => ($this->targetDirs[3].'/src/Acme/DemoBundle/Resources/config/serializer'), 'Symfony\\Bundle\\WebProfilerBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer'), 'Sensio\\Bundle\\DistributionBundle' => ($this->targetDirs[3].'/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer'), 'Sensio\\Bundle\\GeneratorBundle' => ($this->targetDirs[3].'/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer')));
+        $a = new \Metadata\Driver\FileLocator(array('Symfony\\Bundle\\FrameworkBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer'), 'Symfony\\Bundle\\SecurityBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer'), 'Symfony\\Bundle\\TwigBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer'), 'Symfony\\Bundle\\MonologBundle' => ($this->targetDirs[3].'/vendor/symfony/monolog-bundle/Resources/config/serializer'), 'Symfony\\Bundle\\SwiftmailerBundle' => ($this->targetDirs[3].'/vendor/symfony/swiftmailer-bundle/Resources/config/serializer'), 'Symfony\\Bundle\\AsseticBundle' => ($this->targetDirs[3].'/vendor/symfony/assetic-bundle/Resources/config/serializer'), 'Doctrine\\Bundle\\DoctrineBundle' => ($this->targetDirs[3].'/vendor/doctrine/doctrine-bundle/Resources/config/serializer'), 'Sensio\\Bundle\\FrameworkExtraBundle' => ($this->targetDirs[3].'/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer'), 'AppBundle' => ($this->targetDirs[3].'/src/AppBundle/Resources/config/serializer'), 'FOS\\JsRoutingBundle' => ($this->targetDirs[3].'/vendor/friendsofsymfony/jsrouting-bundle/Resources/config/serializer'), 'JMS\\SerializerBundle' => ($this->targetDirs[3].'/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer'), 'Tritoq\\Bundle\\ManagerBoletoBundle' => ($this->targetDirs[3].'/vendor/tritoq/managerboleto-bundle/Tritoq/Bundle/ManagerBoletoBundle/Resources/config/serializer'), 'Core\\BaseBundle' => ($this->targetDirs[3].'/src/Core/BaseBundle/Resources/config/serializer'), 'Core\\UserBundle' => ($this->targetDirs[3].'/src/Core/UserBundle/Resources/config/serializer'), 'Evento\\PessoaBundle' => ($this->targetDirs[3].'/src/Evento/PessoaBundle/Resources/config/serializer'), 'Evento\\EventoBundle' => ($this->targetDirs[3].'/src/Evento/EventoBundle/Resources/config/serializer'), 'Core\\FinanceiroBundle' => ($this->targetDirs[3].'/src/Core/FinanceiroBundle/Resources/config/serializer'), 'Symfony\\Bundle\\DebugBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer'), 'Acme\\DemoBundle' => ($this->targetDirs[3].'/src/Acme/DemoBundle/Resources/config/serializer'), 'Symfony\\Bundle\\WebProfilerBundle' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer'), 'Sensio\\Bundle\\DistributionBundle' => ($this->targetDirs[3].'/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer'), 'Sensio\\Bundle\\GeneratorBundle' => ($this->targetDirs[3].'/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer')));
 
         return $this->services['jms_serializer.metadata_driver'] = new \JMS\Serializer\Metadata\Driver\DoctrineTypeDriver(new \Metadata\Driver\DriverChain(array(0 => new \JMS\Serializer\Metadata\Driver\YamlDriver($a), 1 => new \JMS\Serializer\Metadata\Driver\XmlDriver($a), 2 => new \JMS\Serializer\Metadata\Driver\PhpDriver($a), 3 => new \JMS\Serializer\Metadata\Driver\AnnotationDriver($this->get('annotation_reader')))), $this->get('doctrine'));
     }
@@ -3640,6 +3655,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath(($this->targetDirs[3].'/src/Core/UserBundle/Resources/views'), 'CoreUser');
         $instance->addPath(($this->targetDirs[3].'/src/Evento/PessoaBundle/Resources/views'), 'EventoPessoa');
         $instance->addPath(($this->targetDirs[3].'/src/Evento/EventoBundle/Resources/views'), 'EventoEvento');
+        $instance->addPath(($this->targetDirs[3].'/src/Core/FinanceiroBundle/Resources/views'), 'CoreFinanceiro');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views'), 'Debug');
         $instance->addPath(($this->targetDirs[3].'/src/Acme/DemoBundle/Resources/views'), 'AcmeDemo');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views'), 'WebProfiler');
@@ -4172,6 +4188,7 @@ class appDevDebugProjectContainer extends Container
                 'CoreUserBundle' => 'Core\\UserBundle\\CoreUserBundle',
                 'EventoPessoaBundle' => 'Evento\\PessoaBundle\\EventoPessoaBundle',
                 'EventoEventoBundle' => 'Evento\\EventoBundle\\EventoEventoBundle',
+                'CoreFinanceiroBundle' => 'Core\\FinanceiroBundle\\CoreFinanceiroBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
@@ -4630,7 +4647,7 @@ class appDevDebugProjectContainer extends Container
 
             ),
             'assetic.java.bin' => '/usr/bin/java',
-            'assetic.node.bin' => '/usr/bin/node',
+            'assetic.node.bin' => '/usr/local/bin/node',
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',

@@ -24,6 +24,7 @@
       <parameter key="CoreUserBundle">Core\UserBundle\CoreUserBundle</parameter>
       <parameter key="EventoPessoaBundle">Evento\PessoaBundle\EventoPessoaBundle</parameter>
       <parameter key="EventoEventoBundle">Evento\EventoBundle\EventoEventoBundle</parameter>
+      <parameter key="CoreFinanceiroBundle">Core\FinanceiroBundle\CoreFinanceiroBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -468,7 +469,7 @@
     <parameter key="assetic.write_to">/Applications/MAMP/htdocs/ABRHDF/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -2599,6 +2600,7 @@
               <argument key="CoreBaseBundle">Core\BaseBundle\Entity</argument>
               <argument key="CoreUserBundle">Core\UserBundle\Entity</argument>
               <argument key="EventoEventoBundle">Evento\EventoBundle\Entity</argument>
+              <argument key="CoreFinanceiroBundle">Core\FinanceiroBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -2622,6 +2624,7 @@
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/BaseBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2636,6 +2639,7 @@
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/BaseBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2650,6 +2654,7 @@
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/BaseBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2664,10 +2669,26 @@
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/BaseBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Entity</argument>
                         <argument>/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>Evento\EventoBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/vendor/tritoq/managerboleto-bundle/Tritoq/Bundle/ManagerBoletoBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/BaseBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Core\FinanceiroBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -2770,6 +2791,7 @@
         <argument key="CoreUserBundle">Core\UserBundle\CoreUserBundle</argument>
         <argument key="EventoPessoaBundle">Evento\PessoaBundle\EventoPessoaBundle</argument>
         <argument key="EventoEventoBundle">Evento\EventoBundle\EventoEventoBundle</argument>
+        <argument key="CoreFinanceiroBundle">Core\FinanceiroBundle\CoreFinanceiroBundle</argument>
         <argument key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</argument>
         <argument key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</argument>
         <argument key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</argument>
@@ -3110,7 +3132,7 @@
     <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
       <tag name="jms_serializer.subscribing_handler"/>
       <argument>Y-m-d\TH:i:sO</argument>
-      <argument>America/Sao_Paulo</argument>
+      <argument>Europe/Berlin</argument>
       <argument>true</argument>
     </service>
     <service id="jms_serializer.array_collection_handler" class="JMS\Serializer\Handler\ArrayCollectionHandler">
@@ -3194,6 +3216,9 @@
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="eventoeventobundle.eventouseractions" class="Evento\EventoBundle\Services\EventoUserActions">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="corefinanceirobundle.financeiroactions" class="Core\FinanceiroBundle\Services\FinanceiroActions">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
@@ -3579,6 +3604,10 @@
         <argument>EventoEvento</argument>
       </call>
       <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Resources/views</argument>
+        <argument>CoreFinanceiro</argument>
+      </call>
+      <call method="addPath">
         <argument>/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -3697,6 +3726,7 @@
                       <argument key="Core\UserBundle">/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Resources/config/serializer</argument>
                       <argument key="Evento\PessoaBundle">/Applications/MAMP/htdocs/ABRHDF/src/Evento/PessoaBundle/Resources/config/serializer</argument>
                       <argument key="Evento\EventoBundle">/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Resources/config/serializer</argument>
+                      <argument key="Core\FinanceiroBundle">/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Acme\DemoBundle">/Applications/MAMP/htdocs/ABRHDF/src/Acme/DemoBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
@@ -3728,6 +3758,7 @@
                       <argument key="Core\UserBundle">/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Resources/config/serializer</argument>
                       <argument key="Evento\PessoaBundle">/Applications/MAMP/htdocs/ABRHDF/src/Evento/PessoaBundle/Resources/config/serializer</argument>
                       <argument key="Evento\EventoBundle">/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Resources/config/serializer</argument>
+                      <argument key="Core\FinanceiroBundle">/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Acme\DemoBundle">/Applications/MAMP/htdocs/ABRHDF/src/Acme/DemoBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
@@ -3759,6 +3790,7 @@
                       <argument key="Core\UserBundle">/Applications/MAMP/htdocs/ABRHDF/src/Core/UserBundle/Resources/config/serializer</argument>
                       <argument key="Evento\PessoaBundle">/Applications/MAMP/htdocs/ABRHDF/src/Evento/PessoaBundle/Resources/config/serializer</argument>
                       <argument key="Evento\EventoBundle">/Applications/MAMP/htdocs/ABRHDF/src/Evento/EventoBundle/Resources/config/serializer</argument>
+                      <argument key="Core\FinanceiroBundle">/Applications/MAMP/htdocs/ABRHDF/src/Core/FinanceiroBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Acme\DemoBundle">/Applications/MAMP/htdocs/ABRHDF/src/Acme/DemoBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Applications/MAMP/htdocs/ABRHDF/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
