@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h1><i class="fa fa-credit-card"></i> Pagamento </h1>
+</div>
+
+<div ng-controller="FinanceiroCtrl" ng-init="init()">
+
+    <fieldset>
+        <legend>Informações</legend>
+
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Título</th>
+                    <th>Valor (R$)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-show="list.length == 0">
+                    <td colspan="10" style="text-align: center;"><span class="glyphicon glyphicon-info-sign"></span> Não houve retorno de registros</td>
+                </tr>
+
+                <tr ng-show="list.length > 0" ng-repeat="item in list | filter:searchText">
+                    <td>{[{ formatarData(item.data_cadastro) }]}</td>
+                    <td>{[{ item.evento.titulo }]}</td>
+                    <td>R$ {[{ item.valor }]}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-lg-6"></div>
+
+        <div class="col-lg-6 box">
+            <h5><i class="fa fa-ticket"></i> Código de Desconto</h5>
+            <p><input type="text" class="form-control"></p>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Forma de Pagamento</legend>
+
+            <div ng-repeat="template in templates" title="{[{ template.title }]}" ng-include="template.url" ></div>
+    </fieldset>
+</div>

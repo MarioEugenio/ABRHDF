@@ -2,6 +2,7 @@
 
 namespace Core\FinanceiroBundle\Repository;
 
+use Core\FinanceiroBundle\Entity\Financeiro;
 use Evento\EventoBundle\Entity\Desconto;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension;
 use Doctrine\ORM\EntityRepository;
@@ -19,7 +20,7 @@ class FinanceiroRepository extends EntityRepository
      * @param \Evento\EventoBundle\Repository\Evento
      * @internal param $
      */
-    public function save(Desconto $entity)
+    public function save(Financeiro $entity)
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();

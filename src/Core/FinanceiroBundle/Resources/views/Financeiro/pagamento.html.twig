@@ -1,0 +1,84 @@
+<!--<div class="col-md-12" style="margin-top: 10px;">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="btn-group" ng-model="cartao.cartao" bs-radio-group>
+                <label class="btn btn-default"><input type="radio" class="btn btn-default" value="visa"><li class="fa fa-cc-visa"></li> Visa</label>
+                <label class="btn btn-default"><input type="radio" class="btn btn-default" value="mastercard"><li class="fa fa-cc-mastercard"></li> Mastercard</label>
+                <label class="btn btn-default"><input type="radio" class="btn btn-default" value="amex"><i class="fa fa-cc-amex"></i> Amex</label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <img src="{{ asset('bundles/corefinanceiro/img/static_pagseguro.png') }}" style="width: 35%;">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Número do cartão</label>
+            <input type="number" class="form-control" maxlength="16" ng-model="cartao.comercial" required>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label>Data de Validade</label>
+            <input type="text" class="form-control" ui-mask="'99/99'" ng-model="cartao.validade" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Nome do dono do cartão</label>
+            <input type="text" class="form-control" maxlength="20" ng-model="cartao.nome" required>
+            <p class="help-block">Ex.: CARLOS A F DE OLIVEIRA</p>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Código de segurança (CVV)</label>
+            <input type="text" class="form-control" ui-mask="'999'" ng-model="cartao.seguranca" required>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>CPF do dono do cartão</label>
+            <input type="text" class="form-control" ui-mask="'999.999.999-99'" maxlength="20" ng-model="cartao.cpf" required>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Telefone do dono do cartão</label>
+            <input type="text" class="form-control" ui-mask="'(99)9999-9999'" ng-model="cartao.telefone" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label>Data de Nascimento</label>
+            <p class="input-group">
+                <input type="date" class="form-control" ng-model="cartao.dataNascimento" datepicker-options="dateOptions" is-open="opened" datepicker-popup="{[{ format }]}" ng-required="true" close-text="Fechar" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="box">
+        <button type="button" class="btn btn-primary">FINALIZAR PAGAMENTO</button>
+    </div>
+</div>-->
+
+<div class="col-md-12" style="margin-top: 10px;">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <button type="button" ng-click="pagseguro(financeiro.id)" class="btn btn-primary"><i class="fa fa-cc-visa"></i> PAGSEGURO</button>
+        </div>
+
+        <div class="form-group col-md-6">
+            <img src="{{ asset('bundles/corefinanceiro/img/static_pagseguro.png') }}" style="width: 35%;">
+        </div>
+    </div>
+</div>

@@ -469,7 +469,7 @@
     <parameter key="assetic.write_to">/Applications/MAMP/htdocs/ABRHDF/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -3132,7 +3132,7 @@
     <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
       <tag name="jms_serializer.subscribing_handler"/>
       <argument>Y-m-d\TH:i:sO</argument>
-      <argument>Europe/Berlin</argument>
+      <argument>America/Sao_Paulo</argument>
       <argument>true</argument>
     </service>
     <service id="jms_serializer.array_collection_handler" class="JMS\Serializer\Handler\ArrayCollectionHandler">
@@ -3208,6 +3208,9 @@
     </service>
     <service id="coreuserbundle.useractions" class="Core\UserBundle\Services\UserActions">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
     </service>
     <service id="eventoeventobundle.eventoactions" class="Evento\EventoBundle\Services\EventoActions">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>

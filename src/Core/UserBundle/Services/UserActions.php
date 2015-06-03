@@ -27,7 +27,7 @@ class UserActions
     private $repository;
 
     /**
-     * Instância Container
+     * Instï¿½ncia Container
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
     protected $container;
@@ -136,6 +136,8 @@ class UserActions
         if (!$entity->getSenha()) {
             throw new Exception('Digite o campo senha');
         }
+
+        /** @var User $objResult */
         $objResult = $this->repository->findOneBy(array('email' => $entity->getEmail(), 'senha' => $entity->getSenha()));
 
         if ($objResult instanceof User) {
@@ -144,7 +146,10 @@ class UserActions
             $arrResult = array(
                 'id' => $objResult->getId(),
                 'nome' => $objResult->getNome(),
-                'flAdmin' => $objResult->getFlADmin()
+                'flAdmin' => $objResult->getFlADmin(),
+                'cpf' => $objResult->getCpf(),
+                'email' => $objResult->getEmail(),
+                'associado' => $objResult->getFlAssociado()
             );
             $request->getSession()->set('user', $arrResult);
 

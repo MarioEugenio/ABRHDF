@@ -20,10 +20,10 @@ class __TwigTemplate_9cfd1e56b6a43f934a71cc8f7c073e86d1ccb77a40e212d0d00c52fc08d
     <div class=\"col-lg-12\">
         <h1 class=\"page-header\">Dashboard</h1>
     </div>
-    <!-- /.col-lg-12 -->
+
 </div>
 <div ng-controller=\"BaseCtrl\" ng-init=\"init()\">
-    <div class=\"row\">
+    <div class=\"row\" ng-show=\"currentUser.flAdmin\">
         <div class=\"col-lg-3 col-md-6\">
             <div class=\"panel panel-primary\">
                 <div class=\"panel-heading\">

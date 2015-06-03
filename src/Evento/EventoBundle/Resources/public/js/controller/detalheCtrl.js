@@ -9,6 +9,19 @@ app.controller('EventoDetalheCtrl', function ($scope, $http, $location, $routePa
         }
     }
 
+    $scope.inscricao = function (valor, id) {
+        $http.post(
+                Routing.generate('financeiro_save'),
+            { valor: valor, evento: id })
+            .success(function (response) {
+                if (response.success) {
+                    $location.path('/financeiro/' + response.data.id);
+                    return;
+                }
+            }
+        );
+    }
+
     $scope.edit = function (id) {
         $http.post(
                 Routing.generate('evento_edit', { id: id }))

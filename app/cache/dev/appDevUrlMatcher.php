@@ -127,6 +127,47 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/financeiro')) {
+            // financeiro
+            if ($pathinfo === '/financeiro') {
+                return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::indexAction',  '_route' => 'financeiro',);
+            }
+
+            // financeiro_boleto
+            if ($pathinfo === '/financeiro/boleto') {
+                return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::boletoAction',  '_route' => 'financeiro_boleto',);
+            }
+
+            // financeiro_pagamento
+            if ($pathinfo === '/financeiro/pagamento') {
+                return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::pagamentoAction',  '_route' => 'financeiro_pagamento',);
+            }
+
+            // financeiro_edit
+            if (preg_match('#^/financeiro/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'financeiro_edit')), array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::editAction',));
+            }
+
+            // financeiro_save
+            if ($pathinfo === '/financeiro/save') {
+                return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::saveAction',  '_route' => 'financeiro_save',);
+            }
+
+            if (0 === strpos($pathinfo, '/financeiro/gerar')) {
+                // financeiro_gerar_boleto
+                if (0 === strpos($pathinfo, '/financeiro/gerar/boleto') && preg_match('#^/financeiro/gerar/boleto/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'financeiro_gerar_boleto')), array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::gerarBoletoAction',));
+                }
+
+                // financeiro_gerar_pagseguro
+                if (0 === strpos($pathinfo, '/financeiro/gerar/pagseguro') && preg_match('#^/financeiro/gerar/pagseguro/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'financeiro_gerar_pagseguro')), array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::callPagSeguroAction',));
+                }
+
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/evento')) {
             // evento_lista
             if ($pathinfo === '/evento') {
@@ -414,6 +455,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // user_valid_email
             if ($pathinfo === '/user/valid/email') {
                 return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::validEmailAction',  '_route' => 'user_valid_email',);
+            }
+
+            // user_get
+            if ($pathinfo === '/user/get') {
+                return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::userGetAction',  '_route' => 'user_get',);
             }
 
         }

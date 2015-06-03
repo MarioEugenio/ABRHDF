@@ -2,6 +2,20 @@ var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney', 'ui
     .run(['$rootScope',
         function($scope) {
 
+            $scope.format = "dd/MM/yyyy";
+
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                $scope.opened = true;
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yyyy',
+                startingDay: 1
+            };
+
             $scope.formatarData = function (date) {
                 if (date == null || date == undefined)
                     return;

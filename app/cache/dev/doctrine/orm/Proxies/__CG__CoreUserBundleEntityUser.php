@@ -64,10 +64,10 @@ class User extends \Core\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', 'descontoPessoaJuridica', 'descontoPessoaFisica');
+            return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAdmin', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAssociado', 'descontoPessoaJuridica', 'descontoPessoaFisica');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', 'descontoPessoaJuridica', 'descontoPessoaFisica');
+        return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAdmin', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAssociado', 'descontoPessoaJuridica', 'descontoPessoaFisica');
     }
 
     /**
@@ -483,6 +483,50 @@ class User extends \Core\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFlActive', array());
 
         return parent::getFlActive();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFlAdmin($value)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFlAdmin', array($value));
+
+        return parent::setFlAdmin($value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFlAdmin()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFlAdmin', array());
+
+        return parent::getFlAdmin();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFlAssociado($value)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFlAssociado', array($value));
+
+        return parent::setFlAssociado($value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFlAssociado()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFlAssociado', array());
+
+        return parent::getFlAssociado();
     }
 
     /**

@@ -44,9 +44,17 @@ class Financeiro extends Entity
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dataPagamento", type="datetime")
+     * @ORM\Column(name="dataPagamento", type="datetime", nullable=true)
      */
     private $dataPagamento;
+
+    /**
+     * @var \Evento\EventoBundle\Entity\Evento
+     *
+     * @ORM\ManyToOne(targetEntity="Evento\EventoBundle\Entity\Evento", cascade={"persist"})
+     * @ORM\JoinColumn(name="evento", referencedColumnName="id")
+     */
+    private $evento;
 
     /**
      * @var \Core\UserBundle\Entity\User
@@ -76,28 +84,27 @@ class Financeiro extends Entity
     /**
      * @var float
      *
-     * @ORM\Column(name="valorPagamento", type="float")
+     * @ORM\Column(name="valorPagamento", type="float", nullable=true)
      */
     private $valorPagamento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tipoPagamento", type="string", length=1)
+     * @ORM\Column(name="tipoPagamento", type="string", length=1, nullable=true)
      */
     private $tipoPagamento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="formaPagamento", type="string", length=1)
+     * @ORM\Column(name="formaPagamento", type="string", length=1, nullable=true)
      */
     private $formaPagamento;
 
 
-    public function __construct($data = array()) {
-        $this->__construct($data);
-
+    public function __construct($data) {
+        $this->setData($data);
         $this->boletos = new ArrayCollection();
     }
 
@@ -299,4 +306,21 @@ class Financeiro extends Entity
     {
         return $this->formaPagamento;
     }
+
+    /**
+     * @param \Evento\EventoBundle\Entity\Evento $evento
+     */
+    public function setEvento($evento)
+    {
+        $this->evento = $evento;
+    }
+
+    /**
+     * @return \Evento\EventoBundle\Entity\Evento
+     */
+    public function getEvento()
+    {
+        return $this->evento;
+    }
+
 }

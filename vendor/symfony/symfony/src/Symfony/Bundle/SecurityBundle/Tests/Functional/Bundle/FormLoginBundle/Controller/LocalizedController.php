@@ -27,7 +27,7 @@ class LocalizedController extends ContainerAware
             $error = $request->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->container->get('templating')->renderResponse('FormLoginBundle:Localized:login.html.twig', array(
+        return $this->container->get('templating')->renderResponse('FormLoginBundle:Localized:index.html.twig', array(
             // last username entered by the user
             'last_username' => $request->getSession()->get(SecurityContext::LAST_USERNAME),
             'error' => $error,

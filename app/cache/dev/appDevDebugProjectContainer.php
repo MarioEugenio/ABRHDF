@@ -480,7 +480,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCoreuserbundle_UseractionsService()
     {
-        return $this->services['coreuserbundle.useractions'] = new \Core\UserBundle\Services\UserActions($this->get('doctrine.orm.default_entity_manager'));
+        $this->services['coreuserbundle.useractions'] = $instance = new \Core\UserBundle\Services\UserActions($this->get('doctrine.orm.default_entity_manager'));
+
+        $instance->setContainer($this);
+
+        return $instance;
     }
 
     /**
@@ -1684,7 +1688,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getJmsSerializer_DatetimeHandlerService()
     {
-        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'Europe/Berlin', true);
+        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'America/Sao_Paulo', true);
     }
 
     /**
@@ -4647,7 +4651,7 @@ class appDevDebugProjectContainer extends Container
 
             ),
             'assetic.java.bin' => '/usr/bin/java',
-            'assetic.node.bin' => '/usr/local/bin/node',
+            'assetic.node.bin' => '/usr/bin/node',
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
