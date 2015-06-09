@@ -110,7 +110,14 @@ class FinanceiroController extends BaseController
             $entity->setValor($objData["valor"]);
             $entity->setDataCadastro(new \DateTime());
             $entity->setUsuarioGerador($serviceUser->find($user["id"]));
-            $entity->setEvento($service->find($objData["evento"]));
+
+            if (isset($objData["usuario"])) {
+                $entity->setUsuario($serviceUser->find($objData["usuario"]));
+            }
+
+            if (isset($objData["evento"])) {
+                $entity->setEvento($service->find($objData["evento"]));
+            }
 
             if (isset($objData['id'])) {
                 $entity =  $service->find($objData['id']);

@@ -50,6 +50,19 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
         }
     };
 
+    $scope.inscricao = function (valor, id) {
+        $http.post(
+            Routing.generate('financeiro_save'),
+            { valor: valor, usuario: id, tipoPagamento: 'A' })
+            .success(function (response) {
+                if (response.success) {
+                    $location.path('/financeiro/' + response.data.id);
+                    return;
+                }
+            }
+        );
+    }
+
     $scope.edit = function (id) {
         $http.post(
                 Routing.generate('user_edit', { id: id }))

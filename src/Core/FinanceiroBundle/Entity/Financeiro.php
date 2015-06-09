@@ -52,7 +52,7 @@ class Financeiro extends Entity
      * @var \Evento\EventoBundle\Entity\Evento
      *
      * @ORM\ManyToOne(targetEntity="Evento\EventoBundle\Entity\Evento", cascade={"persist"})
-     * @ORM\JoinColumn(name="evento", referencedColumnName="id")
+     * @ORM\JoinColumn(name="evento", referencedColumnName="id", nullable=true)
      */
     private $evento;
 

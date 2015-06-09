@@ -12,7 +12,7 @@
                 <thead>
                 <tr>
                     <th>Data</th>
-                    <th>Título</th>
+                    <th>Tipo</th>
                     <th>Valor (R$)</th>
                 </tr>
                 </thead>
@@ -23,7 +23,7 @@
 
                 <tr ng-show="list.length > 0" ng-repeat="item in list | filter:searchText">
                     <td>{[{ formatarData(item.data_cadastro) }]}</td>
-                    <td>{[{ item.evento.titulo }]}</td>
+                    <td>{[{ descricaoTipo(item.tipo_pagamento) }]}</td>
                     <td>R$ {[{ item.valor }]}</td>
 
                 </tr>

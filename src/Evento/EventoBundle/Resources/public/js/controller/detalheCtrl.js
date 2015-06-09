@@ -12,7 +12,7 @@ app.controller('EventoDetalheCtrl', function ($scope, $http, $location, $routePa
     $scope.inscricao = function (valor, id) {
         $http.post(
                 Routing.generate('financeiro_save'),
-            { valor: valor, evento: id })
+            { valor: valor, evento: id, tipoPagamento: 'E' })
             .success(function (response) {
                 if (response.success) {
                     $location.path('/financeiro/' + response.data.id);

@@ -3,6 +3,11 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
     $scope.template = baseUrl + "/financeiro";
     $scope.edit = false;
 
+    $scope.listValores = [
+        { id: 1, texto: 'Anuidade contempla o recebimento mensal da Revista Melhor', valor: '200.00' },
+        { id: 2, texto: 'Anuidade não contempla o recebimento mensal da Revista Melhor', valor: '160.00' }
+    ];
+
     $scope.form = {
         flAssociado:false
     };
@@ -44,10 +49,10 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
             });
     };
 
-    $scope.inscricao = function () {
+    $scope.inscricao = function (valor, id) {
         $http.post(
             Routing.generate('financeiro_save'),
-            { valor: valor, evento: null })
+            { valor: valor, usuario: id, tipoPagamento: 'A' })
             .success(function (response) {
                 if (response.success) {
                     $location.path('/financeiro/' + response.data.id);

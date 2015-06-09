@@ -157,27 +157,17 @@
         <h2 class="col-md-12 ">Associação</h2>
 
         <div class="row">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-6 col-md-6" ng-repeat="associacao in listValores">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h3>OPÇÃO 1</h3>
-                        <p>Anuidade contempla o recebimento mensal da Revista Melhor</p>
-                        <p class="lead">Para pagamento à vista <strong>R$ 200,00</strong></p>
-                        <p><button ng-click="inscricao(item.valorEstudante, item.id)" class="btn btn-warning">FAZER ASSOCIAÇÃO</button></p>
+                        <h3>OPÇÃO {[{ associacao.id }]}</h3>
+                        <p>{[{ associacao.texto }]}</p>
+                        <p class="lead">Para pagamento à vista <strong>R$ {[{ associacao.valor }]}</strong></p>
+                        <p><button type="button" ng-click="inscricao(associacao.valor, form.id)" class="btn btn-warning">FAZER ASSOCIAÇÃO</button></p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>OPÇÃO 2</h3>
-                        <p>Anuidade não contempla o recebimento mensal da Revista Melhor</p>
-                        <p class="lead">Para pagamento à vista <strong>R$ 160,00</strong></p>
-                        <p><button ng-click="inscricao(item.valorEstudante, item.id)" class="btn btn-warning">FAZER ASSOCIAÇÃO</button></p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

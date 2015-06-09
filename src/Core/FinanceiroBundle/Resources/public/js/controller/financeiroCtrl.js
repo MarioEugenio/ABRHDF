@@ -27,6 +27,16 @@ app.controller('FinanceiroCtrl', function ($scope, $http, $routeParams, $alert) 
             });
     }
 
+    $scope.descricaoTipo = function (tipo) {
+        if (tipo == 'E') {
+            return 'Evento';
+        }
+
+        if (tipo == 'A') {
+            return 'Associação';
+        }
+    }
+
     $scope.gerarBoleto = function (id) {
         var conf = confirm('Gostaria de gerar boleto?');
 
