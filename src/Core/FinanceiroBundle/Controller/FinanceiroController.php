@@ -20,6 +20,15 @@ class FinanceiroController extends BaseController
     }
 
     /**
+     * @Route("/financeiro/associacao", name="financeiro_associacao", options={"expose"=true})
+     * @Template()
+     */
+    public function associacaoAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/financeiro/boleto", name="financeiro_boleto", options={"expose"=true})
      * @Template()
      */
@@ -41,6 +50,30 @@ class FinanceiroController extends BaseController
      * @Route("/financeiro/{id}/edit", name="financeiro_edit", options={"expose"=true})
      */
     public function editAction($id)
+    {
+        try {
+            /** @var EventoActions $service */
+            $service = $this->get('CoreFinanceiroBundle.FinanceiroActions');
+            $resource = $service->find($id);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
+     * @Route("/associacao/{id}/edit", name="associacao_edit", options={"expose"=true})
+     */
+    public function editAssociacaoAction($id)
     {
         try {
             /** @var EventoActions $service */
@@ -122,12 +155,15 @@ class FinanceiroController extends BaseController
         $financeiro = $service->find($id);
         $financeiro->setUsuario($serviceUser->find($user["id"]));
 
+        $user = $serviceUser->getInfoUser($user["id"]);
+        $cep = substr($user['contato']['cep'], 0, 5) . '-' . substr($user['contato']['cep'], 5, 3);
+
         $boleto = $this->container->get('tritoq.manager.boleto');
         $data = $boleto->add(array(
                 'value' => $financeiro->getValor(),
                 'payer' => $financeiro->getUsuario()->getNome(),
                 'payer_doc' => $financeiro->getUsuario()->getCpf(),
-                'payer_address' => 'Rua Fulano de tal',
+                'payer_address' => $cep . ' - ' . $user['contato']['endereco'] . ' - ' . $user['contato']['bairro'],
                 'sequence' => $financeiro->getId()  // Sequencial do boleto para nosso numero
             )
         );
@@ -182,6 +218,8 @@ class FinanceiroController extends BaseController
         $financeiro = $service->find($id);
         $financeiro->setUsuario($serviceUser->find($user["id"]));
 
+        $user = $serviceUser->getInfoUser($user["id"]);
+
         /**
          * Informo os dados do Cliente
          * Nome:
@@ -190,13 +228,14 @@ class FinanceiroController extends BaseController
          * Telefone : (valor numerico , exemplo: 6998522)
          */
         $pagseguro->setSender($financeiro->getUsuario()->getNome(), $financeiro->getUsuario()->getEmail(),
-            '61', '93345445');
+            substr($user['contato']['celular'], 0,2), substr($user['contato']['celular'], 2,strlen($user['contato']['celular'])));
 
-        $pagseguro->setShippingAddress('70000-000', 'RUA', 'NUMERO',
-            'complemento',  'bairro',
-            'cidade','uf', 'BRA');
+        $cep = substr($user['contato']['cep'], 0, 5) . '-' . substr($user['contato']['cep'], 5, 3);
 
-        $pagseguro->addItem(1, 'Curso', 1, $financeiro->getValor(), 0);
+        $pagseguro->setShippingAddress($cep, $user['contato']['endereco'], '0',
+            $user['contato']['complemento'],  $user['contato']['bairro'], $user['contato']['bairro'], 'DF', 'BRA');
+
+        $pagseguro->addItem(1, 'Evento', 1, $financeiro->getValor(), 0);
 
         $credenciais = new \PagSeguroAccountCredentials('abrhdf@abrhdf.com.br', '4A0B40552B114805A5A06AC5E2432B9D');
 

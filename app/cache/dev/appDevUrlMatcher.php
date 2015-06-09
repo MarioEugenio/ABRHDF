@@ -133,6 +133,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::indexAction',  '_route' => 'financeiro',);
             }
 
+            // financeiro_associacao
+            if ($pathinfo === '/financeiro/associacao') {
+                return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::associacaoAction',  '_route' => 'financeiro_associacao',);
+            }
+
             // financeiro_boleto
             if ($pathinfo === '/financeiro/boleto') {
                 return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::boletoAction',  '_route' => 'financeiro_boleto',);
@@ -148,6 +153,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'financeiro_edit')), array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::editAction',));
             }
 
+        }
+
+        // associacao_edit
+        if (0 === strpos($pathinfo, '/associacao') && preg_match('#^/associacao/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'associacao_edit')), array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::editAssociacaoAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/financeiro')) {
             // financeiro_save
             if ($pathinfo === '/financeiro/save') {
                 return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::saveAction',  '_route' => 'financeiro_save',);
@@ -284,41 +297,43 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/user')) {
-            if (0 === strpos($pathinfo, '/user/l')) {
-                if (0 === strpos($pathinfo, '/user/log')) {
-                    // user_login
-                    if ($pathinfo === '/user/login') {
-                        return array (  '_controller' => 'Core\\UserBundle\\Controller\\DefaultController::loginAction',  '_route' => 'user_login',);
-                    }
-
-                    // user_logar
-                    if ($pathinfo === '/user/logar') {
-                        return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::logarAction',  '_route' => 'user_logar',);
-                    }
-
+            if (0 === strpos($pathinfo, '/user/log')) {
+                // user_login
+                if ($pathinfo === '/user/login') {
+                    return array (  '_controller' => 'Core\\UserBundle\\Controller\\DefaultController::loginAction',  '_route' => 'user_login',);
                 }
 
-                if (0 === strpos($pathinfo, '/user/lista')) {
-                    // user_lista
-                    if ($pathinfo === '/user/lista') {
-                        return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaAction',  '_route' => 'user_lista',);
-                    }
+                // user_logar
+                if ($pathinfo === '/user/logar') {
+                    return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::logarAction',  '_route' => 'user_logar',);
+                }
 
-                    // user_lista_juridico
-                    if ($pathinfo === '/user/lista/juridico') {
-                        return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaJuridicoAction',  '_route' => 'user_lista_juridico',);
-                    }
+            }
 
-                    // user_lista_representantes
-                    if ($pathinfo === '/user/lista/representantes') {
-                        return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaRepresentantesAction',  '_route' => 'user_lista_representantes',);
-                    }
+            // user_associacao
+            if ($pathinfo === '/user/associacao') {
+                return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::associacaoAction',  '_route' => 'user_associacao',);
+            }
 
-                    // user_lista_dependentes
-                    if ($pathinfo === '/user/lista/dependentes') {
-                        return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaDependentesAction',  '_route' => 'user_lista_dependentes',);
-                    }
+            if (0 === strpos($pathinfo, '/user/lista')) {
+                // user_lista
+                if ($pathinfo === '/user/lista') {
+                    return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaAction',  '_route' => 'user_lista',);
+                }
 
+                // user_lista_juridico
+                if ($pathinfo === '/user/lista/juridico') {
+                    return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaJuridicoAction',  '_route' => 'user_lista_juridico',);
+                }
+
+                // user_lista_representantes
+                if ($pathinfo === '/user/lista/representantes') {
+                    return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaRepresentantesAction',  '_route' => 'user_lista_representantes',);
+                }
+
+                // user_lista_dependentes
+                if ($pathinfo === '/user/lista/dependentes') {
+                    return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::listaDependentesAction',  '_route' => 'user_lista_dependentes',);
                 }
 
             }

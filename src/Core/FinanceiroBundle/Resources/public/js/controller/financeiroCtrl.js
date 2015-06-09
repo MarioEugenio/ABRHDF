@@ -28,10 +28,16 @@ app.controller('FinanceiroCtrl', function ($scope, $http, $routeParams, $alert) 
     }
 
     $scope.gerarBoleto = function (id) {
-        window.open(baseUrl + "/financeiro/gerar/boleto/" + id, "_blank");
+        var conf = confirm('Gostaria de gerar boleto?');
+
+        if (conf)
+            window.open(baseUrl + "/financeiro/gerar/boleto/" + id, "_blank");
     }
 
     $scope.pagseguro = function (id) {
-        window.open(baseUrl + "/financeiro/gerar/pagseguro/" + id, "_self");
+        var conf = confirm('Gostaria de iniciar pagamento?');
+
+        if (conf)
+            window.open(baseUrl + "/financeiro/gerar/pagseguro/" + id, "_self");
     }
 });

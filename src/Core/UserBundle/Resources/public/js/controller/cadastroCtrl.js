@@ -1,4 +1,7 @@
-app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert) {
+app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert, $modal) {
+
+    $scope.template = baseUrl + "/financeiro";
+    $scope.edit = false;
 
     $scope.form = {
         flAssociado:false
@@ -13,6 +16,11 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
 
     $scope.estados = [];
     $scope.cidades = [];
+
+    $scope.associar = function () {
+
+
+    }
 
     $scope.getEstados = function () {
         $http.post(
@@ -36,6 +44,19 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
             });
     };
 
+    $scope.inscricao = function () {
+        $http.post(
+            Routing.generate('financeiro_save'),
+            { valor: valor, evento: null })
+            .success(function (response) {
+                if (response.success) {
+                    $location.path('/financeiro/' + response.data.id);
+                    return;
+                }
+            }
+        );
+    }
+
     $scope.init = function () {
         var id = $routeParams.id;
         if (id) {
@@ -48,6 +69,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
             Routing.generate('user_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
+                    $scope.edit = true;
                     $scope.form = response.data.form;
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;

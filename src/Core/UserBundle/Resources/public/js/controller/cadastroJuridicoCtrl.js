@@ -3,12 +3,23 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
     $scope.form = {
         flAssociado:false
     };
+
+    $scope.edit = false;
+
     $scope.contato = {};
     $scope.complemento = {};
     $scope.empresa = {};
 
     $scope.estados = [];
     $scope.cidades = [];
+
+    $scope.listValores = [
+        { id: 1, texto: 'Até 05 funcionários', valor: '520.00' },
+        { id: 2, texto: 'De 6 a 10 Funcionários', valor: '1020.00' },
+        { id: 3, texto: 'De 11 a 100 funcionários', valor: '1430.00' },
+        { id: 4, texto: 'De 101 a 200 funcionários', valor: '2000.00' },
+        { id: 5, texto: 'Acima de  200 Funcionários', valor: '2560.00' }
+    ];
 
     $scope.getEstados = function () {
         $http.post(
@@ -44,6 +55,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                 Routing.generate('user_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
+                    $scope.edit = true;
                     $scope.form = response.data.form;
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;

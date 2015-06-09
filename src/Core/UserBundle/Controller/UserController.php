@@ -11,10 +11,20 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class UserController extends BaseController
 {
+
     /**
      * @Route("/user/logar", name="user_logar", options={"expose"=true})
      */
     public function logarAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/user/associacao", name="user_associacao", options={"expose"=true})
+     * @Template()
+     */
+    public function associacaoAction()
     {
         return array();
     }

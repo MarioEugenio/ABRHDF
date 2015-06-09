@@ -1,14 +1,12 @@
-<hr>
-
-<ol class="breadcrumb" ng-hide="tipoJuridico">
-    <li><a href="#/">Inicial</a></li>
-    <li><a href="#/user">Usuário</a></li>
-    <li class="active">Cadastro</li>
-</ol>
-
 <form name="formCad" ng-controller="UserCadastroJuridicoCtrl" ng-init="init()" ng-submit="save()">
     <h2>Cadastro de Pessoa Jurídica<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
     <hr>
+
+    <ol class="breadcrumb" ng-hide="tipoJuridico">
+        <li><a href="#/">Inicial</a></li>
+        <li><a href="#/user">Usuário</a></li>
+        <li class="active">Cadastro</li>
+    </ol>
 
     <input type="hidden" ng-model="form.id" value="form.id">
 
@@ -143,9 +141,26 @@
         <input type="password" maxlength="10" class="form-control" ng-model="rsenha" placeholder="Digite senha" required>
     </div>
 
+    <div class="col-md-12" >
+        <h2 class="col-md-12 ">Associação</h2>
+
+        <div class="row">
+            <div ng-repeat="associacao in listValores" class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{[{ associacao.texto }]}</h3>
+                        <p class="lead">Para pagamento à vista <strong>R$ {[{ associacao.valor }]}</strong></p>
+                        <p><button ng-click="inscricao(associacao.id , item.id)" class="btn btn-warning">FAZER ASSOCIAÇÃO</button></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <hr>
 
-    <div class="pull-right">
+    <div class="col-md-12 box">
         <a href="#/user/juridico" class="btn btn-default">CANCELAR</a>
         <button type="submit" class="btn btn-primary">SALVAR</button>
     </div>
