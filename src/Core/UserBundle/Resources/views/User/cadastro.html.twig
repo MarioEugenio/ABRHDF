@@ -3,7 +3,7 @@
     <h2>Cadastro de Pessoa Fisica<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
     <hr>
 
-    <ol class="breadcrumb" ng-hide="tipoFisico">
+    <ol class="breadcrumb" ng-show="currentUser.flAdmin">
         <li><a href="#/">Inicial</a></li>
         <li><a href="#/user">Usuário</a></li>
         <li class="active">Cadastro</li>
@@ -153,28 +153,30 @@
         <input type="text" class="form-control" maxlength="255" ng-model="complemento.estadoCivil" placeholder="Digite o estado civil" required>
     </div>
 
-    <div class="col-md-12" ng-show="edit == true">
-        <h2 class="col-md-12 ">Associação</h2>
+    <div ng-show="currentUser.flAdmin">
+        <div class="col-md-12" ng-show="checkAssociacao()">
+            <h2 class="col-md-12 ">Associação</h2>
 
-        <div class="row">
-            <div class="col-sm-6 col-md-6" ng-repeat="associacao in listValores">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>OPÇÃO {[{ associacao.id }]}</h3>
-                        <p>{[{ associacao.texto }]}</p>
-                        <p class="lead">Para pagamento à vista <strong>R$ {[{ associacao.valor }]}</strong></p>
-                        <p><button type="button" ng-click="inscricao(associacao.valor, form.id)" class="btn btn-warning">FAZER ASSOCIAÇÃO</button></p>
+            <div class="row">
+                <div class="col-sm-6 col-md-6" ng-repeat="associacao in listValores">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>OPÇÃO {[{ associacao.id }]}</h3>
+                            <p>{[{ associacao.texto }]}</p>
+                            <p class="lead">Para pagamento à vista <strong>R$ {[{ associacao.valor }]}</strong></p>
+                            <p><button type="button" ng-click="inscricao(associacao.valor, form.id)" class="btn btn-warning">FAZER ASSOCIAÇÃO</button></p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
     <hr>
 
     <div class="col-md-12 box">
-        <a href="#/user" class="btn btn-default">CANCELAR</a>
+        <a href="#/user" ng-show="currentUser.flAdmin" class="btn btn-default">CANCELAR</a>
         <button type="submit" class="btn btn-primary">SALVAR</button>
     </div>
 

@@ -4,7 +4,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
         flAssociado:false
     };
 
-    $scope.edit = false;
+    $scope.editar = false;
 
     $scope.contato = {};
     $scope.complemento = {};
@@ -51,16 +51,28 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
     };
 
     $scope.inscricao = function (valor, id) {
-        $http.post(
-            Routing.generate('financeiro_save'),
-            { valor: valor, usuario: id, tipoPagamento: 'A' })
-            .success(function (response) {
-                if (response.success) {
-                    $location.path('/financeiro/' + response.data.id);
-                    return;
+        var conf = confirm('Tem certeza que deseja associar este usuário?');
+
+        if (conf) {
+            $http.post(
+                Routing.generate('financeiro_save'),
+                { valor: valor, usuario: id, tipoPagamento: 'A' })
+                .success(function (response) {
+                    if (response.success) {
+                        $location.path('/financeiro/' + response.data.id);
+                        return;
+                    }
                 }
-            }
-        );
+            );
+        }
+    }
+
+    $scope.checkAssociacao = function () {
+        if (($scope.editar)) {
+            return true;
+        }
+
+        return false;
     }
 
     $scope.edit = function (id) {
@@ -68,7 +80,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                 Routing.generate('user_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
-                    $scope.edit = true;
+                    $scope.editar = true;
                     $scope.form = response.data.form;
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;

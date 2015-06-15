@@ -1,7 +1,7 @@
 app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routeParams, $alert, $modal) {
 
     $scope.template = baseUrl + "/financeiro";
-    $scope.edit = false;
+    $scope.editar = false;
 
     $scope.listValores = [
         { id: 1, texto: 'Anuidade contempla o recebimento mensal da Revista Melhor', valor: '200.00' },
@@ -27,6 +27,14 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
 
     }
 
+    $scope.checkAssociacao = function () {
+        if (($scope.editar)) {
+            return true;
+        }
+
+        return false;
+    }
+
     $scope.getEstados = function () {
         $http.post(
             Routing.generate('get_estado'))
@@ -50,16 +58,20 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
     };
 
     $scope.inscricao = function (valor, id) {
-        $http.post(
-            Routing.generate('financeiro_save'),
-            { valor: valor, usuario: id, tipoPagamento: 'A' })
-            .success(function (response) {
-                if (response.success) {
-                    $location.path('/financeiro/' + response.data.id);
-                    return;
+        var conf = confirm('Tem certeza que deseja associar este usuário?');
+
+        if (conf) {
+            $http.post(
+                Routing.generate('financeiro_save'),
+                { valor: valor, usuario: id, tipoPagamento: 'A' })
+                .success(function (response) {
+                    if (response.success) {
+                        $location.path('/financeiro/' + response.data.id);
+                        return;
+                    }
                 }
-            }
-        );
+            );
+        }
     }
 
     $scope.init = function () {
@@ -74,7 +86,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
             Routing.generate('user_edit', { id: id }))
             .success(function (response) {
                 if (response.success) {
-                    $scope.edit = true;
+                    $scope.editar = true;
                     $scope.form = response.data.form;
                     $scope.contato = response.data.contato;
                     $scope.complemento = response.data.complemento;

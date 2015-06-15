@@ -141,12 +141,14 @@ class UserActions
         $objResult = $this->repository->findOneBy(array('email' => $entity->getEmail(), 'senha' => $entity->getSenha()));
 
         if ($objResult instanceof User) {
-            /** @var $request Request */
+            /** @var User $request */
             $request = $this->container->get('request');
             $arrResult = array(
                 'id' => $objResult->getId(),
                 'nome' => $objResult->getNome(),
                 'flAdmin' => $objResult->getFlADmin(),
+                'tipoUsuario' => $objResult->getTipoUser()->getId(),
+                'tipo' => $objResult->getTipoUser()->getNome(),
                 'cpf' => $objResult->getCpf(),
                 'email' => $objResult->getEmail(),
                 'associado' => $objResult->getFlAssociado()

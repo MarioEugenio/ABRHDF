@@ -275,23 +275,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Core\\BaseBundle\\Controller\\DefaultController::indexAction',  '_route' => 'core_base_default_index',);
         }
 
-        if (0 === strpos($pathinfo, '/core/a')) {
-            if (0 === strpos($pathinfo, '/core/admin')) {
-                // core_base_default_admin
-                if ($pathinfo === '/core/admin') {
-                    return array (  '_controller' => 'Core\\BaseBundle\\Controller\\DefaultController::adminAction',  '_route' => 'core_base_default_admin',);
-                }
-
-                // core_home
-                if ($pathinfo === '/core/admin/home') {
-                    return array (  '_controller' => 'Core\\BaseBundle\\Controller\\DefaultController::homeAction',  '_route' => 'core_home',);
-                }
-
+        if (0 === strpos($pathinfo, '/core/admin')) {
+            // core_base_default_admin
+            if ($pathinfo === '/core/admin') {
+                return array (  '_controller' => 'Core\\BaseBundle\\Controller\\DefaultController::adminAction',  '_route' => 'core_base_default_admin',);
             }
 
-            // core_base_default_apiatualizacao
-            if ($pathinfo === '/core/api/atualizacao') {
-                return array (  '_controller' => 'Core\\BaseBundle\\Controller\\DefaultController::apiAtualizacaoAction',  '_route' => 'core_base_default_apiatualizacao',);
+            // core_home
+            if ($pathinfo === '/core/admin/home') {
+                return array (  '_controller' => 'Core\\BaseBundle\\Controller\\DefaultController::homeAction',  '_route' => 'core_home',);
             }
 
         }

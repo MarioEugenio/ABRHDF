@@ -42,19 +42,4 @@ class DefaultController extends BaseController
     public function homeAction () {
         return array();
     }
-
-    /**
-     * @Route("/core/api/atualizacao")
-     */
-    public function apiAtualizacaoAction()
-    {
-        /** @var AtualizacaoActions $service */
-        $service = $this->get('COLIHCoreBundle.AtualizacaoActions');
-        $resource = $service->findMax();
-
-        return $this->createJsonResponse(array(
-            'success' => true,
-            'data' => $resource,
-        ));
-    }
 }
