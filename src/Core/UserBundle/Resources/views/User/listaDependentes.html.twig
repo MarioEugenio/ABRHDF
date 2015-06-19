@@ -8,7 +8,7 @@
             <li><a href="#/">Inicial</a></li>
             <li class="active">Dependentes</li>
         </ol>
-        <a  href="#/user" class="btn btn-primary" ng-hide="tipoDependentes"><span class="glyphicon glyphicon-plus"></span> Voltar para listagem</a>
+        <a ng-hide="home"  href="#/user" class="btn btn-primary" ng-hide="tipoDependentes"><span class="glyphicon glyphicon-plus"></span> Voltar para listagem</a>
         <div class="col-lg-12">
             <!-- PARTE DE COMPLEMENTO -->
             <h3>Cadatro de Dependentes<br></h3>
@@ -98,7 +98,7 @@
             </table>
         </div>
         <div class="pull-right">
-            <a href="#/user" class="btn btn-default">FINALIZAR</a>
+            <a ng-click="back()" class="btn btn-default">FINALIZAR</a>
         </div>
     </form>
 </div>

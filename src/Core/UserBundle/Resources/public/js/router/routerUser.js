@@ -39,6 +39,22 @@ app.config(['$routeProvider', '$interpolateProvider',
                 templateUrl: Routing.generate('core_home'),
                 controller: 'UserListaCtrl'
             }).
+            when('/user/:id/edit/:home', {
+                templateUrl: Routing.generate('user_cadastro'),
+                controller: 'UserCadastroCtrl'
+            }).
+            when('/user/:id/edit/juridico/:home', {
+                templateUrl: Routing.generate('user_cadastro_juridico'),
+                controller: 'UserCadastroJuridicoCtrl'
+            }).
+            when('/user/:id/representantes/:home', {
+                templateUrl: Routing.generate('user_lista_representantes'),
+                controller: 'UserListaRepresentantesCtrl'
+            }).
+            when('/user/:id/dependentes/:home', {
+                templateUrl: Routing.generate('user_lista_dependentes'),
+                controller: 'UserListaDependentesCtrl'
+            }).
             otherwise({
                 redirectTo: '/'
             });

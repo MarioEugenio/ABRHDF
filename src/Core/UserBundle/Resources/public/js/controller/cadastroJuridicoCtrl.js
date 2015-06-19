@@ -113,10 +113,15 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
                             show: true
                         });
 
-                        if ($scope.form.flAssociado) {
-                            $location.path('/user/' + response.data.id + '/representantes');
+                        if ($routeParams.home)
+                        {
+                            $location.path('/');
                         } else {
-                            $location.path('/user/juridico');
+                            if ($scope.form.flAssociado) {
+                                $location.path('/user/' + response.data.id + '/representantes');
+                            } else {
+                                $location.path('/user/juridico');
+                            }
                         }
                         return;
                     }

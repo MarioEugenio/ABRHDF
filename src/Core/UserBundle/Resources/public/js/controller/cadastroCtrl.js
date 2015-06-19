@@ -117,10 +117,15 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
                             type: 'success',
                             show: true
                         });
-                        if ($scope.form.flAssociado) {
-                            $location.path('/user/' + response.data.id + '/dependentes');
+                        if ($routeParams.home)
+                        {
+                            $location.path('/');
                         } else {
-                            $location.path('/user');
+                            if ($scope.form.flAssociado) {
+                                $location.path('/user/' + response.data.id + '/dependentes');
+                            } else {
+                                $location.path('/user');
+                            }
                         }
                         return;
                     }

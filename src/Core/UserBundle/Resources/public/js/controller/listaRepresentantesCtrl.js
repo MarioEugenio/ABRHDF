@@ -1,7 +1,8 @@
-app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $routeParams) {
+app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $routeParams, $location) {
 
     $scope.list = [];
     $scope.page = 0;
+    $scope.home = $routeParams.home;
     $scope.empresa = {};
     $scope.empresaUser = {};
     $scope.form = {
@@ -126,5 +127,13 @@ app.controller('UserListaRepresentantesCtrl', function ($scope, $http, $alert, $
 
             });
     };
+
+    $scope.back = function (){
+        if ($routeParams.home) {
+            $location.path('/');
+        } else {
+            $location.path('/user/juridico');
+        }
+    }
 
 });

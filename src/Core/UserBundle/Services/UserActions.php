@@ -151,6 +151,7 @@ class UserActions
                 'tipo' => $objResult->getTipoUser()->getNome(),
                 'cpf' => $objResult->getCpf(),
                 'email' => $objResult->getEmail(),
+                'senha' => $objResult->getSenha(),
                 'associado' => $objResult->getFlAssociado()
             );
             $request->getSession()->set('user', $arrResult);
@@ -581,5 +582,28 @@ class UserActions
         } else {
             return true;
         }
+    }
+
+    public function getAlterSenha($post) {
+        /** @var User $user */
+        $objResult =  $this->repository->find($post['id']);
+        $objResult->setSenha($post['senha']);
+
+        $this->repository->save($objResult);
+
+        /** @var User $request */
+        $request = $this->container->get('request');
+        $arrResult = array(
+            'id' => $objResult->getId(),
+            'nome' => $objResult->getNome(),
+            'flAdmin' => $objResult->getFlADmin(),
+            'tipoUsuario' => $objResult->getTipoUser()->getId(),
+            'tipo' => $objResult->getTipoUser()->getNome(),
+            'cpf' => $objResult->getCpf(),
+            'email' => $objResult->getEmail(),
+            'senha' => $objResult->getSenha(),
+            'associado' => $objResult->getFlAssociado()
+        );
+        $request->getSession()->set('user', $arrResult);
     }
 }

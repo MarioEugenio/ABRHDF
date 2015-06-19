@@ -578,6 +578,32 @@ class UserController extends BaseController
     }
 
     /**
+     * @Route("/user/alter/senha", name="user_alter_senha", options={"expose"=true})
+     */
+    public function alterSenhaAction()
+    {
+        try {
+
+            $objData = json_decode($this->getRequest()->getContent(), true);
+            /** @var UserActions $service */
+            $service = $this->get('CoreUserBundle.UserActions');
+            $resource = $service->getAlterSenha($objData);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resource,
+            ));
+
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
+    }
+
+    /**
      * @Route("/user/get", name="user_get", options={"expose"=true})
      */
     public function userGetAction()

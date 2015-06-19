@@ -1,7 +1,9 @@
-app.controller('UserListaDependentesCtrl', function ($scope, $http, $alert, $routeParams) {
+app.controller('UserListaDependentesCtrl', function ($scope, $http, $alert, $routeParams, $location) {
 
     $scope.list = [];
     $scope.page = 0;
+
+    $scope.home = $routeParams.home;
     $scope.form = {
         id_fisico:null
     };
@@ -97,5 +99,13 @@ app.controller('UserListaDependentesCtrl', function ($scope, $http, $alert, $rou
 
             });
     };
+
+    $scope.back = function (){
+        if ($routeParams.home) {
+            $location.path('/');
+        } else {
+            $location.path('/user');
+        }
+    }
 
 });
