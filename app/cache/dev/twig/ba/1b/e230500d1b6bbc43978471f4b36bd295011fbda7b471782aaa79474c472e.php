@@ -143,7 +143,9 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
     public function block_body($context, array $blocks = array())
     {
         // line 42
-        echo "    <div id=\"wrapper\"  ng-controller=\"HomeCtrl\">
+        echo "
+    <div style=\"width: 40%;position: absolute;left: 55%;margin-top: 20px;z-index: 999999;\" id=\"alerts-container\"></div>
+    <div id=\"wrapper\"  ng-controller=\"HomeCtrl\">
     <!-- Navigation -->
     <nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\" style=\"margin-bottom: 0\">
     <div class=\"navbar-header\">
@@ -161,11 +163,13 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
 
     <!-- /.dropdown -->
     <li class=\"dropdown\">
-        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">
-            <i class=\"fa fa-user fa-fw\"></i>  <i class=\"fa fa-caret-down\"></i>
+        <a class=\"dropdown-toggle ng-cloak\" data-toggle=\"dropdown\">
+            <i class=\"fa fa-user fa-fw\"></i> {[{ currentUser.nome }]} <i class=\"fa fa-caret-down\"></i>
         </a>
         <ul class=\"dropdown-menu dropdown-user\">
             <li><a href=\"{[{ urlPerfil }]}\"><i class=\"fa fa-user fa-fw\"></i> Perfil</a>
+            </li>
+            <li><a ng-click=\"alterarSenha()\" style=\"cursor:pointer;\"><i class=\"fa fa-user fa-fw\"></i> Alterar Senha</a>
             </li>
             <li class=\"divider\"></li>
             <li><a href=\"/\"><i class=\"fa fa-sign-out fa-fw\"></i> Logout</a>
@@ -176,6 +180,8 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
     <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
+
+
 
     <div class=\"navbar-default sidebar\" role=\"navigation\">
         <div class=\"sidebar-nav navbar-collapse\">
@@ -217,6 +223,11 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li ng-show=\"currentUser.associado\">
+                    <a  ng-show=\"currentUser.tipoUsuario == 1\" href=\"#/user/{[{ currentUser.id }]}/dependentes/1\"><i class=\"fa fa-user fa-fw\"></i> Lista de Dependentes</a>
+                    <a  ng-show=\"currentUser.tipoUsuario == 2\" href=\"#/user/{[{ currentUser.id }]}/representantes/1\"><i class=\"fa fa-user fa-fw\"></i> Lista de Representantes</a>
+                    <!-- /.nav-second-level -->
+                </li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
@@ -225,6 +236,43 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
     </nav>
 
     <div id=\"page-wrapper\" style=\"overflow: scroll\">
+        <!-- Modal Alterar Senhas -->
+
+        <div class=\"modal fade in\" id=\"myModal\" role=\"dialog\" aria-labelledby=\"myModalLabel\" ng-show=\"alter\" style=\"display: block\">
+            <div class=\"modal-dialog\" role=\"document\">
+                <div class=\"modal-content\">
+                    <div class=\"modal-header\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"  ng-click=\"close()\"><span aria-hidden=\"true\">&times;</span></button>
+                        <h4 class=\"modal-title\" id=\"myModalLabel\">Alterar Senha</h4>
+                    </div>
+                    <div class=\"clear-fix\">
+                    <form name=\"formCad\" class=\"col-lg-12\">
+                        <div name=\"formCad\" class=\"modal-body\">
+                            <div class=\"form-group col-lg-12 col-md-6\">
+                                <label for=\"exampleInputPassword1\">Senha Atual</label>
+                                <input type=\"password\" maxlength=\"10\" class=\"form-control\" ng-model=\"form.senhaAtual\" placeholder=\"Digite senha\" required>
+                            </div>
+
+                            <div class=\"form-group col-lg-12 col-md-6\">
+                                <label for=\"exampleInputPassword1\">Senha</label>
+                                <input type=\"password\" maxlength=\"10\" class=\"form-control\" ng-model=\"form.senha\" placeholder=\"Digite senha\" required>
+                            </div>
+
+                            <div class=\"form-group col-lg-12 col-md-6\">
+                                <label for=\"exampleInputPassword1\">Repita Senha</label>
+                                <input type=\"password\" maxlength=\"10\" class=\"form-control\" ng-model=\"form.rsenha\" placeholder=\"Digite senha\" required>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <div class=\"modal-footer \">
+                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"close()\">Cancelar</button>
+                        <button type=\"button\" class=\"btn btn-primary\" ng-click=\"altSenha()\">Alterar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <!-- /.row -->
     <div class=\"row\" ng-view></div>
     <!-- /.row -->

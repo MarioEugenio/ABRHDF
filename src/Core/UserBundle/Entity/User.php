@@ -161,7 +161,7 @@ class User extends Entity
      */
     public function setNome($nome)
     {
-        $this->nome = $nome;
+        $this->nome = strtoupper($nome);
 
         return $this;
     }
@@ -184,7 +184,7 @@ class User extends Entity
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtoupper($email);
 
         return $this;
     }
@@ -299,7 +299,7 @@ class User extends Entity
  */
     public function setRg($value)
     {
-        $this->rg = $value;
+        $this->rg = strtoupper($value);
 
         return $this;
     }
@@ -322,7 +322,7 @@ class User extends Entity
      */
     public function setEmissor($value)
     {
-        $this->emissor = $value;
+        $this->emissor = strtoupper($value);
 
         return $this;
     }

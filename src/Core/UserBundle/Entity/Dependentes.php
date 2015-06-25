@@ -98,7 +98,7 @@ class Dependentes extends Entity
      */
     public function setNome($nome)
     {
-        $this->nome = $nome;
+        $this->nome = strtoupper($nome);
 
         return $this;
     }
@@ -144,7 +144,7 @@ class Dependentes extends Entity
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtoupper($email);
 
         return $this;
     }
@@ -167,7 +167,7 @@ class Dependentes extends Entity
      */
     public function setParentesco($parentesco)
     {
-        $this->parentesco = $parentesco;
+        $this->parentesco = strtoupper($parentesco);
 
         return $this;
     }

@@ -131,7 +131,7 @@ class Empresa extends Entity
      */
     public function setRazaoSocial($razaoSocial)
     {
-        $this->razaoSocial = $razaoSocial;
+        $this->razaoSocial = strtoupper($razaoSocial);
 
         return $this;
     }
@@ -154,7 +154,7 @@ class Empresa extends Entity
      */
     public function setNomeFantasia($nomeFantasia)
     {
-        $this->nomeFantasia = $nomeFantasia;
+        $this->nomeFantasia = strtoupper($nomeFantasia);
 
         return $this;
     }

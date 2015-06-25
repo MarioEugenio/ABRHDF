@@ -464,6 +464,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::validEmailAction',  '_route' => 'user_valid_email',);
             }
 
+            // user_alter_senha
+            if ($pathinfo === '/user/alter/senha') {
+                return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::alterSenhaAction',  '_route' => 'user_alter_senha',);
+            }
+
             // user_get
             if ($pathinfo === '/user/get') {
                 return array (  '_controller' => 'Core\\UserBundle\\Controller\\UserController::userGetAction',  '_route' => 'user_get',);

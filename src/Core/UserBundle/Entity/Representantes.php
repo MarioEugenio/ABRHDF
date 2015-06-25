@@ -158,7 +158,7 @@ class Representantes extends Entity
      */
     public function setNome($nome)
     {
-        $this->nome = $nome;
+        $this->nome = strtoupper($nome);
 
         return $this;
     }
@@ -204,7 +204,7 @@ class Representantes extends Entity
      */
     public function setCargo($cargo)
     {
-        $this->cargo = $cargo;
+        $this->cargo = strtoupper($cargo);
 
         return $this;
     }
@@ -227,7 +227,7 @@ class Representantes extends Entity
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtoupper($email);
 
         return $this;
     }
@@ -353,7 +353,7 @@ class Representantes extends Entity
      */
     public function setEndereco($value)
     {
-        $this->endereco = $value;
+        $this->endereco = strtoupper($value);
 
         return $this;
     }
@@ -376,7 +376,7 @@ class Representantes extends Entity
      */
     public function setBairro($value)
     {
-        $this->bairro = $value;
+        $this->bairro = strtoupper($value);
 
         return $this;
     }
@@ -399,7 +399,7 @@ class Representantes extends Entity
      */
     public function setComplemento($value)
     {
-        $this->complemento = $value;
+        $this->complemento = strtoupper($value);
 
         return $this;
     }

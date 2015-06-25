@@ -1,46 +1,65 @@
 /* global angular, CPF, CNPJ */
 (function(window){
 
-  'use strict';
+    'use strict';
 
-  var module = angular.module('ngCpfCnpj', []);
+    var module = angular.module('ngCpfCnpj', []);
 
-  if( window.CPF ) {
+    function applyValidator(validator, validatorName, ctrl) {
 
-    module.directive('ngCpf', function() {
-      return {
+        if( ctrl.$validators ) {
 
-        restrict: 'A',
+            // Angular >= 1.3
+            ctrl.$validators[validatorName] = function(modelValue, viewValue) {
+                var value = modelValue || viewValue;
+                return (validator.isValid(value) || !value);
+            };
 
-        require: 'ngModel',
+        } else {
 
-        link: function(scope, elm, attrs, ctrl) {
-          scope.$watch(attrs.ngModel, function(newVal, oldVal) {
-            ctrl.$setValidity( 'cpf', CPF.isValid(newVal) );
-          });
+            // Angular <= 1.2
+            ctrl.$parsers.unshift(function (viewValue) {
+                var value = viewValue.replace(/\D/g, "");
+                var valid = validator.isValid(value) || !value;
+                ctrl.$setValidity(validatorName, valid);
+                return (valid ? viewValue : undefined);
+            });
+
         }
+    }
 
-      };
-    });
-  }
+    if( window.CPF ) {
 
-  if( window.CNPJ ) {
+        module.directive('ngCpf', function() {
+            return {
 
-    module.directive('ngCnpj', function() {
-      return {
+                restrict: 'A',
 
-        restrict: 'A',
+                require: 'ngModel',
 
-        require: 'ngModel',
+                link: function(scope, elm, attrs, ctrl) {
+                    applyValidator(CPF, "cpf", ctrl);
+                }
 
-        link: function(scope, elm, attrs, ctrl) {
-          scope.$watch(attrs.ngModel, function(newVal, oldVal) {
-            ctrl.$setValidity( 'cnpj', CNPJ.isValid(newVal) );
-          });
-        }
+            };
+        });
+    }
 
-      };
-    });
-  }
+    if( window.CNPJ ) {
+
+        module.directive('ngCnpj', function() {
+            return {
+
+                restrict: 'A',
+
+                require: 'ngModel',
+
+                link: function(scope, elm, attrs, ctrl) {
+                    applyValidator(CNPJ, "cnpj", ctrl);
+                }
+
+            };
+        });
+    }
 
 })(this);

@@ -119,6 +119,16 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
                         });
                         if ($routeParams.home)
                         {
+                            $alert({
+                                title: 'MENSAGEM: ',
+                                content: 'Faça o seu login para acessar o seu cadastro',
+                                container: '#alerts-container',
+                                placement: 'top-right',
+                                duration: 4,
+                                type: 'info',
+                                show: true
+                            });
+
                             $location.path('/');
                         } else {
                             if ($scope.form.flAssociado) {

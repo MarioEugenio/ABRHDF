@@ -230,7 +230,7 @@ class Contato extends Entity
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtoupper($email);
 
         return $this;
     }
@@ -253,7 +253,7 @@ class Contato extends Entity
      */
     public function setEndereco($value)
     {
-        $this->endereco = $value;
+        $this->endereco = strtoupper($value);
 
         return $this;
     }
@@ -276,7 +276,7 @@ class Contato extends Entity
      */
     public function setBairro($value)
     {
-        $this->bairro = $value;
+        $this->bairro = strtoupper($value);
 
         return $this;
     }
@@ -299,7 +299,7 @@ class Contato extends Entity
      */
     public function setComplemento($value)
     {
-        $this->complemento = $value;
+        $this->complemento = strtoupper($value);
 
         return $this;
     }

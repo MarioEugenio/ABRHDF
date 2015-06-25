@@ -92,7 +92,7 @@ class Complemento extends Entity
      */
     public function setProfissao($profissao)
     {
-        $this->profissao = $profissao;
+        $this->profissao = strtoupper($profissao);
 
         return $this;
     }
@@ -115,7 +115,7 @@ class Complemento extends Entity
      */
     public function setCargo($cargo)
     {
-        $this->cargo = $cargo;
+        $this->cargo = strtoupper($cargo);
 
         return $this;
     }
@@ -138,7 +138,7 @@ class Complemento extends Entity
      */
     public function setGrauInstrucao($value)
     {
-        $this->grauInstrucao = $value;
+        $this->grauInstrucao = strtoupper($value);
 
         return $this;
     }
@@ -161,7 +161,7 @@ class Complemento extends Entity
      */
     public function setEstadoCivil($value)
     {
-        $this->estadoCivil = $value;
+        $this->estadoCivil = strtoupper($value);
 
         return $this;
     }
