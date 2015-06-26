@@ -97,7 +97,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
-        if ($scope.formCad.$valid) {
+        if (!$('#cnpj').hasClass('ng-invalid-cnpj')) {
             $http.post(
                 Routing.generate('user_save_juridico')
                 , {form: form, contato: contato, complemento: complemento, empresa: empresa})

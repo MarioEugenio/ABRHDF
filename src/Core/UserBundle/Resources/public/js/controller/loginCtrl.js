@@ -121,7 +121,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        if ($scope.formCadFisica.$valid) {
+        if (!$('#cpf').hasClass('ng-invalid-cpf')) {
             $http.post(
                 Routing.generate('user_save')
                 , {form: form, contato: contato, complemento: complemento})
@@ -170,7 +170,7 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
 
-        if ($scope.formCadJurico.$valid) {
+        if (!$('#cnpj').hasClass('ng-invalid-cnpj')) {
         $http.post(
             Routing.generate('user_save_juridico')
             , {form: form , contato: contato, complemento: complemento, empresa: empresa})

@@ -18,7 +18,7 @@
 
     <div class="form-group col-lg-4 col-md-6">
         <label for="exampleInputEmail1">CPF</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="form.cpf" ng-cpf name="cpf" ui-mask="'999.999.999-99'" required>
+        <input type="text" id="cpf" class="form-control" maxlength="255" ng-model="form.cpf" ng-cpf name="cpf" ui-mask="'999.999.999-99'" required>
     </div>
 
     <div class="form-group col-lg-12 col-md-6">
@@ -32,7 +32,7 @@
     <div class="form-group col-lg-3 col-md-6">
         <label for="exampleInputEmail1">Data de Nascimento</label>
         <p class="input-group">
-            <input id="dtNascimento" type="date" class="form-control" ng-model="form.dtNascimento" is-open="opened" datepicker-popup="dd/mm/yyyy" ng-required="true" close-text="Fechar" />
+            <input id="dtNascimento" type="date" class="form-control" ng-model="form.dtNascimento" maxlength="8" is-open="opened" datepicker-popup="dd/mm/yyyy" max="dt"  ng-required="true" close-text="Fechar" />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -74,22 +74,22 @@
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Residencial</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.telefone" ui-mask="'(99)9999-9999'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.telefone" ui-mask="'(999)99999-999?9'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Celular</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.celular" ui-mask="'(99)9999-9999'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.celular" ui-mask="'(999)99999-999?9'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Comercial</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.comercial" ui-mask="'(99)9999-9999'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.comercial" ui-mask="'(999)99999-999?9'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Numero do FAX</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax" ui-mask="'(99)9999-9999'">
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax" ui-mask="'(999)99999-999?9'">
     </div>
 
     <div class="form-group col-lg-8 col-md-6">

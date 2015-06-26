@@ -304,7 +304,7 @@ class UserActions
                 'email' => $user->getEmail(),
                 'dtNascimento' => $date,
                 'sexo' => $user->getSexo(),
-                'rg' => (int) $user->getRg(),
+                'rg' => $user->getRg(),
                 'emissor' => $user->getEmissor(),
                 'senha' => $user->getSenha(),
                 'flAssociado' => $user->getFlAssociado()

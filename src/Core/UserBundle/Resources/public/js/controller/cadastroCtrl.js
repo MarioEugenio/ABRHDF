@@ -7,6 +7,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         { id: 1, texto: 'Anuidade contempla o recebimento mensal da Revista Melhor', valor: '200.00' },
         { id: 2, texto: 'Anuidade não contempla o recebimento mensal da Revista Melhor', valor: '160.00' }
     ];
+    $scope.dt = new Date();
 
     $scope.form = {
         flAssociado:false
@@ -102,7 +103,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        if ($scope.formCad.$valid) {
+        if (!$('#cpf').hasClass('ng-invalid-cpf')) {
             $http.post(
                 Routing.generate('user_save')
                 , {form: form, contato: contato, complemento: complemento})
