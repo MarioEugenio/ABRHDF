@@ -1,9 +1,16 @@
 app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
 
     $scope.list = [];
-    $scope.page = 0;
+    $scope.page = 1;
+    $scope.searchText = '';
+    $scope.maxSize = 7;
+    $scope.itemsPerPage = 20;
 
     $scope.init = function () {
+        $scope.listar();
+    };
+
+    $scope.setPage = function () {
         $scope.listar();
     };
 
@@ -28,7 +35,7 @@ app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
     };
 
     $scope.buscar = function () {
-        $scope.page = 0;
+        $scope.page = 1;
         $scope.listar();
     };
 
@@ -38,6 +45,8 @@ app.controller('UserListaJuridicoCtrl', function ($scope, $http, $alert) {
             .success(function (data) {
                 if (data.success) {
                     $scope.list = data.data;
+                    $scope.totalItems = $scope.list.items.length;
+                    $scope.bigTotalItems = $scope.list.count;
                     return;
                 }
 

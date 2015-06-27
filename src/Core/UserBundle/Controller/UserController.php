@@ -193,7 +193,8 @@ class UserController extends BaseController
     public function listarAction()
     {
         try {
-            $objData = json_decode($this->getRequest()->getContent(), true);
+            $objData['page'] = $this->getRequest()->query->get('page', 0);
+            $objData['searchText'] = $this->getRequest()->query->get('searchText', null);
             /** @var UserActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
             $tipoPessoa = $service->getTipoPessoa("Pessoa Fisica");
@@ -220,7 +221,8 @@ class UserController extends BaseController
     public function listarJuridicoAction()
     {
         try {
-            $objData = json_decode($this->getRequest()->getContent(), true);
+            $objData['page'] = $this->getRequest()->query->get('page', 0);
+            $objData['searchText'] = $this->getRequest()->query->get('searchText', null);
             /** @var UserActions $service */
             $service = $this->get('CoreUserBundle.UserActions');
             $tipoPessoa = $service->getTipoPessoa("Pessoa Jurídica");

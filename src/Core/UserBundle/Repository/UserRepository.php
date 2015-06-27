@@ -37,12 +37,13 @@ class UserRepository extends EntityRepository
             ->andWhere('u.flActive = true')
             ->setParameter('tipoUser', $tipoPessoa);
 
-        if (isset($params['searchText'])){
-            $qb->andWhere('LOWER(u.nome) LIKE :nome )');
+        if (isset($params['searchText']) && $params['searchText']){
+            $qb->andWhere('LOWER(u.nome) LIKE :nome ');
             $qb->setParameter('nome', "%" . mb_strtolower($params['searchText'], 'UTF-8') . "%");
         }
 
-        $page = 0;
+        $page = 1;
+
         if (isset($params['page']))
         {
             $page = $params['page'];
@@ -59,10 +60,10 @@ class UserRepository extends EntityRepository
      *
      * @return Paginator
      */
-    protected function paginate(QueryBuilder $qb, $offset = 0, $maxResult = 20, $fetchJoinCollection = true)
+    protected function paginate(QueryBuilder $qb, $offset = 1, $maxResult = 20, $fetchJoinCollection = true)
     {
         $qb->setMaxResults($maxResult);
-        $qb->setFirstResult($offset);
+        $qb->setFirstResult(($offset - 1) * $maxResult);
         $query = $qb->getQuery();
 
         return new Paginator($query, $fetchJoinCollection);
