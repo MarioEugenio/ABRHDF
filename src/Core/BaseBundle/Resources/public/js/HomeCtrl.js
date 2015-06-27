@@ -8,7 +8,7 @@ app.controller('HomeCtrl', function ($scope, $http, $modal, currentUser, $alert)
         if (response.data.tipoUsuario == 1) {
             $scope.urlPerfil = "#/user/" + id + "/edit/"+1;
         } else {
-            $scope.urlPerfil = "#/user/" + id + "/juridico/"+1;
+            $scope.urlPerfil = "#/user/" + id + "/edit/juridico/"+1;
         }
     });
 

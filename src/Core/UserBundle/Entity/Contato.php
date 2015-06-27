@@ -51,6 +51,13 @@ class Contato extends Entity
     private $celular;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="operadora", type="string", length=255, nullable=true)
+     */
+    private $operadora;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -220,6 +227,29 @@ class Contato extends Entity
     public function getCelular()
     {
         return $this->celular;
+    }
+
+    /**
+     * Set
+     *
+     * @param string $value
+     * @return User
+     */
+    public function setOperadora($value)
+    {
+        $this->operadora = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get
+     *
+     * @return string
+     */
+    public function getOperadora()
+    {
+        return $this->operadora;
     }
 
     /**

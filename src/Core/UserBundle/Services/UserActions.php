@@ -318,6 +318,7 @@ class UserActions
                     'telefone' => $contato->getTelefone(),
                     'celular' => $contato->getCelular(),
                     'comercial' => $contato->getComercial(),
+                    'operadora' => $contato->getOperadora(),
                     'fax' => (int) $contato->getFax(),
                     'endereco' => $contato->getEndereco(),
                     'bairro' => $contato->getBairro(),

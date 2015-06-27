@@ -74,22 +74,28 @@
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Residencial</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.telefone" ui-mask="'(999)99999-999?9'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.telefone" ui-mask="'(999)9999-9999'" required>
     </div>
 
-    <div class="form-group col-lg-6 col-md-6">
+    <div class="form-group col-lg-3 col-md-3">
         <label for="exampleInputEmail1">Telefone Celular</label>
         <input type="text" class="form-control" maxlength="255" ng-model="contato.celular" ui-mask="'(999)99999-999?9'" required>
     </div>
-
+    <div class="form-group  col-lg-3 col-md-3">
+        <label for="exampleInputEmail1">Operadora</label>
+        <select class="form-control" ng-model="contato.operadora" required>
+            <option value="">Selecione</option>
+            <option ng-repeat="operadora in listOperadoras" value="{[{ operadora.id }]}" ng-selected="contato.operadora == operadora.id">{[{ operadora.texto }]}</option>
+        </select>
+    </div>
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Telefone Comercial</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.comercial" ui-mask="'(999)99999-999?9'" required>
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.comercial" ui-mask="'(999)9999-9999'" required>
     </div>
 
     <div class="form-group col-lg-6 col-md-6">
         <label for="exampleInputEmail1">Numero do FAX</label>
-        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax" ui-mask="'(999)99999-999?9'">
+        <input type="text" class="form-control" maxlength="255" ng-model="contato.fax" ui-mask="'(999)9999-9999'">
     </div>
 
     <div class="form-group col-lg-8 col-md-6">

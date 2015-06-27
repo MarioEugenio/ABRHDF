@@ -7,6 +7,17 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         { id: 1, texto: 'Anuidade contempla o recebimento mensal da Revista Melhor', valor: '200.00' },
         { id: 2, texto: 'Anuidade não contempla o recebimento mensal da Revista Melhor', valor: '160.00' }
     ];
+
+    $scope.listOperadoras = [
+        { id: 'T', texto: 'TIM' },
+        { id: 'C', texto: 'Claro' },
+        { id: 'CT', texto: 'CTBC Telecom' },
+        { id: 'O', texto: 'Oi' },
+        { id: 'P', texto: 'Porto Seguro Conecta' },
+        { id: 'V', texto: 'Vivo' },
+        { id: 'S', texto: 'Sercomtel' },
+        { id: 'N', texto: 'Nextel' }
+    ];
     $scope.dt = new Date();
 
     $scope.form = {

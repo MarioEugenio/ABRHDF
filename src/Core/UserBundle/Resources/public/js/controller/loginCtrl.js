@@ -19,6 +19,16 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
 
     $scope.estados = [];
     $scope.cidades = [];
+    $scope.listOperadoras = [
+        { id: 'T', texto: 'TIM' },
+        { id: 'C', texto: 'Claro' },
+        { id: 'CT', texto: 'CTBC Telecom' },
+        { id: 'O', texto: 'Oi' },
+        { id: 'P', texto: 'Porto Seguro Conecta' },
+        { id: 'V', texto: 'Vivo' },
+        { id: 'S', texto: 'Sercomtel' },
+        { id: 'N', texto: 'Nextel' }
+    ];
 
     $scope.getEstados = function () {
         $http.post(
@@ -170,7 +180,13 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
 
-        if (!$('#cnpj').hasClass('ng-invalid-cnpj')) {
+        var valid = false;
+
+        if ($scope.empresa.cnpj == '00000000000000'){
+            valid = true;
+        }
+
+        if (!$('#cnpj').hasClass('ng-invalid-cnpj') && !valid) {
         $http.post(
             Routing.generate('user_save_juridico')
             , {form: form , contato: contato, complemento: complemento, empresa: empresa})

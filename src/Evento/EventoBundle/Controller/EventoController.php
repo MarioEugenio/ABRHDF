@@ -124,9 +124,8 @@ class EventoController extends BaseController
         } catch (Exception $ex) {
             return $this->createJsonResponse(array(
                 'success' => false,
-                'message' => $ex->getMessage(),
-                'trace' => $ex->getTrace()
-            ), 404);
+                'message' => $ex->getMessage()
+            ));
         }
     }
 
