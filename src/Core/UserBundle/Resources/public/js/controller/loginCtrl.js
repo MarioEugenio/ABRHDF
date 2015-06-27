@@ -139,11 +139,11 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
 
                     $alert({
                         title: 'MENSAGEM: ',
-                        content: response.message,
+                        content: 'Faça o seu login para acessar o seu cadastro.',
                         container: '#alerts-container',
                         placement: 'top-right',
                         duration: 4,
-                        type: 'info',
+                        type: 'success',
                         show: true
                     });
 
@@ -174,13 +174,12 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
             valid = true;
         }
 
-        if (!$('#cnpj').hasClass('ng-invalid-cnpj') && !valid) {
+        if (!$('#cnpj').hasClass('ng-invalid-cnpj')) {
         $http.post(
             Routing.generate('user_save_juridico')
             , {form: form , contato: contato, complemento: complemento, empresa: empresa})
             .success(function (response) {
-
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
+                $alert({title: 'MENSAGEM: ', content: 'Faça o seu login para acessar o seu cadastro.', container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
 
             });
         } else {
