@@ -48,6 +48,9 @@ class UserRepository extends EntityRepository
         {
             $page = $params['page'];
         }
+        if ($page == 0){
+            $page = 1;
+        }
         return $this->paginate($qb, $page);
     }
 
