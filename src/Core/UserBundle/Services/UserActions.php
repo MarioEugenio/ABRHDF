@@ -304,7 +304,7 @@ class UserActions
                 'email' => $user->getEmail(),
                 'dtNascimento' => $date,
                 'sexo' => $user->getSexo(),
-                'rg' => (int) $user->getRg(),
+                'rg' => $user->getRg(),
                 'emissor' => $user->getEmissor(),
                 'senha' => $user->getSenha(),
                 'flAssociado' => $user->getFlAssociado()
@@ -318,6 +318,7 @@ class UserActions
                     'telefone' => $contato->getTelefone(),
                     'celular' => $contato->getCelular(),
                     'comercial' => $contato->getComercial(),
+                    'operadora' => $contato->getOperadora(),
                     'fax' => (int) $contato->getFax(),
                     'endereco' => $contato->getEndereco(),
                     'bairro' => $contato->getBairro(),

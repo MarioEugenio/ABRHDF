@@ -1,4 +1,4 @@
-var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney', 'ui.mask', 'ui.date', 'frapontillo.bootstrap-switch','ngCpfCnpj'])
+var app = angular.module('COLIH', ['ngRoute', 'mgcrea.ngStrap', 'maskMoney', 'ui.mask', 'ui.date', 'frapontillo.bootstrap-switch','ngCpfCnpj', 'ui.bootstrap.pagination'])
     .run(['$rootScope',
         function($scope) {
 

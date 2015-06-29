@@ -19,6 +19,16 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
 
     $scope.estados = [];
     $scope.cidades = [];
+    $scope.listOperadoras = [
+        { id: 'T', texto: 'TIM' },
+        { id: 'C', texto: 'Claro' },
+        { id: 'CT', texto: 'CTBC Telecom' },
+        { id: 'O', texto: 'Oi' },
+        { id: 'P', texto: 'Porto Seguro Conecta' },
+        { id: 'V', texto: 'Vivo' },
+        { id: 'S', texto: 'Sercomtel' },
+        { id: 'N', texto: 'Nextel' }
+    ];
 
     $scope.getEstados = function () {
         $http.post(
@@ -121,31 +131,19 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        if ($scope.formCadFisica.$valid) {
+        if (!$('#cpf').hasClass('ng-invalid-cpf')) {
             $http.post(
                 Routing.generate('user_save')
                 , {form: form, contato: contato, complemento: complemento})
                 .success(function (response) {
-                    if (response.success) {
-                        $alert({
-                            title: 'MENSAGEM: ',
-                            content: response.message,
-                            container: '#alerts-container',
-                            placement: 'top-right',
-                            duration: 4,
-                            type: 'success',
-                            show: true
-                        });
-                        $scope.init();
-                    }
 
                     $alert({
                         title: 'MENSAGEM: ',
-                        content: response.message,
+                        content: 'Faça o seu login para acessar o seu cadastro.',
                         container: '#alerts-container',
                         placement: 'top-right',
                         duration: 4,
-                        type: 'info',
+                        type: 'success',
                         show: true
                     });
 
@@ -170,19 +168,18 @@ app.controller('LoginCtrl', function ($scope, $http, $alert) {
         var complemento = angular.copy($scope.complemento);
         var empresa = angular.copy($scope.empresa);
 
-        if ($scope.formCadJurico.$valid) {
+        var valid = false;
+
+        if ($scope.empresa.cnpj == '00000000000000'){
+            valid = true;
+        }
+
+        if (!$('#cnpj').hasClass('ng-invalid-cnpj')) {
         $http.post(
             Routing.generate('user_save_juridico')
             , {form: form , contato: contato, complemento: complemento, empresa: empresa})
             .success(function (response) {
-                if (response.success) {
-                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
-
-                    $scope.init();
-                    return;
-                }
-
-                $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'info', show: true});
+                $alert({title: 'MENSAGEM: ', content: 'Faça o seu login para acessar o seu cadastro.', container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
 
             });
         } else {

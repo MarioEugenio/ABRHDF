@@ -8,6 +8,18 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         { id: 2, texto: 'Anuidade não contempla o recebimento mensal da Revista Melhor', valor: '160.00' }
     ];
 
+    $scope.listOperadoras = [
+        { id: 'T', texto: 'TIM' },
+        { id: 'C', texto: 'Claro' },
+        { id: 'CT', texto: 'CTBC Telecom' },
+        { id: 'O', texto: 'Oi' },
+        { id: 'P', texto: 'Porto Seguro Conecta' },
+        { id: 'V', texto: 'Vivo' },
+        { id: 'S', texto: 'Sercomtel' },
+        { id: 'N', texto: 'Nextel' }
+    ];
+    $scope.dt = new Date();
+
     $scope.form = {
         flAssociado:false
     };
@@ -102,7 +114,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
         var form = angular.copy($scope.form);
         var contato = angular.copy($scope.contato);
         var complemento = angular.copy($scope.complemento);
-        if ($scope.formCad.$valid) {
+        if (!$('#cpf').hasClass('ng-invalid-cpf')) {
             $http.post(
                 Routing.generate('user_save')
                 , {form: form, contato: contato, complemento: complemento})
