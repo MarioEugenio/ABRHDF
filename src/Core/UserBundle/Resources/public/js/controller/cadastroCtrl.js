@@ -40,7 +40,7 @@ app.controller('UserCadastroCtrl', function ($scope, $http, $location, $routePar
     }
 
     $scope.checkAssociacao = function () {
-        if ($scope.editar) {
+        if ($scope.editar && (!$scope.form.flAssociado)) {
             return true;
         }
 

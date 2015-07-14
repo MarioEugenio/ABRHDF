@@ -31,6 +31,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
+                        <th>Sócio</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -42,6 +43,7 @@
                     <tr ng-show="list.items.length > 0" ng-repeat="item in list.items">
                         <td>{[{ item.nome }]}</td>
                         <td>{[{ item.email }]}</td>
+                        <td><a class="btn btn-default"><span class="{[{ associado(item) }]}"></span></a></td>
                         <td style="width: 150px">
                             <a href="#/user/{[{ item.id }]}/dependentes" class="btn btn-default" ng-show="item.flAssociado"><span class="glyphicon glyphicon-user"></span></a>
                             <a href="#/user/{[{ item.id }]}/edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>

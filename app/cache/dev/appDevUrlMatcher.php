@@ -148,6 +148,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::pagamentoAction',  '_route' => 'financeiro_pagamento',);
             }
 
+            // financeiro_desconto
+            if ($pathinfo === '/financeiro/desconto') {
+                return array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::checkDesconto',  '_route' => 'financeiro_desconto',);
+            }
+
             // financeiro_edit
             if (preg_match('#^/financeiro/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'financeiro_edit')), array (  '_controller' => 'Core\\FinanceiroBundle\\Controller\\FinanceiroController::editAction',));

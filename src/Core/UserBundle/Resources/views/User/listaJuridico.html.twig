@@ -31,6 +31,7 @@
                     <tr>
                         <th>CNPJ</th>
                         <th>Nome Fantasia</th>
+                        <th>Sócio</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -42,6 +43,7 @@
                     <tr ng-show="list.items.length > 0" ng-repeat="item in list.items ">
                         <td>{[{ item.cnpj }]}</td>
                         <td>{[{ item.nomeFantasia }]}</td>
+                        <td><a class="btn btn-default"><span class="{[{ associado(item) }]}"></span></a></td>
                         <td style="width: 150px">
                             <a href="#/user/{[{ item.id }]}/representantes" class="btn btn-default"  ng-show="item.flAssociado"><span class="glyphicon glyphicon-user"></span></a>
                             <a href="#/user/{[{ item.id }]}/edit/juridico" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>

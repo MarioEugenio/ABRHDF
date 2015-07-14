@@ -15,6 +15,14 @@ app.controller('UserListaCtrl', function ($scope, $http, $alert) {
         $scope.listar();
     };
 
+    $scope.associado = function (item) {
+        if (item.flAssociado) {
+            return "glyphicon glyphicon-ok";
+        }
+
+        return "glyphicon glyphicon-remove";
+    }
+
     $scope.remove = function(index, id) {
         var conf = confirm('Tem certeza que deseja excluir o registro?');
 

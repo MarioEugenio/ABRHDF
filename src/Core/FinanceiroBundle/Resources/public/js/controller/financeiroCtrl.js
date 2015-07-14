@@ -3,6 +3,8 @@ app.controller('FinanceiroCtrl', function ($scope, $http, $routeParams, $alert) 
     $scope.list = [];
     $scope.financeiro = {};
     $scope.cartao = {};
+    $scope.codigo = "";
+    $scope.evento = 0;
     $scope.templates = [
         { name: 'pagamento', title: "Pagamento online / TEF", url:  baseUrl + '/financeiro/pagamento' },
         { name: 'boleto', title: "Boleto", url:  baseUrl + '/financeiro/boleto' }
@@ -13,6 +15,19 @@ app.controller('FinanceiroCtrl', function ($scope, $http, $routeParams, $alert) 
         if (id) {
             $scope.edit(id);
         }
+    }
+
+    $scope.checarCodigo = function () {
+        $http.post(
+                Routing.generate('financeiro_desconto'),
+            { codigo: $scope.codigo, evento: $scope.financeiro.evento.id })
+            .success(function (response) {
+                if (response.success) {
+
+                } else {
+                    $alert({title: 'MENSAGEM: ', content: response.message, container: '#alerts-container', placement: 'top-right', duration: 4, type: 'success', show: true});
+                }
+            });
     }
 
     $scope.edit = function (id) {

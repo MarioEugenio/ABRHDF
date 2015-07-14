@@ -17,7 +17,7 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
     {
         // line 1
         echo "<form ng-controller=\"EventoCadastroCtrl\" ng-init=\"init()\" ng-submit=\"save()\">
-    <h2>Cadastro de Evento<br> <small>Todos os campos deste formuário são obrigatórios</small></h2>
+    <h2>Cadastro de Evento<br> <small>Os campos macados com (*) deste formuário são obrigatórios</small></h2>
     <hr>
 
     <ol class=\"breadcrumb\">
@@ -34,21 +34,21 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
             </div>
 
             <div class=\"form-group\">
-                <label for=\"exampleInputEmail1\">Título</label>
+                <label for=\"exampleInputEmail1\">* Título</label>
                 <input type=\"text\" class=\"form-control\" maxlength=\"255\" ng-model=\"form.titulo\" placeholder=\"Digite o título do evento\" required>
             </div>
 
             <div class=\"form-group\">
-                <label for=\"exampleInputEmail1\">Descrição</label>
+                <label for=\"exampleInputEmail1\">* Descrição</label>
                 <textarea rows=\"20\" class=\"form-control\" ng-maxlength=\"2000\" ng-model=\"form.descricao\" placeholder=\"Digite a descrição do evento\" required></textarea>
             </div>
 
             <div class=\"row\">
 
-                <div class=\"form-group col-md-3\" ng-class=\"{'has-error': form.inscricaoInicio.\$invalid}\">
+                <div class=\"form-group col-md-3\">
                     <label >Início das Inscrições</label>
                     <p class=\"input-group\">
-                        <input type=\"date\" class=\"form-control\" ng-model=\"form.inscricaoInicio\" is-open=\"opened\" datepicker-options=\"dateOptions\" datepicker-popup=\"{[{ format }]}\" ng-required=\"true\" close-text=\"Fechar\" />
+                        <input type=\"date\" class=\"form-control\" ng-model=\"form.inscricaoInicio\" is-open=\"opened\" datepicker-options=\"dateOptions\" datepicker-popup=\"{[{ format }]}\" close-text=\"Fechar\" />
                         <span class=\"input-group-btn\">
                             <button type=\"button\" class=\"btn btn-default\" ng-click=\"open(\$event)\"><i class=\"glyphicon glyphicon-calendar\"></i></button>
                         </span>
@@ -58,7 +58,7 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
                 <div class=\"form-group col-md-3\" ng-class=\"{'has-error': form.inscricaoFim.\$invalid}\">
                     <label >Fim das Inscrições</label>
                     <p class=\"input-group\">
-                        <input type=\"date\" class=\"form-control\" ng-model=\"form.inscricaoFim\" datepicker-options=\"dateOptions\" is-open=\"opened\" datepicker-popup=\"{[{ format }]}\" ng-required=\"true\" close-text=\"Fechar\" />
+                        <input type=\"date\" class=\"form-control\" ng-model=\"form.inscricaoFim\" datepicker-options=\"dateOptions\" is-open=\"opened\" datepicker-popup=\"{[{ format }]}\" close-text=\"Fechar\" />
                         <span class=\"input-group-btn\">
                             <button type=\"button\" class=\"btn btn-default\" ng-click=\"open(\$event)\"><i class=\"glyphicon glyphicon-calendar\"></i></button>
                         </span>
@@ -70,7 +70,7 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
             <div class=\"row\">
 
                 <div class=\"form-group col-md-3\" ng-class=\"{'has-error': form.dataInicio.\$invalid}\">
-                    <label >Início do Evento</label>
+                    <label >* Início do Evento</label>
                     <p class=\"input-group\">
                         <input type=\"date\" class=\"form-control\"  ng-model=\"form.dataInicio\" is-open=\"opened\" datepicker-options=\"dateOptions\" datepicker-popup=\"{[{ format }]}\" ng-required=\"true\" close-text=\"Fechar\" />
                         <span class=\"input-group-btn\">
@@ -80,7 +80,7 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
                 </div>
 
                 <div class=\"form-group col-md-3\" ng-class=\"{'has-error': form.dataFim.\$invalid}\">
-                    <label >Fim do Evento</label>
+                    <label >* Fim do Evento</label>
                     <p class=\"input-group\">
                         <input type=\"date\" class=\"form-control\" ng-model=\"form.dataFim\" is-open=\"opened\" datepicker-options=\"dateOptions\" datepicker-popup=\"{[{ format }]}\" ng-required=\"true\" close-text=\"Fechar\" />
                         <span class=\"input-group-btn\">
@@ -92,14 +92,14 @@ class __TwigTemplate_1ac2029617ae8f90d5f1034020c45aebe39a8cf252c227eebf48b284844
             </div>
 
             <div class=\"form-group\">
-                <label for=\"exampleInputEmail1\">Local</label>
+                <label for=\"exampleInputEmail1\">* Local</label>
                 <input type=\"text\" class=\"form-control\" maxlength=\"2000\" ng-model=\"form.local\" placeholder=\"Digite o local do evento\" required>
             </div>
 
             <div class=\"row\">
                 <div class=\"form-group col-md-2\">
                     <label ><i class=\"fa fa-clock-o\"></i> Carga horária (H)</label>
-                    <input type=\"number\" maxlength=\"10\" class=\"form-control\" ng-model=\"form.cargaHoraria\" placeholder=\"Digite a carga horária\" required>
+                    <input type=\"number\" maxlength=\"10\" class=\"form-control\" ng-model=\"form.cargaHoraria\" placeholder=\"Digite a carga horária\">
                 </div>
             </div>
 

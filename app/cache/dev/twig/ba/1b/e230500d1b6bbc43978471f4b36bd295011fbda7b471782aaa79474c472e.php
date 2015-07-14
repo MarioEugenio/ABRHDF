@@ -167,8 +167,7 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
             <i class=\"fa fa-user fa-fw\"></i> {[{ currentUser.nome }]} <i class=\"fa fa-caret-down\"></i>
         </a>
         <ul class=\"dropdown-menu dropdown-user\">
-            <li><a href=\"{[{ urlPerfil }]}\"><i class=\"fa fa-user fa-fw\"></i> Perfil</a>
-            </li>
+
             <li><a ng-click=\"alterarSenha()\" style=\"cursor:pointer;\"><i class=\"fa fa-user fa-fw\"></i> Alterar Senha</a>
             </li>
             <li class=\"divider\"></li>
@@ -199,6 +198,8 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
                 <li>
                     <a href=\"#/\"><i class=\"fa fa-dashboard fa-fw\"></i> Dashboard</a>
                 </li>
+                <li><a href=\"{[{ urlPerfil }]}\"><i class=\"glyphicon glyphicon-cog\"></i> Perfil</a>
+                </li>
                 <li ng-show=\"currentUser.flAdmin\">
                     <a href=\"#\"><i class=\"fa fa-calendar-o fa-fw\"></i> Evento<span class=\"fa arrow\"></span></a>
                     <ul class=\"nav nav-second-level\">
@@ -228,6 +229,9 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
                     <a  ng-show=\"currentUser.tipoUsuario == 2\" href=\"#/user/{[{ currentUser.id }]}/representantes/1\"><i class=\"fa fa-user fa-fw\"></i> Lista de Representantes</a>
                     <!-- /.nav-second-level -->
                 </li>
+                <li ng-show=\"currentUser.associado\">
+                    <a href=\"#/\" ng-click=\"associado = true\"><i class=\"fa fa-info fa-fw\"></i> Como está minha anuidade</a>
+                </li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
@@ -238,7 +242,7 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
     <div id=\"page-wrapper\" style=\"overflow: scroll\">
         <!-- Modal Alterar Senhas -->
 
-        <div class=\"modal fade in\" id=\"myModal\" role=\"dialog\" aria-labelledby=\"myModalLabel\" ng-show=\"alter\" style=\"display: block\">
+        <div class=\"modal fade in ng-cloak\"  ng-cloak id=\"myModal\" role=\"dialog\" aria-labelledby=\"myModalLabel\" ng-show=\"alter\" style=\"display: block\">
             <div class=\"modal-dialog\" role=\"document\">
                 <div class=\"modal-content\">
                     <div class=\"modal-header\">
@@ -268,6 +272,31 @@ class __TwigTemplate_ba1be230500d1b6bbc43978471f4b36bd295011fbda7b471782aaa79474
                     <div class=\"modal-footer \">
                         <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"close()\">Cancelar</button>
                         <button type=\"button\" class=\"btn btn-primary\" ng-click=\"altSenha()\">Alterar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=\"modal fade in ng-cloak\"  ng-cloak role=\"dialog\" aria-labelledby=\"associado\" ng-show=\"associado\" style=\"display: block\">
+            <div class=\"modal-dialog\" role=\"document\">
+                <div class=\"modal-content\">
+                    <div class=\"modal-header\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"  ng-click=\"closeAssociado()\"><span aria-hidden=\"true\">&times;</span></button>
+                        <h4 class=\"modal-title\">Como está minha anuidade</h4>
+                    </div>
+                    <div class=\"clear-fix\">
+                        <div class=\"modal-body\">
+                            <div class=\"row\">
+                                <div class=\"col-xs-12 col-md-4\"><h3>ASSOCIADO</h3></div>
+                                <div class=\"col-xs-12 col-md-8\"><h3>Vencimento: {[{ formatarData(currentUser.dtAssociado) }]}</h3></div>
+                            </div>
+                            <div class=\"row\">
+                                <div class=\"col-xs-12 col-md-12\"><h4>Situação do Associado:</h4> {[{ pagamento(currentUser.flPagamento) }]}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"modal-footer \">
+                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"closeAssociado()\">Cancelar</button>
                     </div>
                 </div>
             </div>

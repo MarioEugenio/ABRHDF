@@ -87,7 +87,7 @@ angular.module('ui.bootstrap.pagination', [])
             },
             require: ['pagination', '?ngModel'],
             controller: 'PaginationController',
-            templateUrl: '/ABRHDF/web/bundles/corebase/js/external/angular/template/pagination/pagination.html',
+            templateUrl: '/web/bundles/corebase/js/external/angular/template/pagination/pagination.html',
             replace: true,
             link: function(scope, element, attrs, ctrls) {
                 var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
@@ -198,7 +198,7 @@ angular.module('ui.bootstrap.pagination', [])
             },
             require: ['pager', '?ngModel'],
             controller: 'PaginationController',
-            templateUrl: '/ABRHDF/web/bundles/corebase/js/external/angular/template/pagination/pager.html',
+            templateUrl: '/web/bundles/corebase/js/external/angular/template/pagination/pager.html',
             replace: true,
             link: function(scope, element, attrs, ctrls) {
                 var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];

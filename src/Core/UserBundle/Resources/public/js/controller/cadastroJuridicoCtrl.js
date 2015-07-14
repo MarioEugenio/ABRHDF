@@ -79,7 +79,7 @@ app.controller('UserCadastroJuridicoCtrl', function ($scope, $http, $location, $
     }
 
     $scope.checkAssociacao = function () {
-        if (($scope.editar)) {
+        if (($scope.editar) && (!$scope.form.flAssociado)) {
             return true;
         }
 

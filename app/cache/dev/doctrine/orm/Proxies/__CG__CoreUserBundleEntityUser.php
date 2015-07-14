@@ -64,10 +64,10 @@ class User extends \Core\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAdmin', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAssociado', 'descontoPessoaJuridica', 'descontoPessoaFisica');
+            return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAdmin', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAssociado', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtVencimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flPagamento', 'descontoPessoaJuridica', 'descontoPessoaFisica');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAdmin', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAssociado', 'descontoPessoaJuridica', 'descontoPessoaFisica');
+        return array('__isInitialized__', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'senha', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'cpf', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtNascimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'sexo', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'rg', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'emissor', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtCadastro', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'tipoUser', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flActive', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAdmin', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flAssociado', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'dtVencimento', '' . "\0" . 'Core\\UserBundle\\Entity\\User' . "\0" . 'flPagamento', 'descontoPessoaJuridica', 'descontoPessoaFisica');
     }
 
     /**
@@ -527,6 +527,50 @@ class User extends \Core\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFlAssociado', array());
 
         return parent::getFlAssociado();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDtVencimento($dtVencimento)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDtVencimento', array($dtVencimento));
+
+        return parent::setDtVencimento($dtVencimento);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDtVencimento()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDtVencimento', array());
+
+        return parent::getDtVencimento();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFlPagamento($flPagamento)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFlPagamento', array($flPagamento));
+
+        return parent::setFlPagamento($flPagamento);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFlPagamento()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFlPagamento', array());
+
+        return parent::getFlPagamento();
     }
 
     /**

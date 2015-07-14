@@ -118,6 +118,20 @@ class User extends Entity
     private $flAssociado;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="dtVencimento", type="datetime", nullable=true)
+     */
+    private $dtVencimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flPagamento", type="boolean", nullable=true)
+     */
+    private $flPagamento;
+
+    /**
      * @ORM\OneToMany(targetEntity="Evento\EventoBundle\Entity\Desconto", mappedBy="pessoaJuridica")
      */
     protected $descontoPessoaJuridica;
@@ -462,5 +476,37 @@ class User extends Entity
     public function getFlAssociado()
     {
         return $this->flAssociado;
+    }
+
+    /**
+     * @param string $dtVencimento
+     */
+    public function setDtVencimento($dtVencimento)
+    {
+        $this->dtVencimento = $dtVencimento;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDtVencimento()
+    {
+        return $this->dtVencimento;
+    }
+
+    /**
+     * @param string $flPagamento
+     */
+    public function setFlPagamento($flPagamento)
+    {
+        $this->flPagamento = $flPagamento;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlPagamento()
+    {
+        return $this->flPagamento;
     }
 }

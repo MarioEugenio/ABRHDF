@@ -4,6 +4,9 @@ namespace Core\FinanceiroBundle\Controller;
 
 use Core\BaseBundle\Controller\BaseController;
 use Core\FinanceiroBundle\Entity\Financeiro;
+use Core\UserBundle\Services\UserActions;
+use Evento\EventoBundle\Services\DescontoActions;
+use Evento\EventoBundle\Services\EventoActions;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -44,6 +47,53 @@ class FinanceiroController extends BaseController
     public function pagamentoAction()
     {
         return array();
+    }
+
+    /**
+     * @Route("/financeiro/desconto", name="financeiro_desconto", options={"expose"=true})
+     */
+    public function checkDesconto()
+    {
+        try {
+            $request = $this->getRequest();
+            $user = $request->getSession()->get('user');
+            $objData = json_decode($request->getContent(), true);
+
+            /** @var EventoActions $serviceEvento */
+            $serviceEvento = $this->get('EventoEventoBundle.EventoActions');
+
+            /** @var DescontoActions $service */
+            $service = $this->get('EventoEventoBundle.DescontoActions');
+
+            /** @var UserActions $serviceUser */
+            $serviceUser = $this->get('CoreUserBundle.UserActions');
+
+            $find = array();
+
+            if ($user['tipoUsuario'] == 1)  {
+                $find['pessoaFisica'] = $serviceUser->find($user['id']);
+            }
+
+            if ($user['tipoUsuario'] == 2) {
+                $find['pessoaJuridica'] = $serviceUser->find($user['id']);
+            }
+
+            $find['codigoDesconto'] = $serviceUser->find($objData['codigo']);
+            $find['evento'] = $serviceEvento->find($objData['evento']);
+
+            $resources = $service->findBy($find);
+
+            return $this->createJsonResponse(array(
+                'success' => true,
+                'data' => $resources,
+            ));
+        } catch (Exception $ex) {
+            return $this->createJsonResponse(array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTrace()
+            ), 404);
+        }
     }
 
     /**
@@ -125,7 +175,21 @@ class FinanceiroController extends BaseController
             }
 
             $serviceFinanceiro = $this->get('CoreFinanceiroBundle.FinanceiroActions');
+            /** @var Financeiro $resource */
             $resource = $serviceFinanceiro->save($entity);
+
+            if (!$resource->getEvento()) {
+                $vencimento = new \DateTime();
+                $interval = new \DateInterval('P1Y');
+                $vencimento->add($interval);
+
+                $user = $resource->getUsuario();
+
+                $user->setFlAssociado(true);
+                $user->setDtVencimento($vencimento);
+                $user->setFlPagamento(false);
+                $serviceUser->saveUser($user);
+            }
 
             return $this->createJsonResponse(array(
                 'success' => true,

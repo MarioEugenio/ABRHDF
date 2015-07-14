@@ -122,61 +122,65 @@ class __TwigTemplate_f7a4680f7c5adc5e383cf7225c3f7ddbb3814252f70992369c5b8842466
         // line 39
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/ngCpfCnpj.js"), "html", null, true);
         echo "\"></script>
+<script src=\"";
+        // line 40
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/pagination.js"), "html", null, true);
+        echo "\"></script>
 
 <script src=\"";
-        // line 41
+        // line 42
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/strap/angular-strap.min.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 42
+        // line 43
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/strap/angular-strap.tpl.min.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 44
+        // line 45
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/directive/switch/angular-bootstrap-switch.min.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 46
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/bower_components/metisMenu/dist/metisMenu.min.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 47
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 49
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/jquery/bootstrap-switch.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 50
+        // line 51
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/jquery-ui.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 51
+        // line 52
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/jquery/jquery-ui-1.11.4.custom/ui/i18n/datepicker-pt-BR.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 52
+        // line 53
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/ui-utils-0.2.3/ui-utils.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 53
+        // line 54
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/external/angular/date.js"), "html", null, true);
         echo "\"></script>
 
 ";
-        // line 56
+        // line 57
         echo "<script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/corebase/js/Core.js"), "html", null, true);
         echo "\"></script>
 
 ";
-        // line 58
-        $this->displayBlock('javascripts', $context, $blocks);
         // line 59
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 60
         echo "</body>
 </html>
 ";
@@ -198,7 +202,7 @@ class __TwigTemplate_f7a4680f7c5adc5e383cf7225c3f7ddbb3814252f70992369c5b8842466
     {
     }
 
-    // line 58
+    // line 59
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -215,6 +219,6 @@ class __TwigTemplate_f7a4680f7c5adc5e383cf7225c3f7ddbb3814252f70992369c5b8842466
 
     public function getDebugInfo()
     {
-        return array (  202 => 58,  197 => 20,  192 => 16,  186 => 7,  180 => 59,  178 => 58,  172 => 56,  167 => 53,  163 => 52,  159 => 51,  155 => 50,  151 => 49,  146 => 47,  142 => 46,  137 => 44,  132 => 42,  128 => 41,  123 => 39,  119 => 38,  115 => 37,  111 => 36,  107 => 35,  103 => 34,  98 => 33,  93 => 30,  88 => 29,  83 => 26,  78 => 24,  73 => 23,  70 => 21,  68 => 20,  63 => 17,  61 => 16,  56 => 14,  52 => 13,  48 => 12,  44 => 11,  40 => 10,  36 => 9,  31 => 7,  23 => 1,);
+        return array (  206 => 59,  201 => 20,  196 => 16,  190 => 7,  184 => 60,  182 => 59,  176 => 57,  171 => 54,  167 => 53,  163 => 52,  159 => 51,  155 => 50,  150 => 48,  146 => 47,  141 => 45,  136 => 43,  132 => 42,  127 => 40,  123 => 39,  119 => 38,  115 => 37,  111 => 36,  107 => 35,  103 => 34,  98 => 33,  93 => 30,  88 => 29,  83 => 26,  78 => 24,  73 => 23,  70 => 21,  68 => 20,  63 => 17,  61 => 16,  56 => 14,  52 => 13,  48 => 12,  44 => 11,  40 => 10,  36 => 9,  31 => 7,  23 => 1,);
     }
 }

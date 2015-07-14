@@ -102,7 +102,7 @@ class UserController extends BaseController
     {
         $service = $this->get('CoreUserBundle.UserActions');
         $service->logout();
-        return $this->redirect($this->getRequest()->getBaseUrl() . '/');
+        return $this->redirect($this->getRequest()->getBaseUrl() . '/web');
     }
 
     /**

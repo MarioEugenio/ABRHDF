@@ -1,9 +1,10 @@
 app.controller('HomeCtrl', function ($scope, $http, $modal, currentUser, $alert) {
     $scope.urlPerfil = "";
+    $scope.associado = false;
 
     currentUser.getSessions().success(function(response, status){
         $scope.currentUser = response.data;
-
+console.log($scope.currentUser);
         var id = response.data.id;
         if (response.data.tipoUsuario == 1) {
             $scope.urlPerfil = "#/user/" + id + "/edit/"+1;
@@ -31,6 +32,18 @@ app.controller('HomeCtrl', function ($scope, $http, $modal, currentUser, $alert)
             rsenha:null
         };
     };
+
+    $scope.closeAssociado = function () {
+        $scope.associado = false;
+    }
+
+    $scope.pagamento = function (status) {
+        return (status)? "Pagamento Efetivado" : "Pagamento Pendente";
+    }
+
+    $scope.verificarAssociado = function () {
+        $scope.associado = true;
+    }
 
     $scope.altSenha = function () {
         var valid = false;

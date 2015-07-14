@@ -41,42 +41,42 @@ class Evento extends Entity
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="inscricaoInicio", type="datetime")
+     * @ORM\Column(name="inscricaoInicio", type="datetime", nullable=true)
      */
     private $inscricaoInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="inscricaoFim", type="datetime")
+     * @ORM\Column(name="inscricaoFim", type="datetime", nullable=true)
      */
     private $inscricaoFim;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dataInicio", type="datetime")
+     * @ORM\Column(name="dataInicio", type="datetime", nullable=true)
      */
     private $dataInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dataFim", type="datetime")
+     * @ORM\Column(name="dataFim", type="datetime", nullable=true)
      */
     private $dataFim;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="local", type="string", length=2000)
+     * @ORM\Column(name="local", type="string", length=2000, nullable=true)
      */
     private $local;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cargaHoraria", type="integer")
+     * @ORM\Column(name="cargaHoraria", type="integer", nullable=true)
      */
     private $cargaHoraria;
 

@@ -46,6 +46,10 @@ class UserActions
         $this->container = $container;
     }
 
+    public function saveUser($entity) {
+        $this->repository->save($entity);
+    }
+
     /**
     * metodo responsavel por salvar dados
     */
@@ -152,7 +156,9 @@ class UserActions
                 'cpf' => $objResult->getCpf(),
                 'email' => $objResult->getEmail(),
                 'senha' => $objResult->getSenha(),
-                'associado' => $objResult->getFlAssociado()
+                'associado' => $objResult->getFlAssociado(),
+                'dtAssociado' => $objResult->getDtVencimento(),
+                'flPagamento' => $objResult->getFlPagamento()
             );
             $request->getSession()->set('user', $arrResult);
 
@@ -251,6 +257,9 @@ class UserActions
                     'nome' => $user->getNome(),
                     'email' => $user->getEmail(),
                     'flAssociado' => $user->getFlAssociado(),
+                    'dtAssociado' => $user->getDtVencimento(),
+                    'flPagamento' => $user->getFlPagamento(),
+                    'dtVencimento' => $user->getDtVencimento(),
                     'cnpj' => '',
                     'nomeFantasia' => ''
                 );
@@ -307,7 +316,9 @@ class UserActions
                 'rg' => $user->getRg(),
                 'emissor' => $user->getEmissor(),
                 'senha' => $user->getSenha(),
-                'flAssociado' => $user->getFlAssociado()
+                'flAssociado' => $user->getFlAssociado(),
+                'flPagamento' => $user->getFlPagamento(),
+                'dtVencimento' => $user->getDtVencimento()
             );
 
             $this->contatoRep = $this->entityManager->getRepository("CoreUserBundle:Contato");
@@ -603,7 +614,9 @@ class UserActions
             'cpf' => $objResult->getCpf(),
             'email' => $objResult->getEmail(),
             'senha' => $objResult->getSenha(),
-            'associado' => $objResult->getFlAssociado()
+            'associado' => $objResult->getFlAssociado(),
+            'dtAssociado' => $objResult->getDtVencimento(),
+            'flPagamento' => $objResult->getFlPagamento()
         );
         $request->getSession()->set('user', $arrResult);
     }

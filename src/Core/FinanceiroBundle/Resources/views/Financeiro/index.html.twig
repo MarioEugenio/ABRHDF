@@ -3,39 +3,47 @@
 </div>
 
 <div ng-controller="FinanceiroCtrl" ng-init="init()">
+    <input type="hidden" ng-model="evento">
 
     <fieldset>
         <legend>Informações</legend>
 
-        <div class="panel panel-default">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Tipo</th>
-                    <th>Valor (R$)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-show="list.length == 0">
-                    <td colspan="10" style="text-align: center;"><span class="glyphicon glyphicon-info-sign"></span> Não houve retorno de registros</td>
-                </tr>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Valor (R$)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-show="list.length == 0">
+                            <td colspan="10" style="text-align: center;"><span class="glyphicon glyphicon-info-sign"></span> Não houve retorno de registros</td>
+                        </tr>
 
-                <tr ng-show="list.length > 0" ng-repeat="item in list | filter:searchText">
-                    <td>{[{ formatarData(item.data_cadastro) }]}</td>
-                    <td>{[{ descricaoTipo(item.tipo_pagamento) }]}</td>
-                    <td>R$ {[{ item.valor }]}</td>
+                        <tr ng-show="list.length > 0" ng-repeat="item in list | filter:searchText">
+                            <td>{[{ formatarData(item.data_cadastro) }]}</td>
+                            <td>{[{ descricaoTipo(item.tipo_pagamento) }]}</td>
+                            <td>R$ {[{ item.valor }]}</td>
 
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        <div class="col-lg-6"></div>
-
-        <div class="col-lg-6 box">
-            <h5><i class="fa fa-ticket"></i> Código de Desconto</h5>
-            <p><input type="text" class="form-control"></p>
+            <div class="col-lg-4">
+                <h5><i class="fa fa-ticket"></i> Código de Desconto</h5>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="codigo" placeholder="Digite o código do desconto ...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="checarCodigo()"><i class="glyphicon glyphicon-search"></i> Checar</button>
+                  </span>
+                </div>
+            </div>
         </div>
     </fieldset>
 
