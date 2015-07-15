@@ -84,6 +84,18 @@ class UserController extends BaseController
     }
 
     /**
+     * @Route("/user/imprimir", name="user_print", options={"expose"=true})
+     * @Template()
+     */
+    public function imprimirAction()
+    {
+        /** @var UserActions $service */
+        $service = $this->get('CoreUserBundle.UserActions');
+        $user = $service->getInfoUser($this->getRequest()->query->get('co_user'));
+        return $user;
+    }
+
+    /**
      * @Route("/user/cadastrar", name="user_cadastrar", options={"expose"=true})
      */
     public function cadastrarAction()

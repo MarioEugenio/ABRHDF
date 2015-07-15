@@ -1,10 +1,9 @@
-app.controller('HomeCtrl', function ($scope, $http, $modal, currentUser, $alert) {
+app.controller('HomeCtrl', function ($scope, $http, $modal, currentUser, $alert, $window) {
     $scope.urlPerfil = "";
     $scope.associado = false;
 
     currentUser.getSessions().success(function(response, status){
         $scope.currentUser = response.data;
-console.log($scope.currentUser);
         var id = response.data.id;
         if (response.data.tipoUsuario == 1) {
             $scope.urlPerfil = "#/user/" + id + "/edit/"+1;
@@ -22,6 +21,23 @@ console.log($scope.currentUser);
             senha: null,
             rsenha:null
         }
+    };
+
+    $scope.imprimir = function () {
+        var w = 400;
+        var h = 500;
+        // Fixes dual-screen position                         Most browsers      Firefox
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+        width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+        $window.open(Routing.generate('user_print', {
+            co_user: $scope.currentUser.id
+        }), 'imprimir', 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left );
     };
 
     $scope.close = function () {

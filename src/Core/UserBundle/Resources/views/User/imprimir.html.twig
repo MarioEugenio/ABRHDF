@@ -1,0 +1,49 @@
+<SCRIPT LANGUAGE="JavaScript">
+    function Maximize()
+    {
+        window.innerWidth = screen.width;
+        window.innerHeight = screen.height;
+        window.screenX = 0;
+        window.screenY = 0;
+        alwaysLowered = false;
+    }
+</SCRIPT>
+<div>
+    {% if empresa %}
+        <div style="position: relative">
+        <span style="position: absolute;top: 150px;z-index: 99999;text-align: right;width:150px">
+            <strong>{{ form.id }}</strong>
+        </span>
+        <span style="position: absolute;top: 150px;z-index: 99999;text-align: right;width:340px">
+            <strong>Validade: 31/08/1991</strong>
+        </span>
+            <div style="position: absolute;top: 180px;z-index: 99999;text-align: right;width:340px">
+                <strong>{{ form.nome }}</strong>
+            </div>
+            <img style="position: absolute;" src="{{ asset('bundles/coreuser/image/cartao_pj_frente.jpg') }}" width="350" height="200"/>
+        </div>
+        <div style="padding-top: 230px">
+            <img  src="{{ asset('bundles/coreuser/image/cartao_pj_verso.jpg') }}" width="350" height="200"/>
+        </div>
+    {% else %}
+        <div style="position: relative">
+            <span style="position: absolute;top: 150px;z-index: 99999;text-align: right;width:150px">
+                <strong>{{ form.id }}</strong>
+            </span>
+            <span style="position: absolute;top: 150px;z-index: 99999;text-align: right;width:340px">
+                <strong>Validade: 31/08/1991</strong>
+            </span>
+            <div style="position: absolute;top: 180px;z-index: 99999;text-align: right;width:340px">
+                <strong>{{ form.nome }}</strong>
+            </div>
+            <img style="position: absolute;" src="{{ asset('bundles/coreuser/image/cartao_pf_frente.jpg') }}" width="350" height="200"/>
+        </div>
+        <div style="padding-top: 230px">
+            <img  src="{{ asset('bundles/coreuser/image/cartao_pf_verso.jpg') }}" width="350" height="200"/>
+        </div>
+    {% endif %}
+
+    <div style="padding: 20px;margin: 0px auto;">
+        <button type="button" class="btn btn-primary" onclick="window.moveTo(0, 0);window.resizeTo(screen.width, screen.height);window.print();">IMPRIMIR</button>
+    </div>
+</div>
