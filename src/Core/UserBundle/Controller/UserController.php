@@ -92,6 +92,7 @@ class UserController extends BaseController
         /** @var UserActions $service */
         $service = $this->get('CoreUserBundle.UserActions');
         $user = $service->getInfoUser($this->getRequest()->query->get('co_user'));
+        $user['form']['dtVencimento'] = $user['form']['dtVencimento']->format('d/m/Y');
         return $user;
     }
 
